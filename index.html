@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHEVSAY SKINS | Новый Дизайн</title>
+    <title>SHEVSAY SKINS | Финальный Дизайн</title>
     <link rel="icon" type="image/png" href="https://assets.lis-skins.com/market_images/150567_b.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@800&display=swap');
 
-        /* === НОВАЯ ЦВЕТОВАЯ ПАЛИТРА И ГЛОБАЛЬНЫЕ СТИЛИ === */
         :root {
             --bg-color: #0D0D10;
             --surface-color: #16161A;
@@ -20,14 +19,12 @@
             --accent-color: #007BFF;
             --accent-color-hover: #0056b3;
 
-            /* Цвета редкости */
-            --quality-mil-spec: #4A90E2;   /* Синий */
-            --quality-restricted: #48BCA0; /* Бирюзовый */
-            --quality-classified: #E94C4C; /* Красный */
-            --quality-prime: #E6A23C;      /* Золотой */
+            --quality-mil-spec: #4A90E2;
+            --quality-restricted: #48BCA0;
+            --quality-classified: #E94C4C;
+            --quality-prime: #E6A23C;
         }
 
-        /* Добавляем легкую текстуру на фон */
         body {
             background-color: var(--bg-color);
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%231a1b1e' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
@@ -46,30 +43,21 @@
             max-width: 100%;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* --- ОБНОВЛЕННАЯ ШАПКА САЙТА (ЦЕНТРИРОВАННАЯ) --- */
+        /* --- ШАПКА САЙТА (КЛАССИЧЕСКАЯ) --- */
         .site-header {
-            padding: 20px 0;
+            padding: 15px 40px;
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(12px);
             background-color: rgba(13, 13, 16, 0.7);
-        }
-        .header-content {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 20px;
+            justify-content: space-between;
         }
         .logo { 
-            width: 75px; 
+            width: 70px; 
             height: auto; 
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
         }
@@ -94,83 +82,60 @@
             background-color: var(--surface-color);
         }
         
-        /* --- ОСНОВНОЙ КОНТЕНТ --- */
+        /* --- НОВАЯ СТРУКТУРА СТРАНИЦЫ --- */
         .page-content {
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-
-        .content-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .content-header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            background: linear-gradient(90deg, #FFFFFF, #BCC2D0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .content-header .prompt {
-            color: var(--secondary-text-color);
-            font-size: 1.1em;
-            max-width: 600px;
+            display: flex;
+            gap: 40px;
+            max-width: 1600px;
             margin: 0 auto;
-            line-height: 1.6;
+            padding: 40px;
         }
 
-        /* --- НОВЫЙ БЛОК ФИЛЬТРОВ (НАД КОНТЕНТОМ) --- */
-        .filter-bar {
-            margin-bottom: 40px;
-            padding: 20px;
+        /* --- ПАНЕЛЬ ФИЛЬТРОВ (ВОЗВРАЩЕНА СЛЕВА) --- */
+        .filter-sidebar {
+            width: 280px;
+            flex-shrink: 0;
             background-color: var(--surface-color);
             border-radius: 12px;
             border: 1px solid var(--border-color);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
+            padding: 20px;
+            height: fit-content; /* Чтобы панель не растягивалась на всю высоту */
+            position: sticky;
+            top: 100px; /* Отступ от шапки */
         }
-        .filter-bar details {
-            position: relative;
+        .filter-sidebar h2 {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 30px 0;
+            font-size: 1.2rem;
+            color: var(--primary-text-color);
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
         }
-        .filter-bar summary {
-            padding: 10px 20px;
-            background-color: var(--surface-secondary-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            list-style: none;
-            transition: background-color 0.2s, border-color 0.2s;
+        .category-filter details { margin-bottom: 5px; }
+        .category-filter summary {
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; padding: 12px; border-radius: 8px;
+            list-style: none; transition: background-color 0.2s ease;
             font-weight: 500;
         }
-        .filter-bar summary:hover {
-            border-color: var(--accent-color);
+        .category-filter summary:hover { background-color: var(--surface-secondary-color); }
+        .category-filter summary::-webkit-details-marker { display: none; }
+        .category-filter summary::after { /* ВОССТАНОВЛЕНА СТРЕЛОЧКА */
+            content: ''; width: 16px; height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A91A0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: contain; transition: transform 0.25s ease-in-out;
+            flex-shrink: 0;
         }
-        .filter-bar summary::-webkit-details-marker {
-            display: none;
-        }
-        .filter-dropdown {
-            position: absolute;
-            top: calc(100% + 10px);
-            left: 0;
-            z-index: 100;
-            background-color: var(--surface-secondary-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            width: 250px;
-            max-height: 300px;
-            overflow-y: auto;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        details[open] > summary::after { transform: rotate(180deg); }
+        .sub-category-list { 
+            padding-left: 15px; margin-top: 10px; margin-left: 12px;
+            border-left: 1px solid var(--border-color);
         }
         .checkbox-container {
             display: block; position: relative; padding-left: 30px;
-            margin-bottom: 15px; cursor: pointer; font-size: 0.95em;
+            margin: 15px 0 15px 15px; cursor: pointer; font-size: 0.95em;
         }
         .checkbox-container input { position: absolute; opacity: 0; }
         .checkmark {
@@ -189,18 +154,36 @@
         }
         .checkbox-container input:checked ~ .checkmark:after { display: block; }
         
+        /* --- ОСНОВНОЙ КОНТЕНТ (Справа) --- */
+        .content-area {
+            flex-grow: 1;
+        }
+        .content-area h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .content-area .prompt {
+            color: var(--secondary-text-color);
+            font-size: 1.1em;
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
         .skins-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        /* --- КАРДИНАЛЬНО НОВЫЙ ДИЗАЙН КАРТОЧЕК V6 (DYNAMIC) --- */
+        /* --- ИДЕАЛЬНЫЕ КАРТОЧКИ (БЕЗ ИЗМЕНЕНИЙ) --- */
         @keyframes cardFadeInUp {
             from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .skin-card {
             background-color: var(--surface-color);
             border-radius: 16px;
@@ -218,12 +201,10 @@
             transform: translateY(-10px);
             box-shadow: 0 15px 35px -5px rgba(0,0,0,0.4), 0 0 0 4px var(--rarity-color, var(--accent-color));
         }
-
         .skin-visuals {
             height: 200px;
             position: relative;
             cursor: pointer;
-            /* Диагональный срез */
             clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
         }
         .skin-image-bg {
@@ -232,103 +213,55 @@
             background: radial-gradient(circle at center, rgba(31, 31, 36, 0.8) 0%, var(--bg-color) 70%);
         }
         .skin-visuals img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 20px;
-            box-sizing: border-box;
-            position: relative;
-            z-index: 2;
+            width: 100%; height: 100%; object-fit: contain;
+            padding: 20px; box-sizing: border-box;
+            position: relative; z-index: 2;
             transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .skin-card:hover .skin-visuals img {
-            transform: scale(1.15) rotate(3deg);
-        }
-
+        .skin-card:hover .skin-visuals img { transform: scale(1.15) rotate(3deg); }
         .rarity-tag {
-            position: absolute;
-            top: 15px;
-            right: -1px; /* Для идеального прилегания к краю после clip-path */
-            z-index: 3;
-            background-color: var(--rarity-color);
-            color: #fff;
-            padding: 6px 14px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border-radius: 6px 0 0 6px;
-            box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
+            position: absolute; top: 15px; right: -1px; z-index: 3;
+            background-color: var(--rarity-color); color: #fff;
+            padding: 6px 14px; font-size: 0.8rem; font-weight: 700;
+            border-radius: 6px 0 0 6px; box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
         }
-        
         .skin-info {
-            padding: 0 25px 25px 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
+            padding: 0 25px 25px 25px; display: flex;
+            flex-direction: column; flex-grow: 1; justify-content: space-between;
         }
-
         .skin-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0 0 15px 0;
-            min-height: 3.6rem; /* Резервируем место под 2 строки */
+            font-size: 1.2rem; font-weight: 600;
+            margin: 0 0 15px 0; min-height: 3.6rem;
         }
-        
         .skin-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             background-color: var(--surface-secondary-color);
-            padding: 12px 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            padding: 12px 15px; border-radius: 10px; margin-bottom: 20px;
         }
         .skin-details .price-label {
-            font-size: 0.9rem;
-            color: var(--secondary-text-color);
-            font-weight: 500;
+            font-size: 0.9rem; color: var(--secondary-text-color); font-weight: 500;
         }
         .skin-details .skin-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-text-color);
+            font-size: 1.3rem; font-weight: 700; color: var(--primary-text-color);
         }
-
-        .card-actions {
-            display: flex;
-            gap: 12px;
-        }
+        .card-actions { display: flex; gap: 12px; }
         .buy-button, .inspect-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
-            padding: 13px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
+            display: flex; justify-content: center; align-items: center;
+            flex: 1; padding: 13px; border-radius: 8px; text-decoration: none;
+            font-weight: 600; font-size: 1rem;
+            transition: all 0.2s ease; cursor: pointer; border: 2px solid transparent;
         }
-        .buy-button {
-            background-color: var(--accent-color);
-            color: white;
-        }
+        .buy-button { background-color: var(--accent-color); color: white; }
         .buy-button:hover {
-            background-color: var(--accent-color-hover);
-            transform: translateY(-2px);
+            background-color: var(--accent-color-hover); transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
         }
         .inspect-button {
-            background-color: transparent;
-            color: var(--secondary-text-color);
+            background-color: transparent; color: var(--secondary-text-color);
             border-color: var(--border-color);
         }
         .inspect-button:hover {
-            border-color: var(--accent-color);
-            color: var(--primary-text-color);
+            border-color: var(--accent-color); color: var(--primary-text-color);
             background-color: rgba(0, 123, 255, 0.1);
         }
 
@@ -337,7 +270,7 @@
         .quality-classified { --rarity-color: var(--quality-classified); }
         .quality-prime { --rarity-color: var(--quality-prime); }
         
-        /* Модальное окно без изменений, оно и так хорошее */
+        /* Модальное окно */
         .modal-overlay {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 13, 16, 0.7); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;}
         .modal-overlay.show {opacity: 1; visibility: visible;}
         .modal-content {background-color: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; width: 90%; max-width: 650px; text-align: center; transform: scale(0.95) translateY(10px); transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative;}
@@ -349,45 +282,39 @@
         .modal-close:hover {transform: scale(1.1) rotate(90deg); color: var(--primary-text-color);}
 
         /* Адаптивность */
+        @media (max-width: 1024px) {
+            .page-content { flex-direction: column; }
+            .filter-sidebar { width: auto; position: static; }
+        }
         @media (max-width: 768px) {
-            .container { padding: 0 20px; }
-            .header-content { flex-direction: column; }
-            .content-header h1 { font-size: 2.2rem; }
-            .filter-bar { padding: 15px; }
-            .skins-grid { grid-template-columns: 1fr; gap: 25px; }
+            .site-header { flex-direction: column; gap: 15px; }
+            .page-content { padding: 20px; }
+            .content-area h1 { font-size: 2rem; }
+            .skins-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
 <header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <a href="#"><img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo"></a>
-            <nav class="social-nav">
-                <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
-                <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
-                <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
-                <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
-            </nav>
-        </div>
-    </div>
+    <a href="#"><img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo"></a>
+    <nav class="social-nav">
+        <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
+        <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
+        <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
+        <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
+    </nav>
 </header>
 
-<main class="page-content container">
-    <div class="content-header">
-        <h1 id="contentTitle">Магазин скинов</h1>
-        <p class="prompt" id="contentPrompt">
-            Добро пожаловать! Ниже представлены самые популярные скины. 
-            Используйте фильтры, чтобы найти то, что нужно именно вам.
-        </p>
-    </div>
+<div class="page-content">
+    <aside class="filter-sidebar" id="filterSidebar"></aside>
 
-    <!-- Новый блок фильтров -->
-    <div class="filter-bar" id="filterBar"></div>
-
-    <div class="skins-grid" id="skinsGrid"></div>
-</main>
+    <main class="content-area">
+        <h1 id="contentTitle"></h1>
+        <p class="prompt" id="contentPrompt"></p>
+        <div class="skins-grid" id="skinsGrid"></div>
+    </main>
+</div>
 
 <!-- Модальное окно -->
 <div class="modal-overlay" id="skinModal">
@@ -436,7 +363,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('skinsGrid');
-        const filterBar = document.getElementById('filterBar');
+        const filterSidebar = document.getElementById('filterSidebar');
         const contentTitle = document.getElementById('contentTitle');
         const contentPrompt = document.getElementById('contentPrompt');
         
@@ -446,6 +373,7 @@
         const modalName = document.getElementById('modalName');
         const modalPrice = document.getElementById('modalPrice');
 
+        // ВОССТАНОВЛЕНА ЛОГИКА ИЗБРАННЫХ СКИНОВ
         const featuredSkins = ['Прайм статус в CS2', 'AK-47 | Ледяной Уголь', 'AWP | Экзоскелет'];
         let activeFilters = { types: new Set() };
 
@@ -462,16 +390,20 @@
             modal.classList.remove('show');
         }
 
+        // ОБНОВЛЕНА ЛОГИКА РЕНДЕРИНГА
         function renderSkins() {
             grid.innerHTML = '';
             const isFiltered = activeFilters.types.size > 0;
             let skinsToRender;
 
             if (!isFiltered) {
-                skinsToRender = skins; // Показываем все скины по умолчанию
-                contentTitle.textContent = "Магазин скинов";
+                // Если фильтры не активны, показываем избранные скины
+                skinsToRender = skins.filter(s => featuredSkins.includes(s.name));
+                contentTitle.textContent = "Избранное";
+                contentPrompt.textContent = "Добро пожаловать! Ниже представлены избранные награды. Чтобы найти больше скинов, воспользуйтесь фильтрами.";
                 contentPrompt.style.display = 'block';
             } else {
+                // Если фильтры активны, показываем результаты поиска
                 skinsToRender = skins.filter(skin => activeFilters.types.has(skin.type));
                 contentTitle.textContent = "Результаты поиска";
                 contentPrompt.style.display = 'none';
@@ -498,7 +430,6 @@
                     actionsHTML = `<a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button" style="flex: auto;">Купить</a>`;
                 }
                 
-                // ИСПРАВЛЕНА ОШИБКА ДУБЛИРОВАНИЯ - теперь один цельный HTML-блок
                 card.innerHTML = `
                     <div class="skin-visuals">
                         <div class="skin-image-bg"></div>
@@ -522,35 +453,43 @@
             });
         }
         
+        // ОБНОВЛЕНА ЛОГИКА СОЗДАНИЯ ФИЛЬТРОВ
         function createFilters() {
+            filterSidebar.innerHTML = '<h2>Фильтры</h2>';
+            const categoryGroup = document.createElement('div');
+            categoryGroup.className = 'category-filter';
+
             for (const category in filterData) {
                 const details = document.createElement('details');
                 const subTypes = filterData[category];
-
+                
                 let subListHTML = '';
                 if (subTypes.length > 0) {
+                    const subList = document.createElement('div');
+                    subList.className = 'sub-category-list';
                     subTypes.forEach(type => {
-                        subListHTML += `
+                        subList.innerHTML += `
                             <label class="checkbox-container"> ${type}
                                 <input type="checkbox" data-type-for-category="${category}" value="${type}">
                                 <span class="checkmark"></span>
                             </label>
                         `;
                     });
+                    details.innerHTML = `<summary>${category}</summary>`;
+                    details.appendChild(subList);
+                } else {
+                     details.innerHTML = `<summary>${category}</summary>`; // Для категорий без подкатегорий, если будут
                 }
-
-                details.innerHTML = `
-                    <summary>${category}</summary>
-                    <div class="filter-dropdown">${subListHTML}</div>
-                `;
-                filterBar.appendChild(details);
+                categoryGroup.appendChild(details);
             }
+            filterSidebar.appendChild(categoryGroup);
         }
 
         createFilters();
-        renderSkins();
+        renderSkins(); // Первоначальный рендер с избранными товарами
 
-        filterBar.addEventListener('change', (e) => {
+        // ОБНОВЛЕНА ЛОГИКА ОБРАБОТКИ ФИЛЬТРОВ
+        filterSidebar.addEventListener('change', (e) => {
             if (e.target.type === 'checkbox') {
                 const { value, checked } = e.target;
                 if (checked) {
@@ -560,15 +499,6 @@
                 }
                 renderSkins();
             }
-        });
-        
-        // Закрывать выпадающие списки при клике вне их
-        document.addEventListener('click', function(event) {
-            filterBar.querySelectorAll('details').forEach(function(details) {
-                if (!details.contains(event.target)) {
-                    details.removeAttribute('open');
-                }
-            });
         });
 
         grid.addEventListener('click', (e) => {
