@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHEVSAY SKINS</title>
+    <title>SHEVSAY SKINS | Новый Дизайн</title>
     <link rel="icon" type="image/png" href="https://assets.lis-skins.com/market_images/150567_b.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@800&display=swap');
 
-        /* === НОВАЯ ЦВЕТОВАЯ ПАЛИТРА И СТИЛИ === */
+        /* === НОВАЯ ЦВЕТОВАЯ ПАЛИТРА И ГЛОБАЛЬНЫЕ СТИЛИ === */
         :root {
-            --bg-color: #111214;
-            --surface-color: #1A1B1E;
+            --bg-color: #0D0D10;
+            --surface-color: #16161A;
+            --surface-secondary-color: #1F1F24;
             --primary-text-color: #F0F2F5;
             --secondary-text-color: #8A91A0;
-            --border-color: #2C2D30;
-            --border-hover-color: #4A4C52;
+            --border-color: #2A2D3A;
             
-            /* Акцентный цвет (заменил оранжевый на синий для более чистого вида) */
-            --accent-color: #3482F6;
-            --accent-color-hover: #5A9BFF;
+            --accent-color: #007BFF;
+            --accent-color-hover: #0056b3;
 
-            /* Новые цвета редкости (без розового/фиолетового) */
-            --quality-mil-spec: #4A90E2;      /* Синий */
-            --quality-restricted: #48BCA0;    /* Бирюзовый/Зеленоватый */
-            --quality-classified: #E94C4C;    /* Красный */
-            --quality-prime: #E6A23C;         /* Золотой */
+            /* Цвета редкости */
+            --quality-mil-spec: #4A90E2;   /* Синий */
+            --quality-restricted: #48BCA0; /* Бирюзовый */
+            --quality-classified: #E94C4C; /* Красный */
+            --quality-prime: #E6A23C;      /* Золотой */
         }
 
+        /* Добавляем легкую текстуру на фон */
         body {
             background-color: var(--bg-color);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%231a1b1e' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
             color: var(--primary-text-color);
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -42,317 +43,293 @@
         
         img {
             pointer-events: none;
+            max-width: 100%;
         }
 
-        /* --- Обновленная Шапка сайта --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- ОБНОВЛЕННАЯ ШАПКА САЙТА (ЦЕНТРИРОВАННАЯ) --- */
         .site-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 48px;
+            padding: 20px 0;
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(16px);
-            background-color: rgba(17, 18, 20, 0.7);
+            backdrop-filter: blur(12px);
+            background-color: rgba(13, 13, 16, 0.7);
+        }
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
         .logo { 
-            width: 70px; 
+            width: 75px; 
             height: auto; 
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
         }
         .logo:hover { 
-            transform: scale(1.08) rotate(-5deg); 
+            transform: scale(1.1) rotate(-8deg); 
         }
-
         .social-nav { 
             display: flex; 
-            gap: 20px; 
+            gap: 15px; 
         }
         .social-link {
             color: var(--secondary-text-color);
             text-decoration: none;
             font-weight: 500;
             font-size: 1rem;
-            padding: 8px 12px;
-            border-radius: 6px;
-            position: relative;
+            padding: 8px 16px;
+            border-radius: 8px;
             transition: color 0.3s ease, background-color 0.3s ease;
         }
         .social-link:hover { 
             color: var(--primary-text-color);
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--surface-color);
         }
         
-        /* --- Обновленный Основной контент --- */
-        .page-content { 
-            display: flex; 
-            padding: 40px 48px; 
-            gap: 40px; 
-            max-width: 1600px;
-            margin: 0 auto;
+        /* --- ОСНОВНОЙ КОНТЕНТ --- */
+        .page-content {
+            padding-top: 50px;
+            padding-bottom: 50px;
         }
-        
-        /* --- Обновленная Панель фильтров --- */
-        .filter-sidebar { 
-            width: 280px; 
-            flex-shrink: 0; 
+
+        .content-header {
+            text-align: center;
+            margin-bottom: 40px;
         }
-        .filter-sidebar h2 {
+
+        .content-header h1 {
             font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-            font-size: 1.2rem;
-            color: var(--secondary-text-color);
-        }
-        .filter-group { 
-            margin-bottom: 20px; 
-        }
-        .category-filter details { 
-            margin-bottom: 5px; 
-        }
-        .category-filter summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            padding: 12px;
-            border-radius: 8px;
-            list-style: none;
-            transition: background-color 0.2s ease;
-        }
-        .category-filter summary:hover { 
-            background-color: var(--surface-color); 
-        }
-        .category-filter summary::-webkit-details-marker { 
-            display: none; 
-        }
-        .category-filter summary::after {
-            content: '';
-            width: 18px;
-            height: 18px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A91A0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-size: contain;
-            transition: transform 0.25s ease-in-out;
-        }
-        details[open] > summary::after { 
-            transform: rotate(180deg); 
-        }
-        .sub-category-list { 
-            padding-left: 20px; 
-            margin-top: 10px; 
-            border-left: 1px solid var(--border-color);
-            margin-left: 12px;
-        }
-        .checkbox-container {
-            display: block;
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            font-size: 0.95em;
-        }
-        .checkbox-container input { 
-            position: absolute; 
-            opacity: 0; 
-        }
-        .checkmark {
-            position: absolute;
-            top: 1px;
-            left: 0;
-            height: 18px;
-            width: 18px;
-            background-color: transparent;
-            border: 2px solid var(--border-color);
-            border-radius: 5px;
-            transition: all 0.2s ease;
-        }
-        .checkbox-container:hover input ~ .checkmark { 
-            border-color: var(--border-hover-color); 
-        }
-        .checkbox-container input:checked ~ .checkmark { 
-            background-color: var(--accent-color); 
-            border-color: var(--accent-color); 
-        }
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-            left: 5px;
-            top: 2px;
-            width: 4px;
-            height: 8px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-        .checkbox-container input:checked ~ .checkmark:after { 
-            display: block; 
-        }
-        
-        /* --- Обновленная Область с контентом --- */
-        .content-area { 
-            flex-grow: 1; 
-        }
-        .content-area h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin: 0 0 10px 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #FFFFFF, #B0B5C0);
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #FFFFFF, #BCC2D0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .content-area .prompt {
+        .content-header .prompt {
             color: var(--secondary-text-color);
             font-size: 1.1em;
             max-width: 600px;
-            margin-bottom: 40px;
+            margin: 0 auto;
             line-height: 1.6;
         }
+
+        /* --- НОВЫЙ БЛОК ФИЛЬТРОВ (НАД КОНТЕНТОМ) --- */
+        .filter-bar {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+        .filter-bar details {
+            position: relative;
+        }
+        .filter-bar summary {
+            padding: 10px 20px;
+            background-color: var(--surface-secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            list-style: none;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-weight: 500;
+        }
+        .filter-bar summary:hover {
+            border-color: var(--accent-color);
+        }
+        .filter-bar summary::-webkit-details-marker {
+            display: none;
+        }
+        .filter-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            z-index: 100;
+            background-color: var(--surface-secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            width: 250px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .checkbox-container {
+            display: block; position: relative; padding-left: 30px;
+            margin-bottom: 15px; cursor: pointer; font-size: 0.95em;
+        }
+        .checkbox-container input { position: absolute; opacity: 0; }
+        .checkmark {
+            position: absolute; top: 1px; left: 0;
+            height: 18px; width: 18px;
+            background-color: var(--bg-color); border: 2px solid var(--border-color);
+            border-radius: 5px; transition: all 0.2s ease;
+        }
+        .checkbox-container:hover input ~ .checkmark { border-color: var(--accent-color); }
+        .checkbox-container input:checked ~ .checkmark { background-color: var(--accent-color); border-color: var(--accent-color); }
+        .checkmark:after {
+            content: ""; position: absolute; display: none;
+            left: 5px; top: 2px; width: 4px; height: 8px;
+            border: solid white; border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .checkbox-container input:checked ~ .checkmark:after { display: block; }
+        
         .skins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
 
-        /* --- НОВЫЙ ДИЗАЙН КАРТОЧЕК V5 (MINIMALIST) --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        /* --- КАРДИНАЛЬНО НОВЫЙ ДИЗАЙН КАРТОЧЕК V6 (DYNAMIC) --- */
+        @keyframes cardFadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .skin-card {
             background-color: var(--surface-color);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: cardFadeInUp 0.5s ease-out forwards;
+            animation-delay: calc(var(--delay) * 60ms);
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: fadeIn 0.4s ease-out forwards;
-            animation-delay: calc(var(--delay) * 50ms);
         }
-        
         .skin-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--border-hover-color);
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2), 0 0 0 3px var(--rarity-color, var(--accent-color));
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px -5px rgba(0,0,0,0.4), 0 0 0 4px var(--rarity-color, var(--accent-color));
         }
 
-        /* Кликабельная область для открытия модального окна */
-        .skin-card-clickable-area {
+        .skin-visuals {
+            height: 200px;
+            position: relative;
             cursor: pointer;
+            /* Диагональный срез */
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        }
+        .skin-image-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(31, 31, 36, 0.8) 0%, var(--bg-color) 70%);
+        }
+        .skin-visuals img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .skin-card:hover .skin-visuals img {
+            transform: scale(1.15) rotate(3deg);
         }
 
-        .skin-image-wrapper {
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: repeating-linear-gradient(
-                -45deg,
-                var(--bg-color),
-                var(--bg-color) 5px,
-                rgba(255, 255, 255, 0.02) 5px,
-                rgba(255, 255, 255, 0.02) 10px
-            );
-        }
-        .skin-image-wrapper img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .skin-card:hover .skin-image-wrapper img { 
-            transform: scale(1.1); 
+        .rarity-tag {
+            position: absolute;
+            top: 15px;
+            right: -1px; /* Для идеального прилегания к краю после clip-path */
+            z-index: 3;
+            background-color: var(--rarity-color);
+            color: #fff;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 6px 0 0 6px;
+            box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
         }
         
         .skin-info {
-            padding: 20px;
-            flex-grow: 1;
+            padding: 0 25px 25px 25px;
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
             justify-content: space-between;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .skin-header {
-            min-height: 50px;
-        }
-        .skin-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 0 0 12px 0;
-        }
-        .rarity-tag {
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 5px 12px;
-            border-radius: 99px; /* Pill shape */
-            color: #fff;
-            background-color: var(--rarity-color);
-            display: inline-block;
-        }
-        
-        .skin-footer {
-            margin-top: 20px;
-        }
-        .skin-price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .card-actions {
-            display: flex;
-            gap: 10px;
         }
 
-        /* --- НОВЫЕ МИНИМАЛИСТИЧНЫЕ КНОПКИ --- */
+        .skin-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            min-height: 3.6rem; /* Резервируем место под 2 строки */
+        }
+        
+        .skin-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--surface-secondary-color);
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .skin-details .price-label {
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
+            font-weight: 500;
+        }
+        .skin-details .skin-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-text-color);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 12px;
+        }
         .buy-button, .inspect-button {
             display: flex;
             justify-content: center;
             align-items: center;
             flex: 1;
-            width: 100%;
-            text-align: center;
-            padding: 12px;
+            padding: 13px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: all 0.2s ease;
             cursor: pointer;
+            border: 2px solid transparent;
         }
-        /* Основная кнопка */
         .buy-button {
             background-color: var(--accent-color);
             color: white;
-            border: 1px solid var(--accent-color);
         }
         .buy-button:hover {
             background-color: var(--accent-color-hover);
-            border-color: var(--accent-color-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(52, 130, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
         }
-        /* Второстепенная кнопка (ghost) */
         .inspect-button {
             background-color: transparent;
-            color: var(--primary-text-color);
-            border: 1px solid var(--border-color);
+            color: var(--secondary-text-color);
+            border-color: var(--border-color);
         }
         .inspect-button:hover {
-            background-color: var(--border-hover-color);
-            border-color: var(--border-hover-color);
+            border-color: var(--accent-color);
             color: var(--primary-text-color);
+            background-color: rgba(0, 123, 255, 0.1);
         }
 
         .quality-mil-spec { --rarity-color: var(--quality-mil-spec); }
@@ -360,90 +337,57 @@
         .quality-classified { --rarity-color: var(--quality-classified); }
         .quality-prime { --rarity-color: var(--quality-prime); }
         
-        /* --- Обновленное Модальное окно --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(17, 18, 20, 0.7);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-        .modal-overlay.show { opacity: 1; visibility: visible; }
-        .modal-content {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 40px;
-            width: 90%;
-            max-width: 650px;
-            text-align: center;
-            transform: scale(0.95) translateY(10px);
-            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-        }
-        .modal-overlay.show .modal-content { 
-            transform: scale(1) translateY(0);
-        }
-        .modal-image-container img {
-            max-width: 100%;
-            height: auto;
-            max-height: 65vh;
-            margin-bottom: 20px;
-        }
-        .modal-content .skin-name { font-size: 2rem; margin: 15px 0 10px; }
-        .modal-content .skin-price { font-size: 1.5rem; color: var(--secondary-text-color); }
-        .modal-close {
-            position: absolute; top: 15px; right: 20px;
-            font-size: 2.5rem;
-            line-height: 1;
-            color: var(--secondary-text-color);
-            cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-        .modal-close:hover { transform: scale(1.1) rotate(90deg); color: var(--primary-text-color); }
+        /* Модальное окно без изменений, оно и так хорошее */
+        .modal-overlay {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 13, 16, 0.7); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;}
+        .modal-overlay.show {opacity: 1; visibility: visible;}
+        .modal-content {background-color: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; width: 90%; max-width: 650px; text-align: center; transform: scale(0.95) translateY(10px); transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative;}
+        .modal-overlay.show .modal-content {transform: scale(1) translateY(0);}
+        .modal-image-container img {max-width: 100%; height: auto; max-height: 65vh; margin-bottom: 20px;}
+        .modal-content .skin-name {font-size: 2rem; margin: 15px 0 10px;}
+        .modal-content .skin-price {font-size: 1.5rem; color: var(--secondary-text-color);}
+        .modal-close {position: absolute; top: 15px; right: 20px; font-size: 2.5rem; line-height: 1; color: var(--secondary-text-color); cursor: pointer; transition: transform 0.3s ease, color 0.3s ease;}
+        .modal-close:hover {transform: scale(1.1) rotate(90deg); color: var(--primary-text-color);}
 
         /* Адаптивность */
-        @media (max-width: 1200px) {
-            .page-content { flex-direction: column; padding: 32px; }
-            .filter-sidebar { width: 100%; display: flex; flex-wrap: wrap; gap: 20px; }
-            .filter-sidebar h2 { display: none; }
-            .filter-group { flex: 1 1 250px; }
-        }
         @media (max-width: 768px) {
-            .site-header { flex-direction: column; gap: 15px; padding: 15px 20px; }
-            .content-area h1 { font-size: 2.5rem; }
-            .skins-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+            .container { padding: 0 20px; }
+            .header-content { flex-direction: column; }
+            .content-header h1 { font-size: 2.2rem; }
+            .filter-bar { padding: 15px; }
+            .skins-grid { grid-template-columns: 1fr; gap: 25px; }
         }
     </style>
 </head>
 <body>
 
 <header class="site-header">
-    <div class="logo-container">
-        <img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo">
+    <div class="container">
+        <div class="header-content">
+            <a href="#"><img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo"></a>
+            <nav class="social-nav">
+                <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
+                <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
+                <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
+                <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
+            </nav>
+        </div>
     </div>
-    <nav class="social-nav">
-        <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
-        <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
-        <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
-        <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
-    </nav>
 </header>
 
-<div class="page-content">
-    <aside class="filter-sidebar" id="filterSidebar"></aside>
-
-    <main class="content-area">
-        <h1 id="contentTitle">Избранное</h1>
+<main class="page-content container">
+    <div class="content-header">
+        <h1 id="contentTitle">Магазин скинов</h1>
         <p class="prompt" id="contentPrompt">
-            Добро пожаловать! Ниже представлены самые популярные и интересные награды. 
-            Чтобы найти больше скинов, воспользуйтесь фильтрами слева.
+            Добро пожаловать! Ниже представлены самые популярные скины. 
+            Используйте фильтры, чтобы найти то, что нужно именно вам.
         </p>
-        <div class="skins-grid" id="skinsGrid"></div>
-    </main>
-</div>
+    </div>
+
+    <!-- Новый блок фильтров -->
+    <div class="filter-bar" id="filterBar"></div>
+
+    <div class="skins-grid" id="skinsGrid"></div>
+</main>
 
 <!-- Модальное окно -->
 <div class="modal-overlay" id="skinModal">
@@ -460,14 +404,14 @@
 
 <script>
     const filterData = {
-        'Нож': ['Bayonet', 'Bowie Knife', 'Butterfly Knife', 'Classic Knife', 'Falchion Knife', 'Flip Knife', 'Gut Knife', 'Huntsman Knife', 'Karambit', 'Kukri Knife', 'M9 Bayonet', 'Navaja Knife', 'Nomad Knife', 'Paracord Knife', 'Shadow Daggers', 'Skeleton Knife', 'Stiletto Knife', 'Survival Knife', 'Talon Knife', 'Ursus Knife'],
+        'Ножи': ['Bayonet', 'Bowie Knife', 'Butterfly Knife', 'Classic Knife', 'Falchion Knife', 'Flip Knife', 'Gut Knife', 'Huntsman Knife', 'Karambit', 'Kukri Knife', 'M9 Bayonet', 'Navaja Knife', 'Nomad Knife', 'Paracord Knife', 'Shadow Daggers', 'Skeleton Knife', 'Stiletto Knife', 'Survival Knife', 'Talon Knife', 'Ursus Knife'],
         'Перчатки': ['Bloodhound Gloves', 'Broken Fang Gloves', 'Driver Gloves', 'Hand Wraps', 'Hydra Gloves', 'Moto Gloves', 'Specialist Gloves', 'Sport Gloves'],
-        'Пистолет': ['CZ75-Auto', 'Desert Eagle', 'Dual Berettas', 'Five-SeveN', 'Glock-18', 'P2000', 'P250', 'R8 Revolver', 'Tec-9', 'USP-S'],
-        'Пистолет-пулемет': ['MAC-10', 'MP5-SD', 'MP7', 'MP9', 'P90', 'PP-Bizon', 'UMP-45'],
-        'Винтовка': ['AK-47', 'AUG', 'FAMAS', 'G3SG1', 'Galil AR', 'M4A1-S', 'M4A4', 'SCAR-20', 'SG 553'],
-        'Снайперская винтовка': ['AWP', 'SSG 08'],
-        'Дробовик': ['MAG-7', 'Nova', 'Sawed-Off', 'XM1014'],
-        'Пулемет': ['M249', 'Negev'],
+        'Пистолеты': ['CZ75-Auto', 'Desert Eagle', 'Dual Berettas', 'Five-SeveN', 'Glock-18', 'P2000', 'P250', 'R8 Revolver', 'Tec-9', 'USP-S'],
+        'ПП': ['MAC-10', 'MP5-SD', 'MP7', 'MP9', 'P90', 'PP-Bizon', 'UMP-45'],
+        'Винтовки': ['AK-47', 'AUG', 'FAMAS', 'G3SG1', 'Galil AR', 'M4A1-S', 'M4A4', 'SCAR-20', 'SG 553'],
+        'Снайперки': ['AWP', 'SSG 08'],
+        'Дробовики': ['MAG-7', 'Nova', 'Sawed-Off', 'XM1014'],
+        'Пулеметы': ['M249', 'Negev'],
         'Другое': ['Агент', 'Брелок', 'Граффити', 'Кейсы', 'Капсулы', 'Наклейки', 'Прайм статус']
     };
     const rarityNames = { 'mil-spec': 'Армейское', 'restricted': 'Запрещенное', 'classified': 'Засекреченное', 'prime': 'Прайм' };
@@ -492,7 +436,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('skinsGrid');
-        const filterSidebar = document.getElementById('filterSidebar');
+        const filterBar = document.getElementById('filterBar');
         const contentTitle = document.getElementById('contentTitle');
         const contentPrompt = document.getElementById('contentPrompt');
         
@@ -524,8 +468,8 @@
             let skinsToRender;
 
             if (!isFiltered) {
-                skinsToRender = skins.filter(s => featuredSkins.includes(s.name));
-                contentTitle.textContent = "Избранное";
+                skinsToRender = skins; // Показываем все скины по умолчанию
+                contentTitle.textContent = "Магазин скинов";
                 contentPrompt.style.display = 'block';
             } else {
                 skinsToRender = skins.filter(skin => activeFilters.types.has(skin.type));
@@ -544,119 +488,91 @@
                 const rarityName = rarityNames[skin.quality] || '';
                 card.dataset.skinIndex = skins.indexOf(skin);
 
-                let footerActionsHTML;
+                let actionsHTML = '';
                 if (skin.inspectLink) {
-                    footerActionsHTML = `
-                        <div class="card-actions">
-                            <a href="${skin.inspectLink}" class="inspect-button">Осмотреть</a>
-                            <a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>
-                        </div>
+                    actionsHTML = `
+                        <a href="${skin.inspectLink}" class="inspect-button">Осмотреть</a>
+                        <a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>
                     `;
                 } else {
-                    footerActionsHTML = `
-                        <div class="card-actions">
-                             <a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>
-                        </div>`;
+                    actionsHTML = `<a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button" style="flex: auto;">Купить</a>`;
                 }
-
+                
+                // ИСПРАВЛЕНА ОШИБКА ДУБЛИРОВАНИЯ - теперь один цельный HTML-блок
                 card.innerHTML = `
-                    <div class="skin-card-clickable-area">
-                        <div class="skin-image-wrapper">
-                            <img src="${skin.image}" alt="${skin.name}" loading="lazy">
-                        </div>
-                        <div class="skin-info">
-                            <div class="skin-header">
-                                <h2 class="skin-name">${skin.name}</h2>
-                                ${rarityName ? `<span class="rarity-tag">${rarityName}</span>` : ''}
+                    <div class="skin-visuals">
+                        <div class="skin-image-bg"></div>
+                        <img src="${skin.image}" alt="${skin.name}" loading="lazy">
+                        ${rarityName ? `<div class="rarity-tag">${rarityName}</div>` : ''}
+                    </div>
+                    <div class="skin-info">
+                        <div>
+                            <h2 class="skin-name">${skin.name}</h2>
+                            <div class="skin-details">
+                                <span class="price-label">Цена:</span>
+                                <span class="skin-price">${skin.price.toLocaleString('ru-RU')}</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="skin-footer">
-                         <p class="skin-price">${skin.price.toLocaleString('ru-RU')} баллов</p>
-                         ${footerActionsHTML}
+                        <div class="card-actions">
+                            ${actionsHTML}
+                        </div>
                     </div>
                 `;
-                
-                // Чтобы футер не был частью кликабельной зоны для модального окна,
-                // мы вставляем его в .skin-info, но снаружи .skin-card-clickable-area
-                // Для этого находим .skin-info и добавляем футер в него.
-                const skinInfoDiv = card.querySelector('.skin-info');
-                skinInfoDiv.insertAdjacentHTML('beforeend', `
-                    <div class="skin-footer">
-                         <p class="skin-price">${skin.price.toLocaleString('ru-RU')} баллов</p>
-                         ${footerActionsHTML}
-                    </div>
-                `);
-
                 grid.appendChild(card);
             });
         }
         
         function createFilters() {
-            const categoryGroup = document.createElement('div');
-            categoryGroup.className = 'filter-group category-filter';
-            categoryGroup.innerHTML = '<h2>Фильтры</h2>';
-
             for (const category in filterData) {
                 const details = document.createElement('details');
                 const subTypes = filterData[category];
-                details.innerHTML = `
-                    <summary>
-                        <label class="checkbox-container" onclick="event.preventDefault()"> ${category}
-                            <input type="checkbox" data-category="${category}">
-                            <span class="checkmark"></span>
-                        </label>
-                    </summary>
-                `;
 
+                let subListHTML = '';
                 if (subTypes.length > 0) {
-                    const subList = document.createElement('div');
-                    subList.className = 'sub-category-list';
                     subTypes.forEach(type => {
-                        subList.innerHTML += `
+                        subListHTML += `
                             <label class="checkbox-container"> ${type}
                                 <input type="checkbox" data-type-for-category="${category}" value="${type}">
                                 <span class="checkmark"></span>
                             </label>
                         `;
                     });
-                    details.appendChild(subList);
                 }
-                categoryGroup.appendChild(details);
+
+                details.innerHTML = `
+                    <summary>${category}</summary>
+                    <div class="filter-dropdown">${subListHTML}</div>
+                `;
+                filterBar.appendChild(details);
             }
-            filterSidebar.appendChild(categoryGroup);
         }
 
         createFilters();
         renderSkins();
 
-        filterSidebar.addEventListener('click', (e) => {
-            const label = e.target.closest('label');
-            if (!label) return;
-            const checkbox = label.querySelector('input[type="checkbox"]');
-            if (!checkbox) return;
-            
-            if (!e.target.classList.contains('checkmark')) {
-                e.preventDefault();
+        filterBar.addEventListener('change', (e) => {
+            if (e.target.type === 'checkbox') {
+                const { value, checked } = e.target;
+                if (checked) {
+                    activeFilters.types.add(value);
+                } else {
+                    activeFilters.types.delete(value);
+                }
+                renderSkins();
             }
-
-            checkbox.checked = !checkbox.checked;
-            
-            if (checkbox.dataset.category) {
-                const subCheckboxes = document.querySelectorAll(`input[data-type-for-category="${checkbox.dataset.category}"]`);
-                subCheckboxes.forEach(sub => {
-                    sub.checked = checkbox.checked;
-                    if (checkbox.checked) activeFilters.types.add(sub.value); else activeFilters.types.delete(sub.value);
-                });
-            } else if (checkbox.dataset.typeForCategory) {
-                if (checkbox.checked) activeFilters.types.add(checkbox.value); else activeFilters.types.delete(checkbox.value);
-            }
-            renderSkins();
+        });
+        
+        // Закрывать выпадающие списки при клике вне их
+        document.addEventListener('click', function(event) {
+            filterBar.querySelectorAll('details').forEach(function(details) {
+                if (!details.contains(event.target)) {
+                    details.removeAttribute('open');
+                }
+            });
         });
 
         grid.addEventListener('click', (e) => {
-            // ИЗМЕНЕНО: теперь слушаем клик по .skin-card-clickable-area
-            if (e.target.closest('.skin-card-clickable-area')) {
+            if (e.target.closest('.skin-visuals')) {
                 const card = e.target.closest('.skin-card');
                 const skinIndex = card.dataset.skinIndex;
                 if (skinIndex !== undefined) {
