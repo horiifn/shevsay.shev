@@ -10,11 +10,11 @@
 
         :root {
             --bg-color: #0c0c0f;
-            --surface-color: #131318;
+            --surface-color: rgba(25, 26, 32, 0.5); /* Полупрозрачный для эффекта стекла */
             --primary-text-color: #EAEBEE;
-            --secondary-text-color: #7B8190;
-            --border-color: #2A2D3A;
-            --border-hover-color: #4D5266;
+            --secondary-text-color: #989EB0;
+            --border-color: rgba(61, 65, 80, 0.5);
+            --border-hover-color: #8A91A0;
             --accent-color: #E64A19;
             
             --quality-mil-spec: #4b69ff;
@@ -23,23 +23,32 @@
             --quality-prime: #ffae00;
         }
 
+        /* --- НОВЫЙ АНИМИРОВАННЫЙ ФОН --- */
+        @keyframes animated-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-image: 
+                radial-gradient(at 20% 20%, hsla(267, 80%, 25%, 0.2) 0px, transparent 50%),
+                radial-gradient(at 80% 20%, hsla(199, 80%, 30%, 0.2) 0px, transparent 50%),
+                radial-gradient(at 20% 80%, hsla(340, 80%, 35%, 0.2) 0px, transparent 50%),
+                radial-gradient(at 80% 80%, hsla(39, 80%, 25%, 0.2) 0px, transparent 50%);
+            background-size: 200% 200%;
+            animation: animated-bg 25s ease-in-out infinite;
             color: var(--primary-text-color);
             font-family: 'Inter', sans-serif;
             margin: 0;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-
-            /* --- ОТКЛЮЧЕНИЕ ВЫДЕЛЕНИЯ ТЕКСТА --- */
-            -webkit-user-select: none; /* Safari */
-            -ms-user-select: none; /* IE 10+ */
-            user-select: none; /* Standard syntax */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
-        /* --- ЗАЩИТА ИЗОБРАЖЕНИЙ ОТ КЛИКОВ И ПЕРЕТАСКИВАНИЯ --- */
         img {
             pointer-events: none;
         }
@@ -50,8 +59,8 @@
             padding: 15px 50px;
             border-bottom: 1px solid var(--border-color);
             position: sticky; top: 0; z-index: 1000;
-            backdrop-filter: blur(12px);
-            background-color: rgba(12, 12, 15, 0.7);
+            backdrop-filter: blur(16px);
+            background-color: rgba(12, 12, 15, 0.6);
         }
         .logo { width: 80px; height: auto; transition: transform 0.4s ease; }
         .logo:hover { transform: scale(1.05); }
@@ -74,203 +83,158 @@
         /* --- Основной контент --- */
         .page-content { display: flex; padding: 40px 50px; gap: 40px; }
         
-        /* --- Панель фильтров --- */
+        /* --- Панель фильтров (без изменений) --- */
         .filter-sidebar { width: 280px; flex-shrink: 0; }
-        .filter-sidebar h2 {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px;
-        }
+        .filter-sidebar h2 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px; }
         .filter-group { margin-bottom: 20px; }
         .category-filter details { margin-bottom: 5px; }
-        .category-filter summary {
-            display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; padding: 10px; border-radius: 5px;
-            list-style: none; transition: background-color 0.2s ease;
-        }
+        .category-filter summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 10px; border-radius: 5px; list-style: none; transition: background-color 0.2s ease; }
         .category-filter summary:hover { background-color: rgba(42, 45, 58, 0.3); }
         .category-filter summary::-webkit-details-marker { display: none; }
-        .category-filter summary::after {
-            content: ''; width: 16px; height: 16px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A91A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-size: contain; transition: transform 0.2s ease-in-out;
-        }
+        .category-filter summary::after { content: ''; width: 16px; height: 16px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A91A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-size: contain; transition: transform 0.2s ease-in-out; }
         details[open] > summary::after { transform: rotate(180deg); }
         .sub-category-list { padding-left: 30px; margin-top: 10px; }
-        .checkbox-container {
-            display: block; position: relative; padding-left: 25px;
-            margin-bottom: 12px; cursor: pointer; font-size: 0.95em;
-        }
+        .checkbox-container { display: block; position: relative; padding-left: 25px; margin-bottom: 12px; cursor: pointer; font-size: 0.95em; }
         .checkbox-container input { position: absolute; opacity: 0; }
-        .checkmark {
-            position: absolute; top: 2px; left: 0;
-            height: 16px; width: 16px;
-            background-color: var(--surface-color); border: 1px solid var(--border-color);
-            border-radius: 3px; transition: all 0.2s ease;
-        }
+        .checkmark { position: absolute; top: 2px; left: 0; height: 16px; width: 16px; background-color: transparent; border: 1px solid var(--border-color); border-radius: 3px; transition: all 0.2s ease; }
         .checkbox-container:hover input ~ .checkmark { border-color: var(--border-hover-color); }
         .checkbox-container input:checked ~ .checkmark { background-color: var(--accent-color); border-color: var(--accent-color); }
-        .checkmark:after {
-            content: ""; position: absolute; display: none;
-            left: 5px; top: 2px; width: 3px; height: 7px;
-            border: solid white; border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
+        .checkmark:after { content: ""; position: absolute; display: none; left: 5px; top: 2px; width: 3px; height: 7px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
         .checkbox-container input:checked ~ .checkmark:after { display: block; }
         
-        /* --- Область с контентом --- */
         .content-area { flex-grow: 1; }
-        .content-area h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.8em; margin: 0 0 10px 0; text-transform: uppercase;
-        }
-        .content-area .prompt {
-            color: var(--secondary-text-color);
-            font-size: 1.1em; max-width: 600px; margin-bottom: 40px;
-        }
-        .skins-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
+        .content-area h1 { font-family: 'Orbitron', sans-serif; font-size: 2.8em; margin: 0 0 10px 0; text-transform: uppercase; }
+        .content-area .prompt { color: var(--secondary-text-color); font-size: 1.1em; max-width: 600px; margin-bottom: 40px; }
+        .skins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
 
-        /* --- НОВЫЙ ДИЗАЙН КАРТОЧЕК V4 --- */
+        /* --- ДИЗАЙН КАРТОЧЕК V5 (СОВРЕМЕННЫЙ) --- */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .skin-card {
             background-color: var(--surface-color);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            display: flex; flex-direction: column; overflow: hidden;
-            will-change: transform, border-color;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            border-radius: 12px;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            will-change: transform, box-shadow;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             opacity: 0; transform: translateY(20px);
             animation: fadeInUp 0.5s ease-out forwards;
             animation-delay: calc(var(--delay) * 50ms);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
         .skin-card:hover {
             transform: translateY(-8px);
             border-color: var(--rarity-color, var(--border-hover-color));
+            box-shadow: 0 0 25px -5px var(--rarity-color, var(--border-hover-color));
         }
 
         .skin-image-wrapper {
-            height: 160px; display: flex; align-items: center; justify-content: center;
-            padding: 20px; background-color: var(--bg-color);
-            border-bottom: 1px solid var(--border-color);
+            height: 180px; display: flex; align-items: center; justify-content: center;
+            padding: 10px;
+            position: relative;
+        }
+        /* Градиент для плавного перехода картинки в фон */
+        .skin-image-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to top, rgba(25, 26, 32, 1), transparent);
+            z-index: 1;
         }
         .skin-image-wrapper img {
-            max-width: 90%; max-height: 90%;
-            object-fit: contain; transition: transform 0.4s ease;
+            max-width: 95%; max-height: 95%;
+            object-fit: contain;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative; z-index: 0;
         }
-        .skin-card:hover .skin-image-wrapper img { transform: scale(1.08); }
+        .skin-card:hover .skin-image-wrapper img {
+            transform: scale(1.1) rotate(2deg);
+        }
         
         .skin-info {
-            padding: 20px; flex-grow: 1;
-            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 0 20px 20px 20px;
+            flex-grow: 1;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            border-top: 1px solid var(--border-color);
+        }
+        .skin-title-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 10px;
         }
         .skin-name {
             font-size: 1.1em; font-weight: 700;
-            margin: 0 0 10px 0; min-height: 44px;
-        }
-
-        .skin-meta {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 20px;
+            line-height: 1.3;
+            margin: 0;
         }
         .rarity-tag {
-            font-size: 0.75em; font-weight: 700; padding: 4px 8px;
+            font-size: 0.7em; font-weight: 700; padding: 4px 8px;
             border-radius: 4px; color: #fff; background-color: var(--rarity-color);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            flex-shrink: 0;
         }
-        .zoom-button {
-            background: none; border: 1px solid var(--border-color);
-            color: var(--secondary-text-color); font-size: 0.75em;
-            padding: 4px 8px; border-radius: 4px;
-            cursor: pointer; transition: all 0.2s ease;
+        .skin-price-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
-        .zoom-button:hover {
-            border-color: var(--primary-text-color);
-            color: var(--primary-text-color);
+        .skin-price {
+            font-size: 1em; color: var(--secondary-text-color); font-weight: 500;
+            margin: 0;
         }
         
-        .skin-price { font-size: 1.1em; color: var(--primary-text-color); font-weight: 500; margin-bottom: 15px; }
-
-        .card-footer { text-align: center; }
-        .developer-credit {
-            font-size: 0.7em; color: var(--secondary-text-color);
-            opacity: 0.6; margin-bottom: 10px;
+        /* --- НОВЫЕ МИНИМАЛИСТИЧНЫЕ КНОПКИ --- */
+        .inspect-icon-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--secondary-text-color);
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease;
         }
+        .inspect-icon-btn:hover {
+            border-color: var(--primary-text-color);
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--primary-text-color);
+            transform: scale(1.1);
+        }
+        .inspect-icon-btn svg { width: 16px; height: 16px; }
+
         .buy-button {
             display: block; width: 100%; text-align: center;
             background-color: var(--accent-color); color: white;
             padding: 12px; border-radius: 8px; text-decoration: none;
-            font-weight: 700; transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-        .buy-button:hover { background-color: #ff5722; transform: scale(1.03); }
-        
-        /* --- СТИЛИ ДЛЯ КНОПОК ОСМОТРА (ДОБАВЛЕНО) --- */
-        .card-actions {
-            display: flex;
-            gap: 10px;
-        }
-        .card-actions .buy-button {
-            width: auto;
-            flex: 1;
-        }
-        .inspect-button {
-            display: block;
-            flex: 1;
-            text-align: center;
-            background-color: var(--border-color);
-            color: var(--primary-text-color);
-            padding: 12px;
-            border-radius: 8px;
-            text-decoration: none;
             font-weight: 700;
-            font-size: 1em; /* Размер шрифта как у кнопки Купить */
             transition: background-color 0.2s ease, transform 0.2s ease;
         }
-        .inspect-button:hover {
-            background-color: var(--border-hover-color);
+        .buy-button:hover {
+            background-color: #ff5722;
             transform: scale(1.03);
         }
-        /* --- КОНЕЦ НОВЫХ СТИЛЕЙ --- */
-
+        
         .quality-mil-spec { --rarity-color: var(--quality-mil-spec); }
         .quality-restricted { --rarity-color: var(--quality-restricted); }
         .quality-classified { --rarity-color: var(--quality-classified); }
         .quality-prime { --rarity-color: var(--quality-prime); }
         
-        /* --- Модальное окно --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(12, 12, 15, 0.7);
-            backdrop-filter: blur(8px); z-index: 2000;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.3s ease-in-out;
-        }
+        /* Модальное окно (без изменений) */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 12, 15, 0.7); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out; }
         .modal-overlay.show { opacity: 1; visibility: visible; }
-        .modal-content {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 30px; width: 90%;
-            max-width: 600px; text-align: center;
-            transform: scale(0.95);
-            transition: transform 0.3s ease-in-out;
-        }
+        .modal-content { background-color: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; width: 90%; max-width: 600px; text-align: center; transform: scale(0.95); transition: transform 0.3s ease-in-out; }
         .modal-overlay.show .modal-content { transform: scale(1); }
-        .modal-image-container img {
-            max-width: 100%; height: auto;
-            max-height: 60vh; margin-bottom: 20px;
-        }
+        .modal-image-container img { max-width: 100%; height: auto; max-height: 60vh; margin-bottom: 20px; }
         .modal-content .skin-name { font-size: 2em; margin: 15px 0 10px; }
-        .modal-close {
-            position: absolute; top: 15px; right: 20px;
-            font-size: 2.5em; color: var(--secondary-text-color);
-            cursor: pointer; transition: transform 0.3s ease, color 0.3s ease;
-        }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2.5em; color: var(--secondary-text-color); cursor: pointer; transition: transform 0.3s ease, color 0.3s ease; }
         .modal-close:hover { transform: scale(1.1) rotate(90deg); color: var(--primary-text-color); }
-
 
         /* Адаптивность */
         @media (max-width: 1200px) {
@@ -282,7 +246,6 @@
         @media (max-width: 768px) {
             .site-header { flex-direction: column; gap: 15px; padding: 15px 20px; }
         }
-
     </style>
 </head>
 <body>
@@ -339,162 +302,12 @@
     };
     const rarityNames = { 'mil-spec': 'Армейское', 'restricted': 'Запрещенное', 'classified': 'Засекреченное', 'prime': 'Прайм' };
     
-    // --- СПИСОК СКИНОВ (ИЗМЕНЕНО) ---
     const skins = [
         { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec", type: 'SG 553', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469" },
         { name: "M4A1-S | Северный лес", price: 3000, image: "https://assets.lis-skins.com/market_images/9254_b.png", quality: "mil-spec", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199303684554A44905774809D16296880026125316388" },
         { name: "USP-S | Билет в ад", price: 5000, image: "https://assets.lis-skins.com/market_images/152529_b.png", quality: "restricted", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199438776871A45024021638D6930585498007975757" },
         { name: "AWP | Капилляры", price: 6500, image: "https://assets.lis-skins.com/market_images/145952_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572539934A45225672298D7953429965043849259" },
-        { name: "AWP | Ахерон", price: 7000, image: "https://assets.lis-skins.com/market_images/60231_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572896403A45159972133D7083188519541208581" },
-        { name: "M4A1-S | Нитро", price: 8000, image: "https://assets.lis-skins.com/market_images/9352_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572287354A45195408169D11595088990574181802" },
-        { name: "Desert Eagle | Рельсотрон", price: 14000, image: "https://assets.lis-skins.com/market_images/141501_b.png", quality: "restricted", type: 'Desert Eagle', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199440151155A45128185757D6928826125758235369" },
-        { name: "M4A1-S | Ночной ужас", price: 17000, image: "https://assets.lis-skins.com/market_images/152536_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572819281A45080235516D7254221815132699524" },
-        { name: "AK-47 | Затерянная земля", price: 18000, image: "https://assets.lis-skins.com/market_images/141457_b.png", quality: "mil-spec", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572434062A44885517882D875563960137574909" },
-        { name: "M4A4 | Мастер травли", price: 20000, image: "https://assets.lis-skins.com/market_images/169019_b.png", quality: "restricted", type: 'M4A4', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572630510A45151099175D778032169458304708" },
-        { name: "Glock-18 | Ядерный сад", price: 25000, image: "https://assets.lis-skins.com/market_images/60260_b.png", quality: "classified", type: 'Glock-18', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572445118A45094219615D10125937820632625068" },
-        { name: "USP-S | Сайрекс", price: 25000, image: "https://assets.lis-skins.com/market_images/16349_b.png", quality: "classified", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199573451498A45097115098D6937338527307919745" },
-        { name: "AWP | Экзоскелет", price: 79999, image: "https://assets.lis-skins.com/market_images/148247_b.png", quality: "classified", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572102697A45093761532D7559864608688361997" },
-        { name: "AK-47 | Ледяной Уголь", price: 85000, image: "https://assets.lis-skins.com/market_images/156705_b.png", quality: "classified", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572723112A45089616112D5242903052168340793" },
-        { name: "Прайм статус в CS2", price: 199999, image: "https://assets.lis-skins.com/market_images/150602_b.png", quality: "prime", type: 'Прайм статус' }
-    ];
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const grid = document.getElementById('skinsGrid');
-        const filterSidebar = document.getElementById('filterSidebar');
-        const contentTitle = document.getElementById('contentTitle');
-        const contentPrompt = document.getElementById('contentPrompt');
-        
-        const modal = document.getElementById('skinModal');
-        const modalClose = document.getElementById('modalClose');
-        const modalImage = document.getElementById('modalImage');
-        const modalName = document.getElementById('modalName');
-        const modalPrice = document.getElementById('modalPrice');
-
-        const featuredSkins = ['Прайм статус в CS2', 'AK-47 | Ледяной Уголь', 'AWP | Экзоскелет'];
-        let activeFilters = { types: new Set() };
-
-        // --- БЛОКИРОВКА ПРАВОГО КЛИКА ---
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        function openModal(skin) {
-            modalImage.src = skin.image;
-            modalName.textContent = skin.name;
-            modalPrice.textContent = `${skin.price.toLocaleString('ru-RU')} баллов`;
-            modal.classList.add('show');
-        }
-
-        function closeModal() {
-            modal.classList.remove('show');
-        }
-
-        function renderSkins() {
-            grid.innerHTML = '';
-            const isFiltered = activeFilters.types.size > 0;
-            let skinsToRender;
-
-            if (!isFiltered) {
-                skinsToRender = skins.filter(s => featuredSkins.includes(s.name));
-                contentTitle.textContent = "Избранное";
-                contentPrompt.style.display = 'block';
-            } else {
-                skinsToRender = skins.filter(skin => activeFilters.types.has(skin.type));
-                contentTitle.textContent = "Результаты поиска";
-                contentPrompt.style.display = 'none';
-            }
-
-            if (skinsToRender.length === 0 && isFiltered) {
-                grid.innerHTML = '<p>По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</p>';
-            }
-
-            skinsToRender.forEach((skin, index) => {
-                const card = document.createElement('div');
-                card.className = `skin-card quality-${skin.quality || 'default'}`;
-                card.style.setProperty('--delay', index);
-                const rarityName = rarityNames[skin.quality] || '';
-                card.dataset.skinIndex = skins.indexOf(skin);
-
-                // --- ЛОГИКА ОТОБРАЖЕНИЯ КНОПОК (ИЗМЕНЕНО) ---
-                let footerActionsHTML;
-                if (skin.inspectLink) {
-                    footerActionsHTML = `
-                        <div class="card-actions">
-                            <a href="${skin.inspectLink}" class="inspect-button">Осмотреть в игре</a>
-                            <a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>
-                        </div>
-                    `;
-                } else {
-                    footerActionsHTML = `<a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>`;
-                }
-
-                card.innerHTML = `
-                    <div class="skin-image-wrapper">
-                        <img src="${skin.image}" alt="${skin.name}" loading="lazy">
-                    </div>
-                    <div class="skin-info">
-                        <div>
-                            <h2 class="skin-name">${skin.name}</h2>
-                            <div class="skin-meta">
-                                ${rarityName ? `<span class="rarity-tag">${rarityName}</span>` : ''}
-                                <button class="zoom-button">Увеличить</button>
-                            </div>
-                            <p class="skin-price">${skin.price.toLocaleString('ru-RU')} баллов</p>
-                        </div>
-                        <div class="card-footer">
-                            <p class="developer-credit">Developer: / @horiifn</p>
-                            ${footerActionsHTML}
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-        
-        function createFilters() {
-            const categoryGroup = document.createElement('div');
-            categoryGroup.className = 'filter-group category-filter';
-            categoryGroup.innerHTML = '<h2>Фильтры</h2>';
-
-            for (const category in filterData) {
-                const details = document.createElement('details');
-                const subTypes = filterData[category];
-                details.innerHTML = `
-                    <summary>
-                        <label class="checkbox-container" onclick="event.preventDefault()"> ${category}
-                            <input type="checkbox" data-category="${category}">
-                            <span class="checkmark"></span>
-                        </label>
-                    </summary>
-                `;
-
-                if (subTypes.length > 0) {
-                    const subList = document.createElement('div');
-                    subList.className = 'sub-category-list';
-                    subTypes.forEach(type => {
-                        subList.innerHTML += `
-                            <label class="checkbox-container"> ${type}
-                                <input type="checkbox" data-type-for-category="${category}" value="${type}">
-                                <span class="checkmark"></span>
-                            </label>
-                        `;
-                    });
-                    details.appendChild(subList);
-                }
-                categoryGroup.appendChild(details);
-            }
-            filterSidebar.appendChild(categoryGroup);
-        }
-
-        createFilters();
-        renderSkins();
-
-        filterSidebar.addEventListener('click', (e) => {
-            const label = e.target.closest('label');
-            if (!label) return;
-            const checkbox = label.querySelector('input[type="checkbox"]');
-            if (!checkbox) return;
-            
-            if (!e.target.classList.contains('checkmark')) {
-                e.preventDefault();
+e.preventDefault();
             }
 
             checkbox.checked = !checkbox.checked;
@@ -510,16 +323,18 @@
             }
             renderSkins();
         });
-
-        grid.addEventListener('click', (e) => {
-            if (e.target.classList.contains('zoom-button')) {
-                const card = e.target.closest('.skin-card');
-                const skinIndex = card.dataset.skinIndex;
-                if (skinIndex !== undefined) {
-                    openModal(skins[skinIndex]);
-                }
-            }
-        });
+        
+        // Модальное окно теперь не нужно для увеличения, так как осмотр в игре важнее,
+        // но оставляем логику на случай, если захотите вернуть кнопку "Увеличить"
+        // grid.addEventListener('click', (e) => {
+        //     if (e.target.closest('.zoom-button-class-name')) { // Замените на актуальный класс, если вернете кнопку
+        //         const card = e.target.closest('.skin-card');
+        //         const skinIndex = card.dataset.skinIndex;
+        //         if (skinIndex !== undefined) {
+        //             openModal(skins[skinIndex]);
+        //         }
+        //     }
+        // });
 
         modalClose.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => (e.target === modal) && closeModal());
