@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHEVSAY SKINS</title>
+    <link rel="icon" type="image/png" href="https://assets.lis-skins.com/market_images/150567_b.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@800&display=swap');
 
         :root {
-            --bg-color: #0B0B0E;
-            --surface-color: #16181D;
-            --surface-darker: #0D0F12;
-            --primary-text-color: #F0F0F0;
-            --secondary-text-color: #8A91A0;
+            --bg-color: #0c0c0f;
+            --surface-color: #131318;
+            --primary-text-color: #EAEBEE;
+            --secondary-text-color: #7B8190;
             --border-color: #2A2D3A;
+            --border-hover-color: #4D5266;
             --accent-color: #E64A19;
             
             --quality-mil-spec: #4b69ff;
@@ -24,43 +25,46 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at top, rgba(30, 32, 41, 0.8) 0%, var(--bg-color) 40%);
-            background-repeat: no-repeat;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px;
             color: var(--primary-text-color);
             font-family: 'Inter', sans-serif;
             margin: 0;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+
+            /* --- ОТКЛЮЧЕНИЕ ВЫДЕЛЕНИЯ ТЕКСТА --- */
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10+ */
+            user-select: none; /* Standard syntax */
+        }
+        
+        /* --- ЗАЩИТА ИЗОБРАЖЕНИЙ ОТ КЛИКОВ И ПЕРЕТАСКИВАНИЯ --- */
+        img {
+            pointer-events: none;
         }
 
         /* --- Шапка сайта --- */
         .site-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             padding: 15px 50px;
             border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(16px);
-            background-color: rgba(11, 11, 14, 0.7);
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(12px);
+            background-color: rgba(12, 12, 15, 0.7);
         }
         .logo { width: 80px; height: auto; transition: transform 0.4s ease; }
         .logo:hover { transform: scale(1.05); }
 
         .social-nav { display: flex; gap: 25px; }
         .social-link {
-            color: var(--secondary-text-color);
-            text-decoration: none; font-weight: 500;
-            font-size: 0.9em; position: relative; padding: 5px 0;
+            color: var(--secondary-text-color); text-decoration: none;
+            font-weight: 500; font-size: 0.9em; position: relative; padding: 5px 0;
             transition: color 0.3s ease;
         }
         .social-link::after {
-            content: ''; position: absolute;
-            width: 100%; height: 2px;
-            bottom: 0; left: 0;
-            background: var(--primary-text-color);
+            content: ''; position: absolute; width: 100%; height: 2px;
+            bottom: 0; left: 0; background: var(--primary-text-color);
             transform: scaleX(0); transform-origin: bottom right;
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
@@ -70,55 +74,40 @@
         /* --- Основной контент --- */
         .page-content { display: flex; padding: 40px 50px; gap: 40px; }
         
-        /* --- Панель фильтров с кастомными стрелками --- */
+        /* --- Панель фильтров --- */
         .filter-sidebar { width: 280px; flex-shrink: 0; }
         .filter-sidebar h2 {
             font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase; letter-spacing: 1px;
-            margin-bottom: 30px;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px;
         }
         .filter-group { margin-bottom: 20px; }
         .category-filter details { margin-bottom: 5px; }
         .category-filter summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; padding: 10px; border-radius: 5px;
-            list-style: none; /* Убираем стандартный маркер */
-            transition: background-color 0.2s ease;
+            list-style: none; transition: background-color 0.2s ease;
         }
-        .category-filter summary:hover { background-color: var(--surface-color); }
+        .category-filter summary:hover { background-color: rgba(42, 45, 58, 0.3); }
         .category-filter summary::-webkit-details-marker { display: none; }
-        /* Кастомная стрелка */
         .category-filter summary::after {
-            content: '';
-            width: 16px;
-            height: 16px;
+            content: ''; width: 16px; height: 16px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A91A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-size: contain;
-            transition: transform 0.2s ease-in-out;
+            background-size: contain; transition: transform 0.2s ease-in-out;
         }
-        details[open] > summary::after {
-            transform: rotate(180deg);
-        }
-
+        details[open] > summary::after { transform: rotate(180deg); }
         .sub-category-list { padding-left: 30px; margin-top: 10px; }
         .checkbox-container {
-            display: block; position: relative;
-            padding-left: 25px; margin-bottom: 12px;
-            cursor: pointer; font-size: 0.95em;
-            -webkit-user-select: none; user-select: none;
+            display: block; position: relative; padding-left: 25px;
+            margin-bottom: 12px; cursor: pointer; font-size: 0.95em;
         }
         .checkbox-container input { position: absolute; opacity: 0; }
         .checkmark {
             position: absolute; top: 2px; left: 0;
             height: 16px; width: 16px;
-            background-color: var(--surface-darker);
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-            transition: all 0.2s ease;
+            background-color: var(--surface-color); border: 1px solid var(--border-color);
+            border-radius: 3px; transition: all 0.2s ease;
         }
-        .checkbox-container:hover input ~ .checkmark { border-color: var(--secondary-text-color); }
+        .checkbox-container:hover input ~ .checkmark { border-color: var(--border-hover-color); }
         .checkbox-container input:checked ~ .checkmark { background-color: var(--accent-color); border-color: var(--accent-color); }
         .checkmark:after {
             content: ""; position: absolute; display: none;
@@ -139,12 +128,11 @@
             font-size: 1.1em; max-width: 600px; margin-bottom: 40px;
         }
         .skins-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 30px;
         }
 
-        /* --- НОВЫЙ ДИЗАЙН КАРТОЧЕК V3 --- */
+        /* --- НОВЫЙ ДИЗАЙН КАРТОЧЕК V4 --- */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -152,88 +140,109 @@
         .skin-card {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            will-change: transform, box-shadow;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            display: flex; flex-direction: column; overflow: hidden;
+            will-change: transform, border-color;
+            transition: transform 0.3s ease, border-color 0.3s ease;
             opacity: 0; transform: translateY(20px);
             animation: fadeInUp 0.5s ease-out forwards;
             animation-delay: calc(var(--delay) * 50ms);
         }
         .skin-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 8px 30px -5px var(--rarity-color-glow, rgba(0,0,0,0.5));
+            border-color: var(--rarity-color, var(--border-hover-color));
         }
 
         .skin-image-wrapper {
-            height: 160px;
-            display: flex; align-items: center; justify-content: center;
-            padding: 20px;
-            background-color: var(--surface-darker);
+            height: 160px; display: flex; align-items: center; justify-content: center;
+            padding: 20px; background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
         }
         .skin-image-wrapper img {
             max-width: 90%; max-height: 90%;
-            object-fit: contain;
-            transition: transform 0.4s ease;
+            object-fit: contain; transition: transform 0.4s ease;
         }
         .skin-card:hover .skin-image-wrapper img { transform: scale(1.08); }
         
         .skin-info {
-            padding: 20px;
-            flex-grow: 1;
+            padding: 20px; flex-grow: 1;
             display: flex; flex-direction: column; justify-content: space-between;
         }
         .skin-name {
             font-size: 1.1em; font-weight: 700;
-            margin: 0 0 10px 0;
-            min-height: 44px;
+            margin: 0 0 10px 0; min-height: 44px;
         }
 
         .skin-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 20px;
         }
-        .skin-price {
-            font-size: 1.1em;
-            color: var(--primary-text-color);
-            font-weight: 500;
-        }
         .rarity-tag {
-            font-size: 0.75em;
-            font-weight: 700;
-            padding: 4px 8px;
-            border-radius: 4px;
-            color: #fff;
-            background-color: var(--rarity-color);
-            text-transform: uppercase;
+            font-size: 0.75em; font-weight: 700; padding: 4px 8px;
+            border-radius: 4px; color: #fff; background-color: var(--rarity-color);
+        }
+        .zoom-button {
+            background: none; border: 1px solid var(--border-color);
+            color: var(--secondary-text-color); font-size: 0.75em;
+            padding: 4px 8px; border-radius: 4px;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .zoom-button:hover {
+            border-color: var(--primary-text-color);
+            color: var(--primary-text-color);
         }
         
+        .skin-price { font-size: 1.1em; color: var(--primary-text-color); font-weight: 500; margin-bottom: 15px; }
+
         .card-footer { text-align: center; }
         .developer-credit {
             font-size: 0.7em; color: var(--secondary-text-color);
             opacity: 0.6; margin-bottom: 10px;
         }
         .buy-button {
-            display: block; width: 100%;
-            text-align: center;
-            background-color: var(--accent-color);
-            color: white; padding: 12px; border-radius: 8px;
-            text-decoration: none; font-weight: 700;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            display: block; width: 100%; text-align: center;
+            background-color: var(--accent-color); color: white;
+            padding: 12px; border-radius: 8px; text-decoration: none;
+            font-weight: 700; transition: background-color 0.2s ease, transform 0.2s ease;
         }
-        .buy-button:hover {
-            background-color: #ff5722;
-            transform: scale(1.03);
-        }
+        .buy-button:hover { background-color: #ff5722; transform: scale(1.03); }
         
-        .quality-mil-spec { --rarity-color: var(--quality-mil-spec); --rarity-color-glow: #4b69ff4d; }
-        .quality-restricted { --rarity-color: var(--quality-restricted); --rarity-color-glow: #8847ff4d; }
-        .quality-classified { --rarity-color: var(--quality-classified); --rarity-color-glow: #d32ce64d; }
-        .quality-prime { --rarity-color: var(--quality-prime); --rarity-color-glow: #ffae004d; }
+        .quality-mil-spec { --rarity-color: var(--quality-mil-spec); }
+        .quality-restricted { --rarity-color: var(--quality-restricted); }
+        .quality-classified { --rarity-color: var(--quality-classified); }
+        .quality-prime { --rarity-color: var(--quality-prime); }
+        
+        /* --- Модальное окно --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(12, 12, 15, 0.7);
+            backdrop-filter: blur(8px); z-index: 2000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-overlay.show { opacity: 1; visibility: visible; }
+        .modal-content {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 30px; width: 90%;
+            max-width: 600px; text-align: center;
+            transform: scale(0.95);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal-overlay.show .modal-content { transform: scale(1); }
+        .modal-image-container img {
+            max-width: 100%; height: auto;
+            max-height: 60vh; margin-bottom: 20px;
+        }
+        .modal-content .skin-name { font-size: 2em; margin: 15px 0 10px; }
+        .modal-close {
+            position: absolute; top: 15px; right: 20px;
+            font-size: 2.5em; color: var(--secondary-text-color);
+            cursor: pointer; transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .modal-close:hover { transform: scale(1.1) rotate(90deg); color: var(--primary-text-color); }
+
 
         /* Адаптивность */
         @media (max-width: 1200px) {
@@ -263,10 +272,7 @@
 </header>
 
 <div class="page-content">
-    <aside class="filter-sidebar" id="filterSidebar">
-        <h2>Фильтры</h2>
-        <!-- Фильтры будут сгенерированы JS -->
-    </aside>
+    <aside class="filter-sidebar" id="filterSidebar"></aside>
 
     <main class="content-area">
         <h1 id="contentTitle">Избранное</h1>
@@ -274,11 +280,22 @@
             Добро пожаловать! Ниже представлены избранные награды.
             Чтобы найти больше скинов, воспользуйтесь фильтрами.
         </p>
-        <div class="skins-grid" id="skinsGrid">
-            <!-- Карточки генерируются здесь через JS -->
-        </div>
+        <div class="skins-grid" id="skinsGrid"></div>
     </main>
 </div>
+
+<!-- Модальное окно -->
+<div class="modal-overlay" id="skinModal">
+    <div class="modal-content">
+        <span class="modal-close" id="modalClose">×</span>
+        <div class="modal-image-container">
+            <img id="modalImage" src="" alt="Skin Image">
+        </div>
+        <h2 id="modalName" class="skin-name"></h2>
+        <p id="modalPrice" class="skin-price"></p>
+    </div>
+</div>
+
 
 <script>
     const filterData = {
@@ -292,14 +309,7 @@
         'Пулемет': ['M249', 'Negev'],
         'Другое': ['Агент', 'Брелок', 'Граффити', 'Кейсы', 'Капсулы', 'Наклейки', 'Прайм статус']
     };
-
-    const rarityNames = {
-        'mil-spec': 'Армейское',
-        'restricted': 'Запрещенное',
-        'classified': 'Засекреченное',
-        'prime': 'Прайм'
-    };
-    
+    const rarityNames = { 'mil-spec': 'Армейское', 'restricted': 'Запрещенное', 'classified': 'Засекреченное', 'prime': 'Прайм' };
     const skins = [
         { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec", type: 'SG 553' },
         { name: "M4A1-S | Северный лес", price: 3000, image: "https://assets.lis-skins.com/market_images/9254_b.png", quality: "mil-spec", type: 'M4A1-S' },
@@ -323,9 +333,29 @@
         const filterSidebar = document.getElementById('filterSidebar');
         const contentTitle = document.getElementById('contentTitle');
         const contentPrompt = document.getElementById('contentPrompt');
+        
+        const modal = document.getElementById('skinModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalImage = document.getElementById('modalImage');
+        const modalName = document.getElementById('modalName');
+        const modalPrice = document.getElementById('modalPrice');
 
         const featuredSkins = ['Прайм статус в CS2', 'AK-47 | Ледяной Уголь', 'AWP | Экзоскелет'];
         let activeFilters = { types: new Set() };
+
+        // --- БЛОКИРОВКА ПРАВОГО КЛИКА ---
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        function openModal(skin) {
+            modalImage.src = skin.image;
+            modalName.textContent = skin.name;
+            modalPrice.textContent = `${skin.price.toLocaleString('ru-RU')} баллов`;
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+        }
 
         function renderSkins() {
             grid.innerHTML = '';
@@ -350,9 +380,8 @@
                 const card = document.createElement('div');
                 card.className = `skin-card quality-${skin.quality || 'default'}`;
                 card.style.setProperty('--delay', index);
-                
                 const rarityName = rarityNames[skin.quality] || '';
-
+                card.dataset.skinIndex = skins.indexOf(skin);
                 card.innerHTML = `
                     <div class="skin-image-wrapper">
                         <img src="${skin.image}" alt="${skin.name}" loading="lazy">
@@ -361,9 +390,10 @@
                         <div>
                             <h2 class="skin-name">${skin.name}</h2>
                             <div class="skin-meta">
-                                <span class="skin-price">${skin.price.toLocaleString('ru-RU')} баллов</span>
                                 ${rarityName ? `<span class="rarity-tag">${rarityName}</span>` : ''}
+                                <button class="zoom-button">Увеличить</button>
                             </div>
+                            <p class="skin-price">${skin.price.toLocaleString('ru-RU')} баллов</p>
                         </div>
                         <div class="card-footer">
                             <p class="developer-credit">Developer: / @horiifn</p>
@@ -374,11 +404,11 @@
                 grid.appendChild(card);
             });
         }
-
+        
         function createFilters() {
             const categoryGroup = document.createElement('div');
             categoryGroup.className = 'filter-group category-filter';
-            categoryGroup.innerHTML = '<h3>Категории</h3>';
+            categoryGroup.innerHTML = '<h2>Фильтры</h2>';
 
             for (const category in filterData) {
                 const details = document.createElement('details');
@@ -408,41 +438,48 @@
                 categoryGroup.appendChild(details);
             }
             filterSidebar.appendChild(categoryGroup);
-            
-            filterSidebar.addEventListener('click', (e) => {
-                const label = e.target.closest('label');
-                if (!label) return;
-                
-                const checkbox = label.querySelector('input[type="checkbox"]');
-                if (!checkbox) return;
-
-                // Manually toggle the checkbox state because of preventDefault()
-                checkbox.checked = !checkbox.checked;
-                
-                // If clicked on a main category
-                if (checkbox.dataset.category) {
-                    const category = checkbox.dataset.category;
-                    const isChecked = checkbox.checked;
-                    const subCheckboxes = document.querySelectorAll(`input[data-type-for-category="${category}"]`);
-                    
-                    subCheckboxes.forEach(subCheckbox => {
-                        subCheckbox.checked = isChecked;
-                        if (isChecked) activeFilters.types.add(subCheckbox.value);
-                        else activeFilters.types.delete(subCheckbox.value);
-                    });
-                }
-                // If clicked on a sub-category
-                else if (checkbox.dataset.typeForCategory) {
-                    if (checkbox.checked) activeFilters.types.add(checkbox.value);
-                    else activeFilters.types.delete(checkbox.value);
-                }
-                
-                renderSkins();
-            });
         }
 
         createFilters();
         renderSkins();
+
+        filterSidebar.addEventListener('click', (e) => {
+            const label = e.target.closest('label');
+            if (!label) return;
+            const checkbox = label.querySelector('input[type="checkbox"]');
+            if (!checkbox) return;
+            
+            if (!e.target.classList.contains('checkmark')) {
+                e.preventDefault();
+            }
+
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.dataset.category) {
+                const subCheckboxes = document.querySelectorAll(`input[data-type-for-category="${checkbox.dataset.category}"]`);
+                subCheckboxes.forEach(sub => {
+                    sub.checked = checkbox.checked;
+                    if (checkbox.checked) activeFilters.types.add(sub.value); else activeFilters.types.delete(sub.value);
+                });
+            } else if (checkbox.dataset.typeForCategory) {
+                if (checkbox.checked) activeFilters.types.add(checkbox.value); else activeFilters.types.delete(checkbox.value);
+            }
+            renderSkins();
+        });
+
+        grid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('zoom-button')) {
+                const card = e.target.closest('.skin-card');
+                const skinIndex = card.dataset.skinIndex;
+                if (skinIndex !== undefined) {
+                    openModal(skins[skinIndex]);
+                }
+            }
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => (e.target === modal) && closeModal());
+        document.addEventListener('keydown', (e) => (e.key === 'Escape') && closeModal());
     });
 </script>
 
