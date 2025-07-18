@@ -8,76 +8,72 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@800&display=swap');
 
-        /* НОВАЯ ЦВЕТОВАЯ ПАЛИТРА И СТИЛИ */
+        /* ПУНКТ 4: НОВАЯ, СТРОГАЯ ЦВЕТОВАЯ ПАЛИТРА */
         :root {
-            /* Основные цвета */
             --bg-color: #FFFFFF;
-            --surface-color: #F7F9FC; /* Цвет фона карточек и сайдбара */
-            --border-color: #E2E8F0;
-            
-            /* Текст */
-            --primary-text-color: #1A202C;
-            --secondary-text-color: #718096;
-            
-            /* Акцентные цвета */
             --accent-orange: #FF7A00;
             --accent-orange-hover: #E66F00;
             --accent-turquoise: #00C4CC;
-            
-            /* Тени */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --text-color: #2c3e50;
+            --text-color-light: #7f8c9b;
+
+            --shadow-md: 0 4px 15px -3px rgba(127, 140, 155, 0.1);
+            --shadow-lg: 0 10px 30px -5px rgba(127, 140, 155, 0.2);
             --shadow-glow: 0 0 25px -5px var(--accent-orange), 0 0 15px -8px var(--accent-turquoise);
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--primary-text-color);
+            color: var(--text-color);
             font-family: 'Inter', sans-serif;
             margin: 0;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
         
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
         img {
             pointer-events: none;
             max-width: 100%;
         }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
 
-        /* --- ШАПКА САЙТА (ОБНОВЛЕННЫЙ ДИЗАЙН) --- */
+        /* --- ШАПКА --- */
         .site-header {
-            padding: 15px 40px;
-            box-shadow: var(--shadow-md);
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+            background-color: var(--bg-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(12px);
-            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .header-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
         .logo { 
             width: 70px; 
-            height: auto; 
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            transition: transform 0.4s ease; 
         }
         .logo:hover { 
             transform: scale(1.1) rotate(-8deg); 
         }
-        .social-nav { 
-            display: flex; 
-            gap: 15px; 
-        }
+        .social-nav { display: flex; gap: 10px; }
         .social-link {
-            color: var(--secondary-text-color);
+            color: var(--text-color-light);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
             padding: 8px 16px;
             border-radius: 8px;
             transition: color 0.3s ease, background-color 0.3s ease;
@@ -86,168 +82,183 @@
             color: var(--accent-orange);
             background-color: rgba(255, 122, 0, 0.1);
         }
+
+        /* ПУНКТ 1: ПОЛНОСТЬЮ НОВОЕ РАСПОЛОЖЕНИЕ */
+        .page-intro {
+            text-align: center;
+            padding: 60px 0;
+        }
+        .page-intro h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-color);
+        }
+        .page-intro .prompt {
+            color: var(--text-color-light);
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
         
-        /* --- СТРУКТУРА СТРАНИЦЫ --- */
-        .page-content {
+        /* --- ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ --- */
+        .filter-bar-container {
             display: flex;
-            gap: 40px;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        .filter-group {
+            position: relative;
+        }
+        .filter-toggle {
+            background-color: #fff;
+            border: 2px solid #e0e0e0;
+            color: var(--text-color-light);
+            padding: 12px 25px;
+            border-radius: 50px; /* Круглые кнопки */
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .filter-toggle:hover, .filter-group.active .filter-toggle {
+            border-color: var(--accent-turquoise);
+            color: var(--accent-turquoise);
+        }
+        .filter-toggle::after { /* Стрелочка */
+            content: '';
+            width: 10px; height: 10px;
+            border-bottom: 2px solid;
+            border-right: 2px solid;
+            transform: translateY(-2px) rotate(45deg);
+            transition: transform 0.2s ease;
+        }
+        .filter-group.active .filter-toggle::after {
+            transform: translateY(1px) rotate(225deg);
         }
 
-        /* --- ПАНЕЛЬ ФИЛЬТРОВ (ОБНОВЛЕННЫЙ ДИЗАЙН) --- */
-        .filter-sidebar {
+        .filter-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 15px;
+            z-index: 500;
             width: 280px;
-            flex-shrink: 0;
-            background-color: var(--surface-color);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            height: fit-content;
-            position: sticky;
-            top: 110px; /* Отступ от шапки */
+            opacity: 0;
+            visibility: hidden;
+            transform-origin: top center;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+            transform: translateX(-50%) translateY(10px);
+            max-height: 300px;
+            overflow-y: auto;
         }
-        .filter-sidebar h2 {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 0 30px 0;
-            font-size: 1.2rem;
-            color: var(--primary-text-color);
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .category-filter details { margin-bottom: 5px; }
-        .category-filter summary {
-            display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; padding: 12px; border-radius: 8px;
-            list-style: none; transition: background-color 0.2s ease;
-            font-weight: 600;
-        }
-        .category-filter summary:hover { background-color: #E9EDF5; }
-        .category-filter summary::-webkit-details-marker { display: none; }
-        .category-filter summary::after {
-            content: ''; width: 16px; height: 16px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-size: contain; transition: transform 0.25s ease-in-out;
-            flex-shrink: 0;
-        }
-        details[open] > summary::after { transform: rotate(180deg); }
-        .sub-category-list { 
-            padding-left: 15px; margin-top: 10px; margin-left: 12px;
-            border-left: 1px solid var(--border-color);
+        .filter-group.active .filter-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
         .checkbox-container {
-            display: block; position: relative; padding-left: 30px;
-            margin: 15px 0 15px 15px; cursor: pointer; font-size: 0.95em;
-            color: var(--secondary-text-color);
+            display: block; position: relative; padding: 8px 8px 8px 35px;
+            margin-bottom: 5px; cursor: pointer; font-size: 1rem;
+            color: var(--text-color); border-radius: 6px;
         }
+        .checkbox-container:hover { background-color: #f7f7f7; }
         .checkbox-container input { position: absolute; opacity: 0; }
         .checkmark {
-            position: absolute; top: 1px; left: 0;
-            height: 18px; width: 18px;
-            background-color: #fff; border: 2px solid var(--border-color);
+            position: absolute; top: 10px; left: 8px;
+            height: 20px; width: 20px;
+            background-color: #eee; border: none;
             border-radius: 5px; transition: all 0.2s ease;
         }
-        .checkbox-container:hover input ~ .checkmark { border-color: var(--accent-turquoise); }
-        .checkbox-container input:checked ~ .checkmark { background-color: var(--accent-orange); border-color: var(--accent-orange); }
+        .checkbox-container:hover input ~ .checkmark { background-color: #ddd; }
+        .checkbox-container input:checked ~ .checkmark { background-color: var(--accent-orange); }
         .checkmark:after {
             content: ""; position: absolute; display: none;
-            left: 5px; top: 2px; width: 4px; height: 8px;
-            border: solid white; border-width: 0 2px 2px 0;
+            left: 7px; top: 4px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 3px 3px 0;
             transform: rotate(45deg);
         }
         .checkbox-container input:checked ~ .checkmark:after { display: block; }
         
-        /* --- ОСНОВНОЙ КОНТЕНТ (ОБНОВЛЕННЫЙ ДИЗАЙН) --- */
-        .content-area { flex-grow: 1; }
-        .content-area h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            margin: 0 0 10px 0;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        .content-area .prompt {
-            color: var(--secondary-text-color);
-            font-size: 1.1em;
-            max-width: 600px;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
 
+        /* ПУНКТ 2: НОВЫЕ И СОВРЕМЕННЫЕ КАРТОЧКИ */
         .skins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 35px;
+            padding-bottom: 60px;
         }
-
-        /* --- КАРТОЧКИ С НОВЫМ ДИЗАЙНОМ И СВЕЧЕНИЕМ --- */
-        @keyframes cardFadeInUp {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        
         .skin-card {
-            background-color: var(--surface-color);
-            border-radius: 16px;
+            background-color: var(--bg-color);
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
-            border: 1px solid var(--border-color);
             box-shadow: var(--shadow-md);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            animation: cardFadeInUp 0.5s ease-out forwards;
-            animation-delay: calc(var(--delay) * 60ms);
             display: flex;
             flex-direction: column;
         }
+        /* ПУНКТ 3: ПРИЯТНОЕ И КРАСИВОЕ СВЕЧЕНИЕ */
         .skin-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg), var(--shadow-glow); /* ПРИЯТНОЕ КРАСИВОЕ СВЕЧЕНИЕ */
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
         }
+        
         .skin-visuals {
-            height: 200px;
-            position: relative;
+            height: 220px;
             cursor: pointer;
-            background: linear-gradient(135deg, #e2e8f0, #f7f9fc); /* Градиентный фон для изображений */
+            padding: 20px;
+            background: linear-gradient(135deg, #F9FAFB, #FFFFFF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .skin-visuals img {
-            width: 100%; height: 100%; object-fit: contain;
-            padding: 20px; box-sizing: border-box;
-            position: relative; z-index: 2;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
             transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .skin-card:hover .skin-visuals img { transform: scale(1.15) rotate(3deg); }
-        
+        .skin-card:hover .skin-visuals img { transform: scale(1.15) rotate(4deg); }
+
         .skin-info {
-            padding: 20px 25px 25px 25px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            justify-content: space-between;
-            background-color: #fff;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid #f0f0f0;
         }
         .skin-name {
-            font-size: 1.2rem; font-weight: 600;
-            margin: 0 0 15px 0; min-height: 3.6rem; /* Сохраняем высоту для выравнивания */
+            font-size: 1.25rem; font-weight: 600;
+            margin: 0 0 auto 0; /* Pushes everything else down */
+            min-height: 3.8rem;
         }
         .skin-details {
             display: flex; justify-content: space-between; align-items: center;
-            background-color: var(--surface-color);
-            padding: 12px 15px; border-radius: 10px; margin-bottom: 20px;
+            margin: 20px 0;
         }
         .skin-details .price-label {
-            font-size: 0.9rem; color: var(--secondary-text-color); font-weight: 500;
+            font-size: 1rem; color: var(--text-color-light); font-weight: 500;
         }
         .skin-details .skin-price {
-            font-size: 1.3rem; font-weight: 700; color: var(--primary-text-color);
+            font-size: 1.5rem; font-weight: 700; color: var(--text-color);
         }
         .card-actions { display: flex; gap: 12px; }
         .buy-button, .inspect-button {
             display: flex; justify-content: center; align-items: center;
-            flex: 1; padding: 13px; border-radius: 8px; text-decoration: none;
+            flex: 1; padding: 14px; border-radius: 10px; text-decoration: none;
             font-weight: 600; font-size: 1rem;
             transition: all 0.2s ease; cursor: pointer; border: 2px solid transparent;
         }
@@ -257,71 +268,61 @@
             box-shadow: 0 4px 15px rgba(255, 122, 0, 0.3);
         }
         .inspect-button {
-            background-color: transparent; color: var(--secondary-text-color);
-            border-color: var(--border-color);
+            background-color: transparent; color: var(--accent-turquoise);
+            border-color: var(--accent-turquoise);
         }
         .inspect-button:hover {
-            border-color: var(--accent-turquoise); color: var(--accent-turquoise);
-            background-color: rgba(0, 196, 204, 0.1);
+            background-color: var(--accent-turquoise); color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 196, 204, 0.3);
         }
 
-        /* Модальное окно (ОБНОВЛЕННЫЙ ДИЗАЙН) */
-        .modal-overlay {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26, 32, 44, 0.7); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;}
-        .modal-overlay.show {opacity: 1; visibility: visible;}
-        .modal-content {background-color: #fff; border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); border-radius: 16px; padding: 40px; width: 90%; max-width: 650px; text-align: center; transform: scale(0.95) translateY(10px); transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative;}
-        .modal-overlay.show .modal-content {transform: scale(1) translateY(0);}
-        .modal-image-container img {max-width: 100%; height: auto; max-height: 65vh; margin-bottom: 20px;}
-        .modal-content .skin-name {font-size: 2rem; margin: 15px 0 10px; color: var(--primary-text-color);}
-        .modal-content .skin-price {font-size: 1.5rem; color: var(--secondary-text-color);}
-        .modal-close {position: absolute; top: 15px; right: 20px; font-size: 2.5rem; line-height: 1; color: var(--secondary-text-color); cursor: pointer; transition: transform 0.3s ease, color 0.3s ease;}
-        .modal-close:hover {transform: scale(1.1) rotate(90deg); color: var(--accent-orange);}
+        /* ПУНКТ 3 (часть 2): Надпись на карточке */
+        .developer-credit {
+            font-size: 0.75rem;
+            color: var(--text-color-light);
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
 
         /* Адаптивность */
-        @media (max-width: 1024px) {
-            .page-content { flex-direction: column; }
-            .filter-sidebar { width: auto; position: static; }
-        }
         @media (max-width: 768px) {
-            .site-header { flex-direction: column; gap: 15px; }
-            .page-content { padding: 20px; }
-            .content-area h1 { font-size: 2rem; }
-            .skins-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 20px; }
+            .header-content { flex-direction: column; gap: 20px; }
+            .page-intro { padding: 40px 0; }
+            .page-intro h1 { font-size: 2.2rem; }
+            .filter-bar-container { gap: 10px; }
+            .filter-toggle { padding: 10px 20px; font-size: 0.9rem; }
+            .skins-grid { grid-template-columns: 1fr; gap: 25px; }
         }
     </style>
 </head>
 <body>
 
 <header class="site-header">
-    <a href="#"><img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo"></a>
-    <nav class="social-nav">
-        <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
-        <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
-        <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
-        <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
-    </nav>
+    <div class="container">
+        <div class="header-content">
+            <a href="#"><img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo"></a>
+            <nav class="social-nav">
+                <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
+                <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
+                <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
+                <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
+            </nav>
+        </div>
+    </div>
 </header>
 
-<div class="page-content">
-    <aside class="filter-sidebar" id="filterSidebar"></aside>
-
-    <main class="content-area">
+<main class="container">
+    <div class="page-intro">
         <h1 id="contentTitle"></h1>
         <p class="prompt" id="contentPrompt"></p>
-        <div class="skins-grid" id="skinsGrid"></div>
-    </main>
-</div>
-
-<!-- Модальное окно -->
-<div class="modal-overlay" id="skinModal">
-    <div class="modal-content">
-        <span class="modal-close" id="modalClose">×</span>
-        <div class="modal-image-container">
-            <img id="modalImage" src="" alt="Skin Image">
-        </div>
-        <h2 id="modalName" class="skin-name"></h2>
-        <p id="modalPrice" class="skin-price"></p>
+        <div class="filter-bar-container" id="filterBar"></div>
     </div>
-</div>
+    
+    <div class="skins-grid" id="skinsGrid"></div>
+</main>
 
 
 <script>
@@ -336,54 +337,33 @@
         'Пулеметы': ['M249', 'Negev'],
         'Другое': ['Агент', 'Брелок', 'Граффити', 'Кейсы', 'Капсулы', 'Наклейки', 'Прайм статус']
     };
-    // ОБЪЕКТ С НАЗВАНИЯМИ КАЧЕСТВА БОЛЬШЕ НЕ НУЖЕН ДЛЯ ОТОБРАЖЕНИЯ, но оставлен на случай будущих доработок
-    const rarityNames = { 'mil-spec': 'Армейское', 'restricted': 'Запрещенное', 'classified': 'Засекреченное', 'prime': 'Прайм' };
     
     const skins = [
-        { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec", type: 'SG 553', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469" },
-        { name: "M4A1-S | Северный лес", price: 3000, image: "https://assets.lis-skins.com/market_images/9254_b.png", quality: "mil-spec", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199303684554A44905774809D16296880026125316388" },
-        { name: "USP-S | Билет в ад", price: 5000, image: "https://assets.lis-skins.com/market_images/152529_b.png", quality: "restricted", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199438776871A45024021638D6930585498007975757" },
-        { name: "AWP | Капилляры", price: 6500, image: "https://assets.lis-skins.com/market_images/145952_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572539934A45225672298D7953429965043849259" },
-        { name: "AWP | Ахерон", price: 7000, image: "https://assets.lis-skins.com/market_images/60231_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572896403A45159972133D7083188519541208581" },
-        { name: "M4A1-S | Нитро", price: 8000, image: "https://assets.lis-skins.com/market_images/9352_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572287354A45195408169D11595088990574181802" },
-        { name: "Desert Eagle | Рельсотрон", price: 14000, image: "https://assets.lis-skins.com/market_images/141501_b.png", quality: "restricted", type: 'Desert Eagle', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199440151155A45128185757D6928826125758235369" },
-        { name: "M4A1-S | Ночной ужас", price: 17000, image: "https://assets.lis-skins.com/market_images/152536_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572819281A45080235516D7254221815132699524" },
-        { name: "AK-47 | Затерянная земля", price: 18000, image: "https://assets.lis-skins.com/market_images/141457_b.png", quality: "mil-spec", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572434062A44885517882D875563960137574909" },
-        { name: "M4A4 | Мастер травли", price: 20000, image: "https://assets.lis-skins.com/market_images/169019_b.png", quality: "restricted", type: 'M4A4', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572630510A45151099175D778032169458304708" },
-        { name: "Glock-18 | Ядерный сад", price: 25000, image: "https://assets.lis-skins.com/market_images/60260_b.png", quality: "classified", type: 'Glock-18', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572445118A45094219615D10125937820632625068" },
-        { name: "USP-S | Сайрекс", price: 25000, image: "https://assets.lis-skins.com/market_images/16349_b.png", quality: "classified", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199573451498A45097115098D6937338527307919745" },
-        { name: "AWP | Экзоскелет", price: 79999, image: "https://assets.lis-skins.com/market_images/148247_b.png", quality: "classified", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572102697A45093761532D7559864608688361997" },
-        { name: "AK-47 | Ледяной Уголь", price: 85000, image: "https://assets.lis-skins.com/market_images/156705_b.png", quality: "classified", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572723112A45089616112D5242903052168340793" },
-        { name: "Прайм статус в CS2", price: 199999, image: "https://assets.lis-skins.com/market_images/150602_b.png", quality: "prime", type: 'Прайм статус' }
+        { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", type: 'SG 553', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469" },
+        { name: "M4A1-S | Северный лес", price: 3000, image: "https://assets.lis-skins.com/market_images/9254_b.png", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199303684554A44905774809D16296880026125316388" },
+        { name: "USP-S | Билет в ад", price: 5000, image: "https://assets.lis-skins.com/market_images/152529_b.png", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199438776871A45024021638D6930585498007975757" },
+        { name: "AWP | Капилляры", price: 6500, image: "https://assets.lis-skins.com/market_images/145952_b.png", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572539934A45225672298D7953429965043849259" },
+        { name: "AWP | Ахерон", price: 7000, image: "https://assets.lis-skins.com/market_images/60231_b.png", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572896403A45159972133D7083188519541208581" },
+        { name: "M4A1-S | Нитро", price: 8000, image: "https://assets.lis-skins.com/market_images/9352_b.png", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572287354A45195408169D11595088990574181802" },
+        { name: "Desert Eagle | Рельсотрон", price: 14000, image: "https://assets.lis-skins.com/market_images/141501_b.png", type: 'Desert Eagle', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199440151155A45128185757D6928826125758235369" },
+        { name: "M4A1-S | Ночной ужас", price: 17000, image: "https://assets.lis-skins.com/market_images/152536_b.png", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572819281A45080235516D7254221815132699524" },
+        { name: "AK-47 | Затерянная земля", price: 18000, image: "https://assets.lis-skins.com/market_images/141457_b.png", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572434062A44885517882D875563960137574909" },
+        { name: "M4A4 | Мастер травли", price: 20000, image: "https://assets.lis-skins.com/market_images/169019_b.png", type: 'M4A4', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572630510A45151099175D778032169458304708" },
+        { name: "Glock-18 | Ядерный сад", price: 25000, image: "https://assets.lis-skins.com/market_images/60260_b.png", type: 'Glock-18', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572445118A45094219615D10125937820632625068" },
+        { name: "USP-S | Сайрекс", price: 25000, image: "https://assets.lis-skins.com/market_images/16349_b.png", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199573451498A45097115098D6937338527307919745" },
+        { name: "AWP | Экзоскелет", price: 79999, image: "https://assets.lis-skins.com/market_images/148247_b.png", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572102697A45093761532D7559864608688361997" },
+        { name: "AK-47 | Ледяной Уголь", price: 85000, image: "https://assets.lis-skins.com/market_images/156705_b.png", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572723112A45089616112D5242903052168340793" },
+        { name: "Прайм статус в CS2", price: 199999, image: "https://assets.lis-skins.com/market_images/150602_b.png", type: 'Прайм статус' }
     ];
 
     document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('skinsGrid');
-        const filterSidebar = document.getElementById('filterSidebar');
+        const filterBar = document.getElementById('filterBar');
         const contentTitle = document.getElementById('contentTitle');
         const contentPrompt = document.getElementById('contentPrompt');
         
-        const modal = document.getElementById('skinModal');
-        const modalClose = document.getElementById('modalClose');
-        const modalImage = document.getElementById('modalImage');
-        const modalName = document.getElementById('modalName');
-        const modalPrice = document.getElementById('modalPrice');
-
         const featuredSkins = ['Прайм статус в CS2', 'AK-47 | Ледяной Уголь', 'AWP | Экзоскелет'];
         let activeFilters = { types: new Set() };
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        function openModal(skin) {
-            modalImage.src = skin.image;
-            modalName.textContent = skin.name;
-            modalPrice.textContent = `${skin.price.toLocaleString('ru-RU')} баллов`;
-            modal.classList.add('show');
-        }
-
-        function closeModal() {
-            modal.classList.remove('show');
-        }
 
         function renderSkins() {
             grid.innerHTML = '';
@@ -392,8 +372,8 @@
 
             if (!isFiltered) {
                 skinsToRender = skins.filter(s => featuredSkins.includes(s.name));
-                contentTitle.textContent = "Избранное";
-                contentPrompt.textContent = "Добро пожаловать! Ниже представлены избранные награды. Чтобы найти больше скинов, воспользуйтесь фильтрами.";
+                contentTitle.textContent = "Избранные скины";
+                contentPrompt.textContent = "Добро пожаловать! Ниже представлены лучшие награды. Используйте фильтры, чтобы найти что-то особенное.";
                 contentPrompt.style.display = 'block';
             } else {
                 skinsToRender = skins.filter(skin => activeFilters.types.has(skin.type));
@@ -402,14 +382,12 @@
             }
 
             if (skinsToRender.length === 0 && isFiltered) {
-                grid.innerHTML = '<p class="prompt">По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</p>';
+                grid.innerHTML = '<p class="prompt" style="grid-column: 1 / -1; text-align: center;">Ничего не найдено. Попробуйте изменить фильтры.</p>';
             }
 
-            skinsToRender.forEach((skin, index) => {
+            skinsToRender.forEach((skin) => {
                 const card = document.createElement('div');
-                card.className = `skin-card`; // Классы качества больше не нужны для стилизации
-                card.style.setProperty('--delay', index);
-                card.dataset.skinIndex = skins.indexOf(skin);
+                card.className = 'skin-card';
 
                 let actionsHTML = '';
                 if (skin.inspectLink) {
@@ -424,19 +402,17 @@
                 card.innerHTML = `
                     <div class="skin-visuals">
                         <img src="${skin.image}" alt="${skin.name}" loading="lazy">
-                        <!-- ПУНКТ 1: ТЕГ КАЧЕСТВА УБРАН ИЗ HTML -->
                     </div>
                     <div class="skin-info">
-                        <div>
-                            <h2 class="skin-name">${skin.name}</h2>
-                            <div class="skin-details">
-                                <span class="price-label">Цена:</span>
-                                <span class="skin-price">${skin.price.toLocaleString('ru-RU')}</span>
-                            </div>
+                        <h2 class="skin-name">${skin.name}</h2>
+                        <div class="skin-details">
+                            <span class="price-label">Цена:</span>
+                            <span class="skin-price">${skin.price.toLocaleString('ru-RU')}</span>
                         </div>
                         <div class="card-actions">
                             ${actionsHTML}
                         </div>
+                        <div class="developer-credit">developer: / @horiifn \\</div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -444,64 +420,60 @@
         }
         
         function createFilters() {
-            filterSidebar.innerHTML = '<h2>Фильтры</h2>';
-            const categoryGroup = document.createElement('div');
-            categoryGroup.className = 'category-filter';
-
+            filterBar.innerHTML = '';
             for (const category in filterData) {
-                const details = document.createElement('details');
-                const subTypes = filterData[category];
+                const group = document.createElement('div');
+                group.className = 'filter-group';
                 
-                let subListHTML = '';
-                if (subTypes.length > 0) {
-                    const subList = document.createElement('div');
-                    subList.className = 'sub-category-list';
-                    subTypes.forEach(type => {
-                        subList.innerHTML += `
-                            <label class="checkbox-container"> ${type}
-                                <input type="checkbox" data-type-for-category="${category}" value="${type}">
-                                <span class="checkmark"></span>
-                            </label>
-                        `;
-                    });
-                    details.innerHTML = `<summary>${category}</summary>`;
-                    details.appendChild(subList);
-                } else {
-                     details.innerHTML = `<summary>${category}</summary>`;
-                }
-                categoryGroup.appendChild(details);
+                const toggle = document.createElement('button');
+                toggle.className = 'filter-toggle';
+                toggle.textContent = category;
+                
+                const dropdown = document.createElement('div');
+                dropdown.className = 'filter-dropdown';
+
+                const subTypes = filterData[category];
+                subTypes.forEach(type => {
+                    dropdown.innerHTML += `
+                        <label class="checkbox-container"> ${type}
+                            <input type="checkbox" value="${type}">
+                            <span class="checkmark"></span>
+                        </label>
+                    `;
+                });
+
+                group.appendChild(toggle);
+                group.appendChild(dropdown);
+                filterBar.appendChild(group);
             }
-            filterSidebar.appendChild(categoryGroup);
         }
-
+        
         createFilters();
-        renderSkins(); 
+        renderSkins();
 
-        filterSidebar.addEventListener('change', (e) => {
+        filterBar.addEventListener('change', (e) => {
             if (e.target.type === 'checkbox') {
                 const { value, checked } = e.target;
-                if (checked) {
-                    activeFilters.types.add(value);
-                } else {
-                    activeFilters.types.delete(value);
-                }
+                if (checked) activeFilters.types.add(value);
+                else activeFilters.types.delete(value);
                 renderSkins();
             }
         });
 
-        grid.addEventListener('click', (e) => {
-            if (e.target.closest('.skin-visuals')) {
-                const card = e.target.closest('.skin-card');
-                const skinIndex = card.dataset.skinIndex;
-                if (skinIndex !== undefined) {
-                    openModal(skins[skinIndex]);
+        // Логика для открытия/закрытия выпадающих списков фильтров
+        document.addEventListener('click', (e) => {
+            const activeGroup = document.querySelector('.filter-group.active');
+            
+            if (e.target.matches('.filter-toggle')) {
+                const currentGroup = e.target.parentElement;
+                if (activeGroup && activeGroup !== currentGroup) {
+                    activeGroup.classList.remove('active');
                 }
+                currentGroup.classList.toggle('active');
+            } else if (activeGroup && !activeGroup.contains(e.target)) {
+                activeGroup.classList.remove('active');
             }
         });
-
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => (e.target === modal) && closeModal());
-        document.addEventListener('keydown', (e) => (e.key === 'Escape') && closeModal());
     });
 </script>
 
