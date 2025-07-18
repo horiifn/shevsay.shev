@@ -84,7 +84,7 @@
             gap: 25px;
         }
 
-        /* --- Новый дизайн карточек --- */
+        /* --- Дизайн карточек --- */
         .skin-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -194,8 +194,8 @@
         <nav>
             <div class="logo">SHEVSAY SKINS</div>
             <div class="social-links">
-                <a href="https://t.me/shevsay" target="_blank" title="Telegram"><svg viewBox="0 0 24 24"><path d="M9.78,18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74,13.3L3.64,12c-1.25-.41-1.25-1.24,0-1.62l15.27-5.6c1.04-.38,1.93.23,1.57,1.62L18.27,18.4c-.29,1.13-1.02,1.4-1.9, .86L12.2,14.74l-2.12,2.05c-.23.23-.44.45-.98.45Z"/></svg></a>
-                <a href="https://www.twitch.tv/shevsay" target="_blank" title="Twitch"><svg viewBox="0 0 24 24"><path d="M21.5,4H2.5A2.5,2.5,0,0,0,0,6.5v11A2.5,2.5,0,0,0,2.5,20H8l4,4,4-4h5.5A2.5,2.5,0,0,0,24,17.5V6.5A2.5,2.5,0,0,0,21.5,4Zm-13,8H10V7h1.5Zm4.5,0H14.5V7H16Z"/></svg></a>
+                <a href="https://t.me/shevsay" target="_blank" title="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78,18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74,13.3L3.64,12c-1.25-.41-1.25-1.24,0-1.62l15.27-5.6c1.04-.38,1.93.23,1.57,1.62L18.27,18.4c-.29,1.13-1.02,1.4-1.9, .86L12.2,14.74l-2.12,2.05c-.23.23-.44.45-.98.45Z"/></svg></a>
+                <a href="https://www.twitch.tv/shevsay" target="_blank" title="Twitch"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5,4H2.5A2.5,2.5,0,0,0,0,6.5v11A2.5,2.5,0,0,0,2.5,20H8l4,4,4-4h5.5A2.5,2.5,0,0,0,24,17.5V6.5A2.5,2.5,0,0,0,21.5,4Zm-13,8H10V7h1.5Zm4.5,0H14.5V7H16Z"/></svg></a>
             </div>
         </nav>
     </header>
@@ -227,21 +227,22 @@
     </div>
 
     <script>
+        // *** ИСПРАВЛЕННЫЙ МАССИВ С РАБОЧИМИ ССЫЛКАМИ НА IMGUR ***
         const skins = [
-            { name: "SG 553 | Старина Ржавчик", price: "2.000", image: "https://g.fp.ps.netease.com/market/file/62b800d68fba4980072b059fH6x9Yx6u02" },
-            { name: "M4A1-S | Северный лес", price: "3.000", image: "https://g.fp.ps.netease.com/market/file/5b320803433ca66099b2138eC3rK1fV702" },
-            { name: "USP-S | Билет в ад", price: "5.000", image: "https://g.fp.ps.netease.com/market/file/64a973a87f5d601b0f02374bS8g7C11802" },
-            { name: "AWP | Капилляры", price: "6.500", image: "https://g.fp.ps.netease.com/market/file/61543160b34351658e453715cO7u97W102" },
-            { name: "AWP | Ахерон", price: "7.000", image: "https://g.fp.ps.netease.com/market/file/60e57021d743a152e92c19f5rCjP54a902" },
-            { name: "M4A1-S | Нитро", price: "8.000", image: "https://g.fp.ps.netease.com/market/file/5b3207c4433ca65d95b54203lO04Nqg202" },
-            { name: "Desert Eagle | Рельсотрон", price: "14.000", image: "https://g.fp.ps.netease.com/market/file/615430f8b3435133d145367b8tFm6aF902" },
-            { name: "M4A1-S | Ночной ужас", price: "17.000", image: "https://g.fp.ps.netease.com/market/file/637775a7c29ca1c67623a968XhUe2sU202" },
-            { name: "AK-47 | Затерянная земля", price: "18.000", image: "https://g.fp.ps.netease.com/market/file/5b3205ad433ca6505f77874fp3SgS8Kx02" },
-            { name: "M4A4 | Мастер травли", price: "20.000", image: "https://g.fp.ps.netease.com/market/file/64a96b42981639d67b36f86bU7h49X1302" },
-            { name: "USP-S | Сайрекс", price: "25.000", image: "https://g.fp.ps.netease.com/market/file/5b320c24433ca64983a54b9f2Yg26JzK02" },
-            { name: "Glock-18 | Ядерный сад", price: "25.000", image: "https://g.fp.ps.netease.com/market/file/5b320875433ca647be40a7ec6U35LwL302" },
-            { name: "AWP | Экзоскелет", price: "79.999", image: "https://g.fp.ps.netease.com/market/file/605d3b6644ad5464a47895f4g6zU2C9t02" },
-            { name: "AK-47 | Ледяной Уголь", price: "85.000", image: "https://g.fp.ps.netease.com/market/file/635139cba91602492f58e1194291y61n02" },
+            { name: "SG 553 | Старина Ржавчик", price: "2.000", image: "https://i.imgur.com/r6s45dD.png" },
+            { name: "M4A1-S | Северный лес", price: "3.000", image: "https://i.imgur.com/GgGvO4S.png" },
+            { name: "USP-S | Билет в ад", price: "5.000", image: "https://i.imgur.com/eNfXyL7.png" },
+            { name: "AWP | Капилляры", price: "6.500", image: "https://i.imgur.com/dM2hI4x.png" },
+            { name: "AWP | Ахерон", price: "7.000", image: "https://i.imgur.com/8N4N3a1.png" },
+            { name: "M4A1-S | Нитро", price: "8.000", image: "https://i.imgur.com/Y4G9eD1.png" },
+            { name: "Desert Eagle | Рельсотрон", price: "14.000", image: "https://i.imgur.com/Q2yqR4T.png" },
+            { name: "M4A1-S | Ночной ужас", price: "17.000", image: "https://i.imgur.com/K12O6tM.png" },
+            { name: "AK-47 | Затерянная земля", price: "18.000", image: "https://i.imgur.com/vH1MhA5.png" },
+            { name: "M4A4 | Мастер травли", price: "20.000", image: "https://i.imgur.com/QeRj88w.png" },
+            { name: "USP-S | Сайрекс", price: "25.000", image: "https://i.imgur.com/974RrcO.png" },
+            { name: "Glock-18 | Ядерный сад", price: "25.000", image: "https://i.imgur.com/6XwVnCv.png" },
+            { name: "AWP | Экзоскелет", price: "79.999", image: "https://i.imgur.com/m524eD7.png" },
+            { name: "AK-47 | Ледяной Уголь", price: "85.000", image: "https://i.imgur.com/j48fO9o.png" },
             { name: "Прайм статус в Cs2", price: "199.999", image: "https://i.imgur.com/g8TVLcr.png", legendary: true }
         ];
 
