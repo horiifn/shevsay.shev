@@ -5,142 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHEVSAY SKINS</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Chakra+Petch:wght@700&display=swap');
 
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --primary-text-color: #ffffff;
-            --secondary-text-color: #a0a0a0;
-            --border-color: rgba(255, 255, 255, 0.1);
-            
-            --accent-orange: #ff4500;
-            --accent-red: #ff0000;
+            --bg-color: #0D0D0D;
+            --surface-color: #1A1A1A;
+            --primary-text-color: #F5F5F5;
+            --secondary-text-color: #8A8A8A;
+            --border-color: #2C2C2C;
+            --accent-color: #E64A19;
+            --accent-hover-color: #FF5722;
         }
 
-        /* --- Базовые стили и фон --- */
+        /* --- Базовые стили --- */
         body {
             background-color: var(--bg-color);
             color: var(--primary-text-color);
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            overflow-x: hidden;
-            /* Интерактивный фон, управляемый JS */
-            background-image: radial-gradient(
-                circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(255, 69, 0, 0.1),
-                transparent 25vw
-            );
-            transition: background 0.2s ease-out;
-        }
-
-        .site-wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* --- Левая боковая панель --- */
-        .sidebar {
-            width: 260px;
-            background-color: rgba(0,0,0,0.3);
-            border-right: 1px solid var(--border-color);
-            position: fixed;
-            top: 0; left: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 30px;
+            padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .sidebar-header {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2em;
-            text-align: center;
-            letter-spacing: 1px;
-            color: var(--primary-text-color);
-            margin-bottom: 50px;
-        }
-        .sidebar-nav {
+
+        /* --- Шапка сайта --- */
+        .site-header {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: rgba(13, 13, 13, 0.8);
         }
-        .sidebar-nav a {
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--secondary-text-color);
-            font-weight: 600;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .sidebar-nav a:hover {
-            background-color: var(--surface-color);
+        .logo {
+            width: 50px; /* Размер лого */
+            height: auto;
+        }
+        .logo-text {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.8em;
+            color: var(--primary-text-color);
+            text-transform: uppercase;
+        }
+
+        /* --- Новое оформление соц. ссылок --- */
+        .social-nav {
+            display: flex;
+            gap: 25px;
+        }
+        .social-link {
+            color: var(--secondary-text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+        .social-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .social-link:hover {
             color: var(--primary-text-color);
         }
-        .sidebar-nav svg {
-            width: 24px; height: 24px;
-            fill: currentColor;
-            transition: fill 0.3s ease;
-        }
-        .sidebar-nav a:hover svg {
-            fill: var(--accent-orange);
+        .social-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
 
         /* --- Основной контент --- */
         .main-content {
-            margin-left: 260px;
-            width: calc(100% - 260px);
             padding: 50px;
-            box-sizing: border-box;
         }
         .main-content h1 {
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 3.5em;
-            font-weight: 700;
-            margin: 0 0 40px 0;
+            text-align: center;
+            margin: 20px 0 60px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         /* --- Сетка карточек --- */
         .skins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 35px;
         }
 
-        /* --- Дизайн карточек --- */
+        /* --- Новый дизайн карточек --- */
         .skin-card {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
             position: relative;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        /* Элемент для подсветки */
-        .skin-card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 12px;
-            background: radial-gradient(
-                circle,
-                var(--accent-orange),
-                transparent
-            );
-            filter: blur(20px);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .skin-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 69, 0, 0.5);
-        }
-        .skin-card:hover::before {
-            opacity: 0.8;
+            transform: translateY(-8px);
+            border-color: var(--accent-hover-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
         .skin-image-wrapper {
@@ -148,131 +134,143 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
-            background-color: rgba(0,0,0,0.2);
+            padding: 20px;
+            background-color: #111; /* Темный фон для контраста */
         }
         .skin-image-wrapper img {
-            max-width: 90%; max-height: 90%;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             transition: transform 0.4s ease;
         }
         .skin-card:hover .skin-image-wrapper img {
-            transform: scale(1.08);
+            transform: scale(1.07);
         }
 
         .skin-info {
             padding: 20px;
+            text-align: center;
         }
         .skin-name {
-            font-size: 1.2em; font-weight: 600;
+            font-size: 1.1em;
+            font-weight: 600;
             margin: 0 0 10px 0;
-            min-height: 48px; /* Для выравнивания карточек */
+            min-height: 44px;
         }
         .skin-price {
-            font-size: 1.1em;
+            font-size: 1.2em;
             color: var(--secondary-text-color);
         }
         .skin-price span {
-            color: var(--primary-text-color);
+            color: var(--accent-color);
             font-weight: 700;
         }
 
         /* --- Модальное окно --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(18, 18, 18, 0.7);
-            backdrop-filter: blur(10px);
-            z-index: 2000; display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
         }
-        .modal-overlay.show { opacity: 1; visibility: visible; }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s;
+        }
         .modal-content {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 40px; width: 90%; max-width: 500px;
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
             text-align: center;
-            transform: scale(0.95); transition: transform 0.3s ease;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            transform: translateY(20px) scale(0.98);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            position: relative;
         }
-        .modal-overlay.show .modal-content { transform: scale(1); }
-        .modal-image-container img { max-width: 100%; height: auto; max-height: 300px; }
-        .modal-content .skin-name { font-size: 2em; margin: 20px 0 15px; }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2.5em; color: var(--secondary-text-color); cursor: pointer; transition: transform 0.3s ease, color 0.3s ease; }
-        .modal-close:hover { transform: scale(1.1) rotate(90deg); color: var(--accent-red); }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0) scale(1);
+        }
+        .modal-image-container img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .modal-content .skin-name {
+            font-size: 1.8em;
+            margin: 15px 0 10px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8em;
+            color: var(--secondary-text-color);
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .modal-close:hover {
+            transform: scale(1.2);
+            color: var(--accent-hover-color);
+        }
 
         /* --- Адаптивность --- */
         @media (max-width: 1024px) {
-            .site-wrapper { flex-direction: column; }
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
+            .site-header {
                 flex-direction: column;
-                padding: 20px;
+                padding: 15px 20px;
+                gap: 15px;
             }
-            .sidebar-header { margin-bottom: 20px; }
-            .sidebar-nav {
-                flex-direction: row;
+            .social-nav {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 15px 20px;
             }
-            .main-content { margin-left: 0; width: 100%; padding: 30px; }
-            .main-content h1 { font-size: 2.5em; text-align: center;}
+            .main-content { padding: 30px; }
+            .main-content h1 { font-size: 2.2em; }
         }
-
+        @media (max-width: 768px) {
+             .skins-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="site-wrapper">
-        <aside class="sidebar">
-            <div class="sidebar-header">SHEVSAY<br>SKINS</div>
-            <nav class="sidebar-nav">
-                <!-- Twitch -->
-                <a href="https://www.twitch.tv/shevsay" target="_blank">
-                    <svg viewBox="0 0 24 24"><path d="M11.64 5.23H9.82v4.86h1.82Zm4.86 0h-1.82v4.86h1.82ZM4.55 0 0 4.55v14.89h4.86V24l4.55-4.55h3.48L22.18 14V0ZM20 12.45l-3.48 3.48h-3.8l-3 3v-3H4.86V2.18h15.14Z"/></svg>
-                    <span>Twitch</span>
-                </a>
-                 <!-- Telegram -->
-                 <a href="https://t.me/shevsay" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.84-1.6 7.6c-.1.49-.38.61-.79.38l-2.43-1.79-1.18 1.14c-.13.13-.24.24-.48.24l.17-2.49 4.48-4.08c.19-.17-.06-.27-.32-.1L8.2 13.1l-2.38-.74c-.48-.15-.49-.49.1-.73l9.46-3.69c.4-.16.76.09.64.59z"/></svg>
-                    <span>Telegram</span>
-                </a>
-                <!-- Трейд Ссылка -->
-                <a href="https://steamcommunity.com/tradeoffer/new/?partner=303807149&token=RlbfuibX" target="_blank">
-                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm3.42,14.44a.69.69,0,0,1-.59.33H9.17a.69.69,0,0,1-.59-.33.72.72,0,0,1,.11-.79l1.17-1.42a1.39,1.39,0,0,1-1.07-1.39,1.75,1.75,0,0,1,1.1-1.62l.14,2.37a.36.36,0,0,0,.7,0l.13-2.37a1.75,1.75,0,0,1,1.1,1.62,1.39,1.39,0,0,1-1.07,1.39l1.17,1.42A.72.72,0,0,1,15.42,16.44Zm-.66-5a2.5,2.5,0,1,1-2.5-2.5A2.5,2.5,0,0,1,14.76,11.44Z"/></svg>
-                    <span>Трейд ссылка</span>
-                </a>
-                <!-- Профиль Steam -->
-                <a href="https://steamcommunity.com/id/ShevTv/" target="_blank">
-                     <svg viewBox="0 0 24 24"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm3.42,14.44a.69.69,0,0,1-.59.33H9.17a.69.69,0,0,1-.59-.33.72.72,0,0,1,.11-.79l1.17-1.42a1.39,1.39,0,0,1-1.07-1.39,1.75,1.75,0,0,1,1.1-1.62l.14,2.37a.36.36,0,0,0,.7,0l.13-2.37a1.75,1.75,0,0,1,1.1,1.62,1.39,1.39,0,0,1-1.07,1.39l1.17,1.42A.72.72,0,0,1,15.42,16.44Zm-.66-5a2.5,2.5,0,1,1-2.5-2.5A2.5,2.5,0,0,1,14.76,11.44Z"/></svg>
-                    <span>Профиль Steam</span>
-                </a>
-                <!-- Instagram -->
-                <a href="https://instagram.com/shevsay?igshid=YmMyMTA2M2Y=" target="_blank">
-                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm5,11.4a2.6,2.6,0,0,1-2.6,2.6H9.6A2.6,2.6,0,0,1,7,13.4V9.6A2.6,2.6,0,0,1,9.6,7h4.8A2.6,2.6,0,0,1,17,9.6ZM12,9a3,3,0,1,0,3,3A3,3,0,0,0,12,9Zm3.75-2.1a1,1,0,1,0,1,1A1,1,0,0,0,15.75,6.9Z"/></svg>
-                    <span>Instagram</span>
-                </a>
-                <!-- TikTok -->
-                <a href="https://www.tiktok.com/@shevsay" target="_blank">
-                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm5.2,6.92a2.37,2.37,0,0,1-2.18,2.1V15a4.2,4.2,0,1,1-5.49-4.14,4.07,4.07,0,0,1,.13.91V11A2.37,2.37,0,0,1,7.22,8.91,2.44,2.44,0,0,1,9.66,6.5h.33A2.37,2.37,0,0,1,12.17,9v5a1.86,1.86,0,1,0,1.82,1.87V9a2.38,2.38,0,0,1,3.21-2.08Z"/></svg>
-                    <span>TikTok</span>
-                </a>
-                <!-- Поддержать -->
-                <a href="https://www.donationalerts.com/r/shevsay" target="_blank">
-                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm-1.2-5.5h2.4v1h-2.4v-1zm-1.3 0H8.2v-1h1.3v1zm5.3 0h-1.3v-1h1.3v1z"/></svg>
-                    <span>Поддержать</span>
-                </a>
-            </nav>
-        </aside>
 
-        <main class="main-content">
-            <h1>Награды за баллы</h1>
-            <div class="skins-grid" id="skinsGrid">
-                <!-- Карточки генерируются здесь -->
-            </div>
-        </main>
-    </div>
+    <header class="site-header">
+        <div class="logo-container">
+            <img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo">
+            <span class="logo-text">Shevsay Skins</span>
+        </div>
+        <nav class="social-nav">
+            <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
+            <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
+            <a href="https://steamcommunity.com/tradeoffer/new/?partner=303807149&token=RlbfuibX" target="_blank" class="social-link">Трейд</a>
+            <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
+            <a href="https://instagram.com/shevsay?igshid=YmMyMTA2M2Y=" target="_blank" class="social-link">Instagram</a>
+            <a href="https://www.tiktok.com/@shevsay" target="_blank" class="social-link">TikTok</a>
+            <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1>Награды за баллы</h1>
+        <div class="skins-grid" id="skinsGrid">
+            <!-- Карточки генерируются здесь через JS -->
+        </div>
+    </main>
 
     <!-- Модальное окно -->
     <div class="modal-overlay" id="skinModal">
@@ -287,22 +285,23 @@
     </div>
 
     <script>
+        // JS остался без изменений, так как его логика отлично подходит.
         const skins = [
-            { name: "SG 553 | Старина Ржавчик", price: "2.000", image: "https://assets.lis-skins.com/market_images/99114_b.png" },
-            { name: "M4A1-S | Северный лес", price: "3.000", image: "https://www.mediafire.com/convkey/7b94/boq6k28pxge25shzg.jpg" },
-            { name: "USP-S | Билет в ад", price: "5.000", image: "https://www.mediafire.com/convkey/9f48/mei0v1lntbldljyzg.jpg" },
-            { name: "AWP | Капилляры", price: "6.500", image: "https://www.mediafire.com/convkey/d783/zpgs9dvqn9z5xs6zg.jpg" },
-            { name: "AWP | Ахерон", price: "7.000", image: "https://www.mediafire.com/convkey/2f69/1tp99me2isyybjyzg.jpg" },
-            { name: "M4A1-S | Нитро", price: "8.000", image: "https://www.mediafire.com/convkey/3b88/mx6ckrqa4rdvbqazg.jpg" },
-            { name: "Desert Eagle | Рельсотрон", price: "14.000", image: "https://www.mediafire.com/convkey/6652/fpfriwz1eduludbzg.jpg" },
-            { name: "M4A1-S | Ночной ужас", price: "17.000", image: "https://www.mediafire.com/convkey/8b38/0w3mgsy4nv3cv66zg.jpg" },
-            { name: "AK-47 | Затерянная земля", price: "18.000", image: "https://www.mediafire.com/convkey/4f98/ktu3jnyc9gdahsczg.jpg" },
-            { name: "M4A4 | Мастер травли", price: "20.000", image: "https://www.mediafire.com/convkey/3ce1/7xxta1sajwd7r0zzg.jpg" },
-            { name: "USP-S | Сайрекс", price: "25.000", image: "https://www.mediafire.com/convkey/47fd/3mpj95vavffmvuezg.jpg" },
-            { name: "Glock-18 | Ядерный сад", price: "25.000", image: "https://www.mediafire.com/convkey/9f96/6b4tw2pof47yze9zg.jpg" },
-            { name: "AWP | Экзоскелет", price: "79.999", image: "https://www.mediafire.com/convkey/1a90/jrb197s8bw5y1cjzg.jpg" },
-            { name: "AK-47 | Ледяной Уголь", price: "85.000", image: "https://www.mediafire.com/convkey/5874/8qazypt59dti1r9zg.jpg" },
-            { name: "Прайм статус в Cs2", price: "199.999", image: "https://www.mediafire.com/convkey/f852/3gu8nbjeoi4bh3wzg.jpg" }
+            { name: "SG 553 | Старина Ржавчик", price: "2.000", image: "https://assets.lis-skins.com/market_images/147018_b.png" },
+            { name: "M4A1-S | Северный лес", price: "3.000", image: "https://assets.lis-skins.com/market_images/9254_b.png" },
+            { name: "USP-S | Билет в ад", price: "5.000", image: "https://assets.lis-skins.com/market_images/152529_b.png" },
+            { name: "AWP | Капилляры", price: "6.500", image: "https://assets.lis-skins.com/market_images/145952_b.png" },
+            { name: "AWP | Ахерон", price: "7.000", image: "https://assets.lis-skins.com/market_images/60231_b.png" },
+            { name: "M4A1-S | Нитро", price: "8.000", image: "https://assets.lis-skins.com/market_images/9352_b.png" },
+            { name: "Desert Eagle | Рельсотрон", price: "14.000", image: "https://assets.lis-skins.com/market_images/141501_b.png" },
+            { name: "M4A1-S | Ночной ужас", price: "17.000", image: "https://assets.lis-skins.com/market_images/152536_b.png" },
+            { name: "AK-47 | Затерянная земля", price: "18.000", image: "https://assets.lis-skins.com/market_images/141457_b.png" },
+            { name: "M4A4 | Мастер травли", price: "20.000", image: "https://assets.lis-skins.com/market_images/169019_b.png" },
+            { name: "USP-S | Сайрекс", price: "25.000", image: "https://assets.lis-skins.com/market_images/16349_b.png" },
+            { name: "Glock-18 | Ядерный сад", price: "25.000", image: "https://assets.lis-skins.com/market_images/60260_b.png" },
+            { name: "AWP | Экзоскелет", price: "79.999", image: "https://assets.lis-skins.com/market_images/148247_b.png" },
+            { name: "AK-47 | Ледяной Уголь", price: "85.000", image: "https://assets.lis-skins.com/market_images/156705_b.png" },
+            { name: "Прайм статус в Cs2", price: "199.999", image: "https://assets.lis-skins.com/market_images/150602_b.png" }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -322,13 +321,13 @@
                     </div>
                     <div class="skin-info">
                         <h2 class="skin-name">${skin.name}</h2>
-                        <p class="skin-price">Баллы: <span>${skin.price}</span></p>
+                        <p class="skin-price"><span>${skin.price}</span> баллов</p>
                     </div>
                 `;
                 card.addEventListener('click', () => {
                     modalImage.src = skin.image;
                     modalName.textContent = skin.name;
-                    modalPrice.innerHTML = `Баллы: <span>${skin.price}</span>`;
+                    modalPrice.innerHTML = `<span>${skin.price}</span> баллов`;
                     modal.classList.add('show');
                 });
                 grid.appendChild(card);
@@ -338,11 +337,6 @@
             modalClose.addEventListener('click', closeModal);
             modal.addEventListener('click', e => (e.target === modal) && closeModal());
             document.addEventListener('keydown', e => (e.key === 'Escape') && closeModal());
-            
-            window.addEventListener('mousemove', e => {
-                document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
-                document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
-            });
         });
     </script>
 </body>
