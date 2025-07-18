@@ -5,189 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHEVSAY SKINS</title>
     <style>
-        /* --- Импорт шрифта --- */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;500&display=swap');
+        /* --- Импорт шрифтов --- */
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Orbitron:wght@700&display=swap');
 
         :root {
-            --bg-color: #010409;
-            --card-bg: rgba(22, 27, 34, 0.75);
-            --border-color: rgba(48, 54, 61, 0.5);
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            
-            /* Цвета редкости */
-            --rarity-common: #3371b5; /* Синий */
-            --rarity-rare: #8847ff; /* Фиолетовый */
-            --rarity-legendary: #d2a600; /* Золотой */
+            --bg-color: #0D101C;
+            --card-bg: rgba(20, 25, 40, 0.6);
+            --border-color: rgba(137, 147, 192, 0.2);
+            --text-primary: #f0f2f5;
+            --text-secondary: #99a1b3;
+            --accent-purple: #9B5DE5;
+            --accent-cyan: #00F5D4;
         }
 
         /* --- Анимации --- */
-        @keyframes background-pan {
-            from { background-position: 0% 0%; }
-            to { background-position: 0% -200%; }
+        @keyframes animated-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 10px 0 var(--glow-color), 0 0 20px 0 var(--glow-color-soft); }
-            50% { box-shadow: 0 0 14px 4px var(--glow-color), 0 0 28px 4px var(--glow-color-soft); }
-            100% { box-shadow: 0 0 10px 0 var(--glow-color), 0 0 20px 0 var(--glow-color-soft); }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Основные стили --- */
+        /* --- Основные стили и фон --- */
         body {
             background-color: var(--bg-color);
-            background-image: url('https://i.imgur.com/e219Y4N.png'); /* Кастомный фон сетки */
-            animation: background-pan 30s linear infinite;
             color: var(--text-primary);
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Manrope', sans-serif;
             margin: 0;
-            padding-top: 80px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* --- Шапка --- */
-        header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: rgba(13, 17, 23, 0.6);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            height: 80px;
-        }
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8em;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-shadow: 0 0 8px rgba(0, 195, 255, 0.7);
-        }
-        .social-links { display: flex; align-items: center; gap: 25px; }
-        .social-links a {
-            transition: transform 0.3s ease;
-        }
-        .social-links a:hover {
-            transform: scale(1.15);
-        }
-        .social-links svg {
-            width: 28px; height: 28px;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+            overflow-x: hidden;
         }
         
+        #background-animation {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(-45deg, #0d101c, #13182b, #0d101c, #2c3359);
+            background-size: 400% 400%;
+            animation: animated-gradient 15s ease infinite;
+            z-index: -1;
+        }
+
+        .site-wrapper {
+            display: flex;
+        }
+
+        /* --- Левая боковая панель --- */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 20px;
+            border-right: 1px solid var(--border-color);
+            box-sizing: border-box;
+        }
+        .sidebar .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .sidebar .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .sidebar .social-links a {
+            transition: transform 0.3s ease;
+        }
+        .sidebar .social-links a:hover {
+            transform: scale(1.1);
+        }
+        .sidebar .social-links svg {
+            width: 32px; height: 32px;
+            fill: var(--text-secondary);
+            transition: fill 0.3s ease;
+        }
+        .sidebar .social-links a:hover svg {
+            fill: var(--text-primary);
+        }
+
+        /* --- Основной контент --- */
+        .main-content {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .main-content h1 {
+            font-size: 3em;
+            font-weight: 800;
+            margin: 0 0 40px 0;
+        }
+
         /* --- Сетка карточек --- */
         .skins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            perspective: 1000px; /* Для 3D эффекта */
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 25px;
         }
 
         /* --- Дизайн карточек --- */
         .skin-card {
             background: var(--card-bg);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            overflow: hidden;
             position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeIn 0.5s ease-out forwards;
             opacity: 0;
             cursor: pointer;
-            will-change: transform;
         }
-        .skin-card::before, .skin-card::after { /* Элементы для подсветки */
-            content: '';
+        .skin-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        /* Анимированная рамка при наведении */
+        .skin-card::after {
+            content: "";
             position: absolute;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            border-radius: 12px;
-            opacity: 0;
+            top: 0; left: 0;
+            width: 200%; height: 100%;
+            background: linear-gradient(110deg, transparent 40%, var(--accent-cyan), var(--accent-purple), transparent 60%);
             transition: opacity 0.4s ease;
-            z-index: 1;
+            opacity: 0;
+            transform: translateX(-50%);
         }
-        .skin-card::before { /* Внутренняя тень */
-            box-shadow: inset 0 0 20px 0 var(--glow-color);
-        }
-        .skin-card::after { /* Внешняя рамка-свечение */
-            border: 2px solid var(--glow-color);
-            animation: pulse-glow 3s infinite ease-in-out;
-        }
-        .skin-card:hover::before, .skin-card:hover::after {
+        .skin-card:hover::after {
             opacity: 1;
+            animation: animated-gradient 3s linear infinite;
         }
-
-        /* Индикатор редкости */
-        .rarity-tag {
-            position: absolute;
-            top: 15px; left: 15px;
-            width: 10px; height: 10px;
-            background-color: var(--glow-color);
-            border-radius: 50%;
-            z-index: 3;
-            box-shadow: 0 0 12px 2px var(--glow-color);
+        .card-content {
+            position: relative; z-index: 2;
+            background: inherit; /* Чтобы не перекрывать эффект стекла */
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-sizing: border-box;
         }
 
         .skin-image-wrapper {
-            height: 180px;
-            padding: 20px;
+            height: 170px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transform: translateZ(20px); /* Выдвигаем картинку в 3D */
+            margin-bottom: 20px;
         }
         .skin-image-wrapper img {
-            max-width: 90%; max-height: 90%;
+            max-width: 95%; max-height: 95%;
             object-fit: contain;
-            transition: transform 0.4s ease;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-            transform: translateZ(30px); /* И еще чуть-чуть */
-        }
-        
-        .skin-info {
-            padding: 20px;
-            background: rgba(0,0,0,0.3);
-            border-top: 1px solid var(--border-color);
-            transform: translateZ(10px);
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
         }
         .skin-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3em;
-            font-weight: 500;
-            margin: 0 0 15px 0;
-            line-height: 1.3;
+            font-size: 1.25em; font-weight: 600;
+            line-height: 1.4;
+            margin: 0 0 10px 0;
+            flex-grow: 1; /* Чтобы карточки были одной высоты */
         }
         .skin-price {
             font-size: 1.1em;
-            font-weight: 500;
             color: var(--text-secondary);
         }
         .skin-price span {
             color: var(--text-primary);
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
         /* --- Модальное окно --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(13, 16, 28, 0.7);
+            backdrop-filter: blur(8px);
             z-index: 2000; display: flex; align-items: center; justify-content: center;
             opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
         }
@@ -196,59 +196,60 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 30px 40px;
+            padding: 40px; width: 90%; max-width: 500px;
             text-align: center;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5), 0 0 20px 0 var(--glow-color);
+            transform: scale(0.95); transition: transform 0.3s ease;
         }
         .modal-overlay.show .modal-content { transform: scale(1); }
-        .modal-image-container {
-            margin-bottom: 25px;
-            padding: 20px 0;
+        .modal-image-container img { max-width: 100%; height: auto; max-height: 300px; }
+        .modal-content .skin-name { font-size: 2em; margin: 20px 0 15px; }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2.5em; color: var(--text-secondary); cursor: pointer; transition: transform 0.3s ease; }
+        .modal-close:hover { transform: scale(1.1) rotate(90deg); color: var(--text-primary); }
+
+        /* --- Адаптивность --- */
+        @media (max-width: 900px) {
+            .site-wrapper { flex-direction: column; }
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 20px;
+            }
+            .sidebar .social-links { flex-direction: row; }
+            .main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .main-content h1 { font-size: 2.5em; margin-bottom: 20px; }
         }
-        .modal-image-container img {
-            max-width: 100%;
-            height: auto;
-            max-height: 280px;
-            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7));
-        }
-        .modal-content .skin-name { font-family: 'Orbitron', sans-serif; font-size: 2em; color: var(--text-primary); margin-bottom: 20px; }
-        .modal-content .skin-price { font-size: 1.4em; }
-        .modal-close {
-            position: absolute; top: 15px; right: 20px;
-            font-size: 2.5em; color: var(--text-secondary);
-            cursor: pointer; transition: color 0.2s ease, transform 0.2s ease;
-        }
-        .modal-close:hover { color: var(--text-primary); transform: rotate(90deg); }
 
     </style>
 </head>
 <body>
+    <div id="background-animation"></div>
 
-    <header>
-        <nav>
-            <div class="logo">SHEVSAY</div>
+    <div class="site-wrapper">
+        <aside class="sidebar">
+            <div class="logo">SHEVSAY<br>SKINS</div>
             <div class="social-links">
                 <a href="https://t.me/shevsay" target="_blank" title="Telegram">
-                    <svg viewBox="0 0 24 24" fill="#00A2E2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.69 7.61-2.17 10.12c-.22.9-1.22 1.2-1.89.73l-4.57-3.39-2.21 2.13c-.24.24-.65.13-.75-.23l-1.5-6.13a.92.92 0 0 1 1.15-1.15l13.55-5.21c.84-.32.84.92.17 1.18z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.6-2.5-2.7 8.5-4.3-3.1-2 1.9-.1-4.6 9.1-2.7ZM14.8 19.3l-3-8.8 5.6-5.4-8 12.1 6.8 2.1a.6.6 0 0 0 .6-.5l1-4.5Z"/></svg>
                 </a>
                 <a href="https://www.twitch.tv/shevsay" target="_blank" title="Twitch">
-                    <svg viewBox="0 0 24 24" fill="#9146FF"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0h1.714v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0H6zm14.571 11.143-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714v9.429z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M11.64 5.23H9.82v4.86h1.82Zm4.86 0h-1.82v4.86h1.82ZM4.55 0 0 4.55v14.89h4.86V24l4.55-4.55h3.48L22.18 14V0ZM20 12.45l-3.48 3.48h-3.8l-3 3v-3H4.86V2.18h15.14Z"/></svg>
                 </a>
             </div>
-        </nav>
-    </header>
+        </aside>
 
-    <main class="container">
-        <div class="skins-grid" id="skinsGrid">
-            <!-- Карточки будут сгенерированы здесь -->
-        </div>
-    </main>
+        <main class="main-content">
+            <h1>Магазин Предметов</h1>
+            <div class="skins-grid" id="skinsGrid">
+                <!-- Карточки генерируются здесь -->
+            </div>
+        </main>
+    </div>
 
+    <!-- Модальное окно -->
     <div class="modal-overlay" id="skinModal">
         <div class="modal-content">
             <span class="modal-close" id="modalClose">×</span>
@@ -262,91 +263,60 @@
 
     <script>
         const skins = [
-            { name: "SG 553 | Старина Ржавчик", price: "2.000", image: "https://i.imgur.com/r6s45dD.png", rarity: "common" },
-            { name: "M4A1-S | Северный лес", price: "3.000", image: "https://i.imgur.com/GgGvO4S.png", rarity: "common" },
-            { name: "USP-S | Билет в ад", price: "5.000", image: "https://i.imgur.com/eNfXyL7.png", rarity: "common" },
-            { name: "AWP | Капилляры", price: "6.500", image: "https://i.imgur.com/dM2hI4x.png", rarity: "common" },
-            { name: "AWP | Ахерон", price: "7.000", image: "https://i.imgur.com/8N4N3a1.png", rarity: "rare" },
-            { name: "M4A1-S | Нитро", price: "8.000", image: "https://i.imgur.com/Y4G9eD1.png", rarity: "common" },
-            { name: "Desert Eagle | Рельсотрон", price: "14.000", image: "https://i.imgur.com/Q2yqR4T.png", rarity: "rare" },
-            { name: "M4A1-S | Ночной ужас", price: "17.000", image: "https://i.imgur.com/K12O6tM.png", rarity: "rare" },
-            { name: "AK-47 | Затерянная земля", price: "18.000", image: "https://i.imgur.com/vH1MhA5.png", rarity: "rare" },
-            { name: "M4A4 | Мастер травли", price: "20.000", image: "https://i.imgur.com/QeRj88w.png", rarity: "rare" },
-            { name: "USP-S | Сайрекс", price: "25.000", image: "https://i.imgur.com/974RrcO.png", rarity: "legendary" },
-            { name: "Glock-18 | Ядерный сад", price: "25.000", image: "https://i.imgur.com/6XwVnCv.png", rarity: "rare" },
-            { name: "AWP | Экзоскелет", price: "79.999", image: "https://i.imgur.com/m524eD7.png", rarity: "legendary" },
-            { name: "AK-47 | Ледяной Уголь", price: "85.000", image: "https://i.imgur.com/j48fO9o.png", rarity: "legendary" },
-            { name: "Прайм статус в Cs2", price: "199.999", image: "https://i.imgur.com/sC4xJqN.png", rarity: "legendary" }
+            { name: "SG 553 | Старина Ржавчик", price: "2.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0REVWbHhrS2dwb3YzcyBQVFUxZ3YtU0lWdEI2OVQ0bFlHSHFQcnhON0xmcVdaVTdNZGVraTNpNG9QaHhndmotMVZ2TlRqN2Q5ZkhkZzVzWXduVy1nQzV3Yi04ME1MdjdaakpteVJsdlhGd3ctei1EeUFFX2tSNC8.webp" },
+            { name: "M4A1-S | Северный лес", price: "3.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3UtNmthemh6MnZfTmNhRk40ODhrbFljRGc3bWdKYV91aEdSeTVNeDJndjJQOGQtaWlsR3lfQmR0WkdtbklZVEFjZ0k4WVZWeC1sQzlsbnp1Z0pIdDdwWE16WHA5LW41MUt4R0NUYmsv.webp" },
+            { name: "USP-S | Билет в ад", price: "5.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3NyLWtMQXRsN1BMWlRqbk82ZE9rbDVXSGt1SHhQWV92Z0d4dTVNeDJndjJQOGQtaWpBUzJyUmR0Wnd2eklpVEdjbE03Wmx5RTh3ZTh4T192amNMdWFaejJ5M3A5LW41MXRMaF9EOWcv.webp" },
+            { name: "AWP | Капилляры", price: "6.500", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3c3UzFjbGN3Zzh6TC1FVk8tTlcxZzQtTm52YjVNYW5UcVdOVTdQcDlnLTdKNFZteGhCM2ktVVU2TWoybkk0R2NKQVk4WVF2UV93V193T2JvMU1XODZKWk5uM0ZxdnlKMDBSalI5bEkv.webp" },
+            { name: "AWP | Ахерон", price: "7.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3c3UzFjbGN3Zzh6TC1FVk8tTnU0Z1k2TW1fTExQN0xRcVdOVTdQcDlnLTdKNFZQMmhCM3RfMFE2WURyekk0YkVJQTRaVlJEUi1nQzNrNzI5ZzhPOXVKVGp6WHA5LW41MVM0N1RUUHcv.webp" },
+            { name: "M4A1-S | Нитро", price: "8.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3UtNmthemh6MnZfTmNhRk40ODhpbFktUGhmTGhQN0x1bW1KVzRORk9odWpUOE4tazJRdXktaEU5WkRyeko0VEFkd2M3TTF6VS1RZTV3TDN1MDVHOXZaeFB6SEJqNlhZcS16LUR5QTAweXFNLw.webp" },
+            { name: "Desert Eagle | Рельсотрон", price: "14.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3UtNmthemh6dzh6WUkzZ1MwOS12bFhNTHFmdnhKYWJnclZ1N2RGMyVyekc4TUtqamxINi0xTnNNam55SmRUY1RBVTZZdzJDLUZqb3h1dnMxSmU4dEpTZGx5Umx2R1p6NUMyTk9MRUcv.webp" },
+            { name: "M4A1-S | Ночной ужас", price: "17.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3UtNmthemh6MnZfTmNlSlE1Yy1pbDRpQ21mUExQN0x1bW1KVzRORk9odWpUOE4tazJRcXgta1Z1Wm12eEk0R2NJQU1aQXpWcTEyOHdMM3Noc2E0Nlp6SnpIQmo2WFhxLXotRHlHN2tGMEcv.webp" },
+            { name: "AK-47 | Затерянная земля", price: "18.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3ZiU3NMUUpYdlBMYWNEQkE2dDI2ay1ITnZkOEpfWFh4ak5TNnNaT2gtekY4WV93aVF5My1rSS1aaj94SklDVGNGQV9Od3pRLWw0MmtMLTYtakJxdTU0Qm5jajdkRHd2N0dfdDFuOG4v.webp" },
+            { name: "M4A4 | Мастер травли", price: "20.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3U2cjhmQlJ3N09mSGNzZ1gYMDlTN2xabVBrY1g2TjdMZnhOQlU2b1lydGk0RjI4ZHdIMld5XzA4bVd6bklyaGNKUTQ4Y0hSUlUtZ0VtT0tqemIyYzBhWmVxNWJ5ZWJGLw.webp" },
+            { name: "USP-S | Сайрекс", price: "25.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3NyLWtMQXRsN1BMWmNEQkE3dEd6a0wtSG52RDhKX1hYeGpOUzZzWm9oLXZGOFktbmk4MlEyX0VEd01HVnhkMlJoYzRFN01uUTM1OWQ0U0R2OEY0M3Z6Lw.webp" },
+            { name: "Glock-18 | Ядерный сад", price: "25.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3ZiU3NMUUpmeFByU2NkYjM5LU9tbVktSm52UDlKYXJtcWtWYjhzUkhqLTNJNElTQjhoRzNxS2Rwemduc0lvU1Vjd004WlZIVF9BUzl5LWJtZ0pMdXVjdlp6eVIydkNCeDBHLWcwQS8.webp" },
+            { name: "AWP | Экзоскелет", price: "79.999", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3c3UzFjbGN3Zzh6TC1FWkQtT0M0ZzQtTm52YjVNYW5UcVdOVTdQcDlnLTdKNFZteGhCM21fVUE1WTJyMWNOTEdjQUktWkFtR19nSzlrN2k1aDhEcXRNak5uM0ZxdnlKMDBlMW1SVWsv.webp" },
+            { name: "AK-47 | Ледяной Уголь", price: "85.000", image: "https://static.lis-skins.com/Gwn3g22Fyx85a_T6Dimt_p-nQzYdOcnRT_o_MOrkE5M/fill/350/350/no/1/aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5ha2FtYWkuc3RlYW1zdGF0aWMuY29tL2Vjb25vbXkvaW1hZ2UvLTlhODFkbFdsd0oyVVVHY1ZzX25zVnR6ZE9FZHXXd0tHWlpMUUhUeERaN0k1NktVMFp3d280TlVYNG9GSlpFSExiWEg1QXBlTzRZbWxoeFlRa25DUnZDbzA0DEVWbHhrS2dwb3ZiU3NMUUpYdlBMYWNEQkE2dDJrblktRHFwcnhON0xmcVdaVTdNZGVraTNpNG9QaHhndmotMEs4TURWemREVUhJRThZVGdRLVIzOHd1eDdnSnk5MDRYRy8.webp" },
+            { name: "Прайм статус в Cs2", price: "199.999", image: "https://i.imgur.com/vHqY7J1.png" }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('skinsGrid');
             const modal = document.getElementById('skinModal');
-            const modalContent = modal.querySelector('.modal-content');
             const modalClose = document.getElementById('modalClose');
             const modalImage = document.getElementById('modalImage');
             const modalName = document.getElementById('modalName');
             const modalPrice = document.getElementById('modalPrice');
-            const root = document.documentElement;
 
             skins.forEach((skin, index) => {
                 const card = document.createElement('div');
                 card.className = 'skin-card';
-                card.style.animationDelay = `${index * 0.07}s`;
-
-                const glowColor = getComputedStyle(root).getPropertyValue(`--rarity-${skin.rarity}`).trim();
-                const glowColorSoft = `${glowColor}55`; // Добавляем прозрачность
-                
-                card.style.setProperty('--glow-color', glowColor);
-                card.style.setProperty('--glow-color-soft', glowColorSoft);
+                card.style.animationDelay = `${index * 0.05}s`;
 
                 card.innerHTML = `
-                    <div class="rarity-tag"></div>
-                    <div class="skin-image-wrapper">
-                        <img src="${skin.image}" alt="${skin.name}">
-                    </div>
-                    <div class="skin-info">
+                    <div class="card-content">
+                        <div class="skin-image-wrapper">
+                            <img src="${skin.image}" alt="${skin.name}" loading="lazy">
+                        </div>
                         <h2 class="skin-name">${skin.name}</h2>
                         <p class="skin-price">Баллы: <span>${skin.price}</span></p>
                     </div>
                 `;
                 
-                // 3D Tilt Effect
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const { width, height } = rect;
-                    const rotateX = (y / height - 0.5) * -20; // Угол наклона
-                    const rotateY = (x / width - 0.5) * 20;
-                    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                });
-
-                // Open Modal
                 card.addEventListener('click', () => {
                     modalImage.src = skin.image;
                     modalName.textContent = skin.name;
                     modalPrice.innerHTML = `Баллы: <span>${skin.price}</span>`;
-                    modalContent.style.setProperty('--glow-color', glowColor);
                     modal.classList.add('show');
                 });
 
                 grid.appendChild(card);
             });
 
-            // Close Modal Logic
             const closeModal = () => modal.classList.remove('show');
             modalClose.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeModal();
-            });
+            modal.addEventListener('click', (e) => (e.target === modal) && closeModal());
+            document.addEventListener('keydown', (e) => (e.key === 'Escape') && closeModal());
         });
     </script>
 </body>
