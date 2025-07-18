@@ -5,28 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHEVSAY SKINS</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Chakra+Petch:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@800&display=swap');
 
         :root {
-            --bg-color: #0D0D0D;
-            --surface-color: #1A1A1A;
-            --primary-text-color: #F5F5F5;
+            --bg-color: #0A0A0A;
+            --surface-color: #141414;
+            --primary-text-color: #ECECEC;
             --secondary-text-color: #8A8A8A;
-            --border-color: #2C2C2C;
-            --accent-color: #E64A19;
-            --accent-hover-color: #FF5722;
+            --border-color: #2a2a2a;
+            
+            /* Цвета редкости */
+            --quality-mil-spec: #4b69ff;
+            --quality-restricted: #8847ff;
+            --quality-classified: #d32ce6;
+            --quality-prime: #ffae00; /* Специальный цвет для прайма */
         }
 
-        /* --- Базовые стили --- */
+        /* --- Анимация фона --- */
+        @keyframes animated-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         body {
             background-color: var(--bg-color);
+            background: linear-gradient(125deg, #0A0A0A, #1a0f0f, #0A0A0A);
+            background-size: 200% 200%;
+            animation: animated-bg 25s ease infinite;
+
             color: var(--primary-text-color);
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
         /* --- Шапка сайта --- */
@@ -39,8 +52,8 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(12px);
-            background-color: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(16px);
+            background-color: rgba(10, 10, 10, 0.7);
         }
         .logo-container {
             display: flex;
@@ -50,15 +63,17 @@
         .logo {
             width: 50px;
             height: auto;
+            transition: transform 0.4s ease;
+        }
+        .logo:hover {
+            transform: rotate(360deg);
         }
         .logo-text {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 1.8em;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6em;
             color: var(--primary-text-color);
             text-transform: uppercase;
         }
-
-        /* --- Новое оформление соц. ссылок --- */
         .social-nav {
             display: flex;
             gap: 25px;
@@ -66,12 +81,11 @@
         .social-link {
             color: var(--secondary-text-color);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9em;
             position: relative;
             padding: 5px 0;
-            /* Ускорение анимации */
-            transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: color 0.3s ease;
         }
         .social-link::after {
             content: '';
@@ -80,11 +94,10 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: var(--accent-color);
+            background-color: var(--primary-text-color);
             transform: scaleX(0);
             transform-origin: bottom right;
-            /* Ускорение анимации подчеркивания */
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .social-link:hover {
             color: var(--primary-text-color);
@@ -96,69 +109,106 @@
 
         /* --- Основной контент --- */
         .main-content {
-            padding: 50px;
+            padding: 60px 50px;
+            max-width: 1600px;
+            margin: 0 auto;
         }
         .main-content h1 {
-            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 3.5em;
             text-align: center;
-            margin: 20px 0 60px 0;
+            margin: 20px 0 80px 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
         /* --- Сетка карточек --- */
         .skins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
         }
 
-        /* --- Новый дизайн карточек --- */
+        /* --- Новый дизайн карточек с АУРОЙ --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         .skin-card {
             background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
+            border-radius: 12px;
             position: relative;
             cursor: pointer;
-            /* Готовим элемент к анимации transform для повышения производительности */
-            will-change: transform, border-color;
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        border-color 0.3s ease;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            will-change: transform;
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            /* Staggered animation */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+            animation-delay: calc(var(--delay) * 60ms);
         }
         .skin-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--accent-hover-color);
+            transform: translateY(-10px);
+        }
+
+        /* --- Та самая АУРА --- */
+        .skin-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 12px;
+            background: radial-gradient(circle, var(--rarity-color, transparent) 0%, transparent 60%);
+            opacity: 0;
+            filter: blur(15px);
+            will-change: opacity;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        .skin-card:hover::before {
+            opacity: 0.6;
         }
         
         .skin-image-wrapper {
-            height: 180px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background-color: #111;
+            background-color: rgba(0,0,0,0.2);
+            position: relative;
         }
         .skin-image-wrapper img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            /* Готовим изображение к анимации */
             will-change: transform;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .skin-card:hover .skin-image-wrapper img {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
         .skin-info {
             padding: 20px;
-            text-align: center;
+            text-align: left;
+            border-top: 1px solid var(--border-color);
+            /* Индикатор редкости */
+            border-bottom: 3px solid var(--rarity-color, var(--border-color));
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
         .skin-name {
             font-size: 1.1em;
-            font-weight: 600;
+            font-weight: 700;
             margin: 0 0 10px 0;
             min-height: 44px;
         }
@@ -167,95 +217,55 @@
             color: var(--secondary-text-color);
         }
         .skin-price span {
-            color: var(--accent-color);
-            font-weight: 700;
+            color: var(--primary-text-color);
+            font-weight: 500;
         }
+
+        /* --- Настройка цветов по качеству --- */
+        .quality-mil-spec { --rarity-color: var(--quality-mil-spec); }
+        .quality-restricted { --rarity-color: var(--quality-restricted); }
+        .quality-classified { --rarity-color: var(--quality-classified); }
+        .quality-prime { --rarity-color: var(--quality-prime); }
 
         /* --- Модальное окно --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
             z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            /* Ускоряем анимацию opacity */
-            transition: opacity 0.25s ease, visibility 0s 0.25s;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
             will-change: opacity;
         }
-        .modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-            transition-delay: 0s;
-        }
+        .modal-overlay.show { opacity: 1; visibility: visible; transition-delay: 0s; }
         .modal-content {
             background-color: var(--surface-color);
+            border-radius: 16px;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            width: 90%;
-            max-width: 450px;
+            padding: 40px; width: 90%; max-width: 500px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            position: relative;
-            /* Готовим модальное окно к анимации transform и opacity */
             will-change: transform, opacity;
-            transform: translateY(15px) scale(0.98);
+            transform: translateY(20px) scale(0.98);
             opacity: 0;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                        opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-        .modal-overlay.show .modal-content {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-        }
-        .modal-image-container img {
-            max-width: 80%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        .modal-content .skin-name {
-            font-size: 1.8em;
-            margin: 15px 0 10px;
-        }
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.8em;
-            color: var(--secondary-text-color);
-            cursor: pointer;
-            line-height: 1;
-            transition: transform 0.25s ease, color 0.25s ease;
-        }
-        .modal-close:hover {
-            transform: scale(1.2);
-            color: var(--accent-hover-color);
-        }
+        .modal-overlay.show .modal-content { transform: translateY(0) scale(1); opacity: 1; }
+        .modal-image-container img { max-width: 90%; height: auto; margin-bottom: 25px; }
+        .modal-content .skin-name { font-size: 2em; margin: 20px 0 15px; }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2.5em; color: var(--secondary-text-color); cursor: pointer; transition: transform 0.3s ease, color 0.3s ease; }
+        .modal-close:hover { transform: scale(1.1) rotate(90deg); color: var(--primary-text-color); }
 
         /* --- Адаптивность --- */
         @media (max-width: 1024px) {
-            .site-header {
-                flex-direction: column;
-                padding: 15px 20px;
-                gap: 15px;
-            }
-            .social-nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px 20px;
-            }
-            .main-content { padding: 30px; }
-            .main-content h1 { font-size: 2.2em; }
+            .site-header { flex-direction: column; padding: 15px 20px; gap: 20px; }
+            .social-nav { flex-wrap: wrap; justify-content: center; gap: 15px 20px; }
+            .main-content { padding: 40px 30px; }
+            .main-content h1 { font-size: 2.5em; margin-bottom: 60px; }
         }
         @media (max-width: 768px) {
-             .skins-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-                gap: 20px;
-            }
+             .skins-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
         }
     </style>
 </head>
@@ -284,7 +294,6 @@
         </div>
     </main>
 
-    <!-- Модальное окно -->
     <div class="modal-overlay" id="skinModal">
         <div class="modal-content">
             <span class="modal-close" id="modalClose">×</span>
@@ -297,23 +306,27 @@
     </div>
 
     <script>
-        // JS остался без изменений, так как его логика отлично подходит.
+        // Добавлены данные о качестве (quality) для каждого скина
         const skins = [
-            { name: "SG 553 | Старина Ржавчик", price: "2.000", image: "https://assets.lis-skins.com/market_images/147018_b.png" },
-            { name: "M4A1-S | Северный лес", price: "3.000", image: "https://assets.lis-skins.com/market_images/9254_b.png" },
-            { name: "USP-S | Билет в ад", price: "5.000", image: "https://assets.lis-skins.com/market_images/152529_b.png" },
-            { name: "AWP | Капилляры", price: "6.500", image: "https://assets.lis-skins.com/market_images/145952_b.png" },
-            { name: "AWP | Ахерон", price: "7.000", image: "https://assets.lis-skins.com/market_images/60231_b.png" },
-            { name: "M4A1-S | Нитро", price: "8.000", image: "https://assets.lis-skins.com/market_images/9352_b.png" },
-            { name: "Desert Eagle | Рельсотрон", price: "14.000", image: "https://assets.lis-skins.com/market_images/141501_b.png" },
-            { name: "M4A1-S | Ночной ужас", price: "17.000", image: "https://assets.lis-skins.com/market_images/152536_b.png" },
-            { name: "AK-47 | Затерянная земля", price: "18.000", image: "https://assets.lis-skins.com/market_images/141457_b.png" },
-            { name: "M4A4 | Мастер травли", price: "20.000", image: "https://assets.lis-skins.com/market_images/169019_b.png" },
-            { name: "USP-S | Сайрекс", price: "25.000", image: "https://assets.lis-skins.com/market_images/16349_b.png" },
-            { name: "Glock-18 | Ядерный сад", price: "25.000", image: "https://assets.lis-skins.com/market_images/60260_b.png" },
-            { name: "AWP | Экзоскелет", price: "79.999", image: "https://assets.lis-skins.com/market_images/148247_b.png" },
-            { name: "AK-47 | Ледяной Уголь", price: "85.000", image: "https://assets.lis-skins.com/market_images/156705_b.png" },
-            { name: "Прайм статус в Cs2", price: "199.999", image: "https://assets.lis-skins.com/market_images/150602_b.png" }
+            // Синий - Mil-Spec
+            { name: "SG 553 | Старина Ржавчик", price: "2.000", image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec" },
+            { name: "M4A1-S | Северный лес", price: "3.000", image: "https://assets.lis-skins.com/market_images/9254_b.png", quality: "mil-spec" },
+            { name: "AWP | Капилляры", price: "6.500", image: "https://assets.lis-skins.com/market_images/145952_b.png", quality: "mil-spec" },
+            { name: "AWP | Ахерон", price: "7.000", image: "https://assets.lis-skins.com/market_images/60231_b.png", quality: "mil-spec" },
+            { name: "AK-47 | Затерянная земля", price: "18.000", image: "https://assets.lis-skins.com/market_images/141457_b.png", quality: "mil-spec" },
+            // Фиолетовый - Restricted
+            { name: "USP-S | Билет в ад", price: "5.000", image: "https://assets.lis-skins.com/market_images/152529_b.png", quality: "restricted" },
+            { name: "M4A1-S | Нитро", price: "8.000", image: "https://assets.lis-skins.com/market_images/9352_b.png", quality: "restricted" },
+            { name: "Desert Eagle | Рельсотрон", price: "14.000", image: "https://assets.lis-skins.com/market_images/141501_b.png", quality: "restricted" },
+            { name: "M4A1-S | Ночной ужас", price: "17.000", image: "https://assets.lis-skins.com/market_images/152536_b.png", quality: "restricted" },
+            { name: "M4A4 | Мастер травли", price: "20.000", image: "https://assets.lis-skins.com/market_images/169019_b.png", quality: "restricted" },
+            // Розовый - Classified
+            { name: "USP-S | Сайрекс", price: "25.000", image: "https://assets.lis-skins.com/market_images/16349_b.png", quality: "classified" },
+            { name: "Glock-18 | Ядерный сад", price: "25.000", image: "https://assets.lis-skins.com/market_images/60260_b.png", quality: "classified" },
+            { name: "AWP | Экзоскелет", price: "79.999", image: "https://assets.lis-skins.com/market_images/148247_b.png", quality: "classified" },
+            { name: "AK-47 | Ледяной Уголь", price: "85.000", image: "https://assets.lis-skins.com/market_images/156705_b.png", quality: "classified" },
+            // Без качества (особый)
+            { name: "Прайм статус в Cs2", price: "199.999", image: "https://assets.lis-skins.com/market_images/150602_b.png", quality: "prime" }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -324,9 +337,12 @@
             const modalName = document.getElementById('modalName');
             const modalPrice = document.getElementById('modalPrice');
 
-            skins.forEach(skin => {
+            skins.forEach((skin, index) => {
                 const card = document.createElement('div');
-                card.className = 'skin-card';
+                // Добавляем класс качества и переменную для задержки анимации
+                card.className = skin.quality ? `skin-card quality-${skin.quality}` : 'skin-card';
+                card.style.setProperty('--delay', index);
+
                 card.innerHTML = `
                     <div class="skin-image-wrapper">
                         <img src="${skin.image}" alt="${skin.name}" loading="lazy">
