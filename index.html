@@ -207,6 +207,34 @@
         }
         .buy-button:hover { background-color: #ff5722; transform: scale(1.03); }
         
+        /* --- СТИЛИ ДЛЯ КНОПОК ОСМОТРА (ДОБАВЛЕНО) --- */
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .card-actions .buy-button {
+            width: auto;
+            flex: 1;
+        }
+        .inspect-button {
+            display: block;
+            flex: 1;
+            text-align: center;
+            background-color: var(--border-color);
+            color: var(--primary-text-color);
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1em; /* Размер шрифта как у кнопки Купить */
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .inspect-button:hover {
+            background-color: var(--border-hover-color);
+            transform: scale(1.03);
+        }
+        /* --- КОНЕЦ НОВЫХ СТИЛЕЙ --- */
+
         .quality-mil-spec { --rarity-color: var(--quality-mil-spec); }
         .quality-restricted { --rarity-color: var(--quality-restricted); }
         .quality-classified { --rarity-color: var(--quality-classified); }
@@ -310,21 +338,23 @@
         'Другое': ['Агент', 'Брелок', 'Граффити', 'Кейсы', 'Капсулы', 'Наклейки', 'Прайм статус']
     };
     const rarityNames = { 'mil-spec': 'Армейское', 'restricted': 'Запрещенное', 'classified': 'Засекреченное', 'prime': 'Прайм' };
+    
+    // --- СПИСОК СКИНОВ (ИЗМЕНЕНО) ---
     const skins = [
-        { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec", type: 'SG 553' },
-        { name: "M4A1-S | Северный лес", price: 3000, image: "https://assets.lis-skins.com/market_images/9254_b.png", quality: "mil-spec", type: 'M4A1-S' },
-        { name: "USP-S | Билет в ад", price: 5000, image: "https://assets.lis-skins.com/market_images/152529_b.png", quality: "restricted", type: 'USP-S' },
-        { name: "AWP | Капилляры", price: 6500, image: "https://assets.lis-skins.com/market_images/145952_b.png", quality: "mil-spec", type: 'AWP' },
-        { name: "AWP | Ахерон", price: 7000, image: "https://assets.lis-skins.com/market_images/60231_b.png", quality: "mil-spec", type: 'AWP' },
-        { name: "M4A1-S | Нитро", price: 8000, image: "https://assets.lis-skins.com/market_images/9352_b.png", quality: "restricted", type: 'M4A1-S' },
-        { name: "Desert Eagle | Рельсотрон", price: 14000, image: "https://assets.lis-skins.com/market_images/141501_b.png", quality: "restricted", type: 'Desert Eagle' },
-        { name: "M4A1-S | Ночной ужас", price: 17000, image: "https://assets.lis-skins.com/market_images/152536_b.png", quality: "restricted", type: 'M4A1-S' },
-        { name: "AK-47 | Затерянная земля", price: 18000, image: "https://assets.lis-skins.com/market_images/141457_b.png", quality: "mil-spec", type: 'AK-47' },
-        { name: "M4A4 | Мастер травли", price: 20000, image: "https://assets.lis-skins.com/market_images/169019_b.png", quality: "restricted", type: 'M4A4' },
-        { name: "Glock-18 | Ядерный сад", price: 25000, image: "https://assets.lis-skins.com/market_images/60260_b.png", quality: "classified", type: 'Glock-18' },
-        { name: "USP-S | Сайрекс", price: 25000, image: "https://assets.lis-skins.com/market_images/16349_b.png", quality: "classified", type: 'USP-S' },
-        { name: "AWP | Экзоскелет", price: 79999, image: "https://assets.lis-skins.com/market_images/148247_b.png", quality: "classified", type: 'AWP' },
-        { name: "AK-47 | Ледяной Уголь", price: 85000, image: "https://assets.lis-skins.com/market_images/156705_b.png", quality: "classified", type: 'AK-47' },
+        { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec", type: 'SG 553', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469" },
+        { name: "M4A1-S | Северный лес", price: 3000, image: "https://assets.lis-skins.com/market_images/9254_b.png", quality: "mil-spec", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199303684554A44905774809D16296880026125316388" },
+        { name: "USP-S | Билет в ад", price: 5000, image: "https://assets.lis-skins.com/market_images/152529_b.png", quality: "restricted", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199438776871A45024021638D6930585498007975757" },
+        { name: "AWP | Капилляры", price: 6500, image: "https://assets.lis-skins.com/market_images/145952_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572539934A45225672298D7953429965043849259" },
+        { name: "AWP | Ахерон", price: 7000, image: "https://assets.lis-skins.com/market_images/60231_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572896403A45159972133D7083188519541208581" },
+        { name: "M4A1-S | Нитро", price: 8000, image: "https://assets.lis-skins.com/market_images/9352_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572287354A45195408169D11595088990574181802" },
+        { name: "Desert Eagle | Рельсотрон", price: 14000, image: "https://assets.lis-skins.com/market_images/141501_b.png", quality: "restricted", type: 'Desert Eagle', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199440151155A45128185757D6928826125758235369" },
+        { name: "M4A1-S | Ночной ужас", price: 17000, image: "https://assets.lis-skins.com/market_images/152536_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572819281A45080235516D7254221815132699524" },
+        { name: "AK-47 | Затерянная земля", price: 18000, image: "https://assets.lis-skins.com/market_images/141457_b.png", quality: "mil-spec", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572434062A44885517882D875563960137574909" },
+        { name: "M4A4 | Мастер травли", price: 20000, image: "https://assets.lis-skins.com/market_images/169019_b.png", quality: "restricted", type: 'M4A4', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572630510A45151099175D778032169458304708" },
+        { name: "Glock-18 | Ядерный сад", price: 25000, image: "https://assets.lis-skins.com/market_images/60260_b.png", quality: "classified", type: 'Glock-18', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572445118A45094219615D10125937820632625068" },
+        { name: "USP-S | Сайрекс", price: 25000, image: "https://assets.lis-skins.com/market_images/16349_b.png", quality: "classified", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199573451498A45097115098D6937338527307919745" },
+        { name: "AWP | Экзоскелет", price: 79999, image: "https://assets.lis-skins.com/market_images/148247_b.png", quality: "classified", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572102697A45093761532D7559864608688361997" },
+        { name: "AK-47 | Ледяной Уголь", price: 85000, image: "https://assets.lis-skins.com/market_images/156705_b.png", quality: "classified", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572723112A45089616112D5242903052168340793" },
         { name: "Прайм статус в CS2", price: 199999, image: "https://assets.lis-skins.com/market_images/150602_b.png", quality: "prime", type: 'Прайм статус' }
     ];
 
@@ -382,6 +412,20 @@
                 card.style.setProperty('--delay', index);
                 const rarityName = rarityNames[skin.quality] || '';
                 card.dataset.skinIndex = skins.indexOf(skin);
+
+                // --- ЛОГИКА ОТОБРАЖЕНИЯ КНОПОК (ИЗМЕНЕНО) ---
+                let footerActionsHTML;
+                if (skin.inspectLink) {
+                    footerActionsHTML = `
+                        <div class="card-actions">
+                            <a href="${skin.inspectLink}" class="inspect-button">Осмотреть в игре</a>
+                            <a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>
+                        </div>
+                    `;
+                } else {
+                    footerActionsHTML = `<a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>`;
+                }
+
                 card.innerHTML = `
                     <div class="skin-image-wrapper">
                         <img src="${skin.image}" alt="${skin.name}" loading="lazy">
@@ -397,7 +441,7 @@
                         </div>
                         <div class="card-footer">
                             <p class="developer-credit">Developer: / @horiifn</p>
-                            <a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>
+                            ${footerActionsHTML}
                         </div>
                     </div>
                 `;
