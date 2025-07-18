@@ -228,6 +228,16 @@
         <aside class="sidebar">
             <div class="sidebar-header">SHEVSAY<br>SKINS</div>
             <nav class="sidebar-nav">
+                <!-- Twitch -->
+                <a href="https://www.twitch.tv/shevsay" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M11.64 5.23H9.82v4.86h1.82Zm4.86 0h-1.82v4.86h1.82ZM4.55 0 0 4.55v14.89h4.86V24l4.55-4.55h3.48L22.18 14V0ZM20 12.45l-3.48 3.48h-3.8l-3 3v-3H4.86V2.18h15.14Z"/></svg>
+                    <span>Twitch</span>
+                </a>
+                 <!-- Telegram -->
+                 <a href="https://t.me/shevsay" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M22,12A10,10,0,1,1,12,2,10,10,0,0,1,22,12ZM9.5,14.6l3.4-3.4c.2-.2.2-.5,0-.7L8.8,6.4a.5.5,0,0,0-.8.4l1,4.4-4.4-1a.5.5,0,0,0-.4.8L8.6,15a.5.5,0,0,0,.6.3l4.5-1.7-1.7,4.5a.5.5,0,0,0,.3.6.5.5,0,0,0,.3,0l4.4-1,1-4.4a.5.5,0,0,0-.4-.8Z"/></svg>
+                    <span>Telegram</span>
+                </a>
                 <!-- Трейд Ссылка -->
                 <a href="https://steamcommunity.com/tradeoffer/new/?partner=303807149&token=RlbfuibX" target="_blank">
                     <svg viewBox="0 0 24 24"><path d="M14.83,15.08l-1.26,1.26a1,1,0,0,1-1.42,0L9,13.17V16a1,1,0,0,1-2,0V9A1,1,0,0,1,8,8h7a1,1,0,0,1,0,2H9.83l3.17,3.17a1,1,0,0,1,0,1.42Zm2.34-3.25L16,10.57V8a1,1,0,0,0-1-1H8a1,1,0,0,0,0,2h6.17l-1,1a1,1,0,1,0,1.42,1.42ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"/></svg>
@@ -303,7 +313,6 @@
             const modalName = document.getElementById('modalName');
             const modalPrice = document.getElementById('modalPrice');
 
-            // Генерация карточек
             skins.forEach(skin => {
                 const card = document.createElement('div');
                 card.className = 'skin-card';
@@ -325,13 +334,11 @@
                 grid.appendChild(card);
             });
 
-            // Логика модального окна
             const closeModal = () => modal.classList.remove('show');
             modalClose.addEventListener('click', closeModal);
             modal.addEventListener('click', e => (e.target === modal) && closeModal());
             document.addEventListener('keydown', e => (e.key === 'Escape') && closeModal());
             
-            // Логика интерактивного фона
             window.addEventListener('mousemove', e => {
                 document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
                 document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
