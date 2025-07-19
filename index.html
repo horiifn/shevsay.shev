@@ -5,237 +5,434 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShevSay Skins</title>
     <link rel="icon" type="image/png" href="https://assets.lis-skins.com/market_images/150567_b.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@800&display=swap');
 
-        /* ЦВЕТОВАЯ ПАЛИТРА: СВЕТЛО-ЗЕЛЕНЫЙ, ОРАНЖЕВЫЙ, БЕЛЫЙ */
         :root {
-            --bg-color: #FFFFFF;
-            --accent-green: #A3E635; 
-            --accent-orange: #FF7A00;
+            --bg-color: #0D0D10;
+            --surface-color: #16161A;
+            --surface-secondary-color: #1F1F24;
+            --primary-text-color: #F0F2F5;
+            --secondary-text-color: #8A91A0;
+            --border-color: #2A2D3A;
             
-            --text-primary: #1A202C; 
-            --text-secondary: #718096;
-            
-            --shadow-md: 0 5px 20px -5px rgba(26, 32, 44, 0.1);
-            --shadow-lg: 0 10px 30px -5px rgba(26, 32, 44, 0.15);
-            --shadow-glow: 0 0 35px -8px var(--accent-green), 0 0 20px -10px var(--accent-orange);
+            --accent-color: #007BFF;
+            --accent-color-hover: #0056b3;
+
+            --quality-mil-spec: #4A90E2;
+            --quality-restricted: #48BCA0;
+            --quality-classified: #E94C4C;
+            --quality-prime: #E6A23C;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-primary);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%231a1b1e' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+            color: var(--primary-text-color);
             font-family: 'Inter', sans-serif;
             margin: 0;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
-        * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
-        img { pointer-events: none; max-width: 100%; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        img {
+            pointer-events: none;
+            max-width: 100%;
+        }
 
-        /* --- ШАПКА --- */
+        /* --- ШАПКА САЙТА (КЛАССИЧЕСКАЯ) --- */
         .site-header {
-            padding: 20px 0;
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #f0f0f0;
-            position: sticky; top: 0; z-index: 1000;
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            background-color: rgba(13, 13, 16, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .header-content { display: flex; align-items: center; justify-content: space-between; }
-        .logo { width: 60px; transition: transform 0.4s ease; }
-        .logo:hover { transform: scale(1.1) rotate(-8deg); }
-        .social-nav { display: flex; gap: 10px; }
+        .logo { 
+            width: 70px; 
+            height: auto; 
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+        }
+        .logo:hover { 
+            transform: scale(1.1) rotate(-8deg); 
+        }
+        .social-nav { 
+            display: flex; 
+            gap: 15px; 
+        }
         .social-link {
-            color: var(--text-secondary); text-decoration: none; font-weight: 600;
-            padding: 8px 16px; border-radius: 8px;
-            transition: all 0.3s ease;
+            color: var(--secondary-text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
-        .social-link:hover { color: var(--accent-orange); background-color: rgba(255, 122, 0, 0.1); }
-
-        /* --- ГЛАВНЫЙ ЭКРАН И ФИЛЬТРЫ --- */
-        .page-intro { text-align: center; padding: 80px 0 60px 0; }
-        .page-intro h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            margin: 0 0 15px 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .page-intro .prompt {
-            color: var(--text-primary);
-            opacity: 0.6;
-            font-size: 1.1em;
-            max-width: 600px;
-            margin: 0 auto 50px auto;
-            line-height: 1.6;
+        .social-link:hover { 
+            color: var(--primary-text-color);
+            background-color: var(--surface-color);
         }
         
-        /* ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ С ВЫПАДАЮЩИМИ СПИСКАМИ */
-        .filter-bar-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 60px; }
-        .filter-group { position: relative; }
-        .filter-toggle {
-            background-color: #fff;
-            border: 2px solid #eef0f2;
-            color: var(--text-secondary);
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex; align-items: center; gap: 8px;
+        /* --- НОВАЯ СТРУКТУРА СТРАНИЦЫ --- */
+        .page-content {
+            display: flex;
+            gap: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px;
         }
-        .filter-toggle:hover, .filter-group.active .filter-toggle { border-color: var(--accent-green); color: var(--accent-green); }
-        .filter-dropdown {
-            position: absolute; top: calc(100% + 10px); left: 50%;
-            background: var(--bg-color); border-radius: 12px;
-            box-shadow: var(--shadow-lg); padding: 15px; z-index: 500;
-            width: 280px; opacity: 0; visibility: hidden;
-            transform-origin: top center;
-            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-            transform: translateX(-50%) translateY(10px);
-            max-height: 300px; overflow-y: auto; text-align: left;
+
+        /* --- ПАНЕЛЬ ФИЛЬТРОВ (ВОЗВРАЩЕНА СЛЕВА) --- */
+        .filter-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
         }
-        .filter-group.active .filter-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .filter-sidebar h2 {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 30px 0;
+            font-size: 1.2rem;
+            color: var(--primary-text-color);
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .category-filter details { margin-bottom: 5px; }
+        .category-filter summary {
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; padding: 12px; border-radius: 8px;
+            list-style: none; transition: background-color 0.2s ease;
+            font-weight: 500;
+        }
+        .category-filter summary:hover { background-color: var(--surface-secondary-color); }
+        .category-filter summary::-webkit-details-marker { display: none; }
+        .category-filter summary::after {
+            content: ''; width: 16px; height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A91A0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: contain; transition: transform 0.25s ease-in-out;
+            flex-shrink: 0;
+        }
+        details[open] > summary::after { transform: rotate(180deg); }
+        .sub-category-list { 
+            padding-left: 15px; margin-top: 10px; margin-left: 12px;
+            border-left: 1px solid var(--border-color);
+        }
         .checkbox-container {
-            display: block; position: relative; padding: 8px 8px 8px 35px;
-            margin-bottom: 5px; cursor: pointer; font-size: 1rem;
-            color: var(--text-primary); border-radius: 6px;
+            display: block; position: relative; padding-left: 30px;
+            margin: 15px 0 15px 15px; cursor: pointer; font-size: 0.95em;
         }
-        .checkbox-container:hover { background-color: #f7f7f7; }
         .checkbox-container input { position: absolute; opacity: 0; }
         .checkmark {
-            position: absolute; top: 10px; left: 8px;
-            height: 20px; width: 20px;
-            background-color: #eee; border: none;
+            position: absolute; top: 1px; left: 0;
+            height: 18px; width: 18px;
+            background-color: var(--bg-color); border: 2px solid var(--border-color);
             border-radius: 5px; transition: all 0.2s ease;
         }
-        .checkbox-container input:checked ~ .checkmark { background-color: var(--accent-orange); }
+        .checkbox-container:hover input ~ .checkmark { border-color: var(--accent-color); }
+        .checkbox-container input:checked ~ .checkmark { background-color: var(--accent-color); border-color: var(--accent-color); }
         .checkmark:after {
             content: ""; position: absolute; display: none;
-            left: 7px; top: 4px; width: 5px; height: 10px;
-            border: solid white; border-width: 0 3px 3px 0;
+            left: 5px; top: 2px; width: 4px; height: 8px;
+            border: solid white; border-width: 0 2px 2px 0;
             transform: rotate(45deg);
         }
         .checkbox-container input:checked ~ .checkmark:after { display: block; }
         
+        /* --- ОСНОВНОЙ КОНТЕНТ (Справа) --- */
+        .content-area {
+            flex-grow: 1;
+        }
+        .content-area h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .content-area .prompt {
+            color: var(--secondary-text-color);
+            font-size: 1.1em;
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
 
-        /* --- НОВЫЕ КРАСИВЫЕ КАРТОЧКИ --- */
         .skins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-            padding-bottom: 80px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
-        
+
+        /* --- ОБНОВЛЕННЫЕ КАРТОЧКИ ДЛЯ СКИНОВ --- */
+        @keyframes cardFadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .skin-card {
-            background-color: var(--bg-color); border-radius: 24px;
-            position: relative; box-shadow: var(--shadow-md);
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex; flex-direction: column;
-            border: 1px solid #f0f0f0;
+            opacity: 0;
+            animation: cardFadeInUp 0.5s ease-out forwards;
+            animation-delay: calc(var(--delay) * 60ms);
+            display: flex;
+            flex-direction: column;
         }
-        .skin-card:hover { transform: translateY(-15px); box-shadow: var(--shadow-lg), var(--shadow-glow); }
+        .skin-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px -5px rgba(0,0,0,0.4), 0 0 0 2px var(--rarity-color, var(--accent-color));
+        }
         .skin-visuals {
-            height: 240px; cursor: pointer; padding: 20px;
-            background-color: #F9FAFB; display: flex;
-            align-items: center; justify-content: center;
-            clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
-            border-radius: 24px 24px 0 0;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+            background: linear-gradient(135deg, var(--surface-secondary-color) 0%, var(--bg-color) 100%);
+        }
+        .skin-image-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(31, 31, 36, 0.8) 0%, var(--bg-color) 70%);
         }
         .skin-visuals img {
-            max-width: 90%; max-height: 90%; object-fit: contain;
+            width: 100%; height: 100%; object-fit: contain;
+            padding: 20px; box-sizing: border-box;
+            position: relative; z-index: 2;
             transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .skin-card:hover .skin-visuals img { transform: scale(1.18) rotate(5deg); }
-        .skin-info { padding: 35px 25px 25px 25px; display: flex; flex-direction: column; flex-grow: 1; position: relative; }
-        .skin-price-tag {
-            position: absolute; top: -22px; left: 25px;
-            background: linear-gradient(45deg, var(--accent-orange), #ff9a40); color: white;
-            font-weight: 700; font-size: 1.2rem;
-            padding: 8px 18px; border-radius: 12px;
-            box-shadow: 0 5px 15px -3px rgba(255, 122, 0, 0.4);
-            transition: transform 0.3s ease;
+        .skin-card:hover .skin-visuals img { transform: scale(1.15); }
+        .rarity-tag {
+            position: absolute; top: 15px; right: -1px; z-index: 3;
+            background-color: var(--rarity-color); color: #fff;
+            padding: 6px 14px; font-size: 0.8rem; font-weight: 700;
+            border-radius: 6px 0 0 6px; box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
         }
-        .skin-card:hover .skin-price-tag { transform: translateY(-4px); }
-        .skin-name { font-size: 1.3rem; font-weight: 700; margin: 0 0 auto 0; padding-top: 10px; min-height: 4rem; }
-        .card-actions { display: flex; gap: 12px; margin-top: 20px; }
+        .skin-info {
+            padding: 20px; display: flex;
+            flex-direction: column; flex-grow: 1; justify-content: space-between;
+        }
+        .skin-name {
+            font-size: 1.2rem; font-weight: 600;
+            margin: 0 0 15px 0; min-height: 3.6rem;
+            line-height: 1.4;
+        }
+        .skin-details {
+            display: flex; justify-content: space-between; align-items: center;
+            background-color: var(--surface-secondary-color);
+            padding: 12px 15px; border-radius: 10px; margin-bottom: 20px;
+        }
+        .skin-details .price-label {
+            font-size: 0.9rem; color: var(--secondary-text-color); font-weight: 500;
+        }
+        .skin-details .skin-price {
+            font-size: 1.3rem; font-weight: 700; color: var(--primary-text-color);
+        }
+        .card-actions { 
+            display: flex; 
+            gap: 12px; 
+        }
         .buy-button, .inspect-button {
-            display: flex; justify-content: center; align-items: center; flex: 1; 
-            padding: 15px; border-radius: 12px; text-decoration: none;
-            font-weight: 700; font-size: 1rem;
-            transition: all 0.2s ease; cursor: pointer; border: 2px solid;
+            display: flex; justify-content: center; align-items: center;
+            flex: 1; padding: 13px; border-radius: 8px; text-decoration: none;
+            font-weight: 600; font-size: 1rem;
+            transition: all 0.2s ease; cursor: pointer; border: 2px solid transparent;
         }
-        .buy-button { background-color: var(--accent-orange); color: white; border-color: var(--accent-orange); }
-        .buy-button:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 122, 0, 0.3); }
-        .inspect-button { background-color: transparent; color: var(--accent-green); border-color: var(--accent-green); }
-        .inspect-button:hover { background-color: var(--accent-green); color: var(--text-primary); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(163, 230, 53, 0.4); }
-        .developer-credit { font-size: 0.8rem; color: var(--text-primary); opacity: 0.4; text-align: center; margin-top: 25px; }
+        .buy-button { 
+            background-color: var(--accent-color); 
+            color: white; 
+        }
+        .buy-button:hover {
+            background-color: var(--accent-color-hover); 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        .inspect-button {
+            background-color: transparent; 
+            color: var(--secondary-text-color);
+            border-color: var(--border-color);
+        }
+        .inspect-button:hover {
+            border-color: var(--accent-color); 
+            color: var(--primary-text-color);
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+
+        .quality-mil-spec { --rarity-color: var(--quality-mil-spec); }
+        .quality-restricted { --rarity-color: var(--quality-restricted); }
+        .quality-classified { --rarity-color: var(--quality-classified); }
+        .quality-prime { --rarity-color: var(--quality-prime); }
         
-        /* МОДАЛЬНОЕ ОКНО (ВОССТАНОВЛЕНО И СТИЛИЗОВАНО) */
+        /* Модальное окно */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); 
-            z-index: 2000; display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(13, 13, 16, 0.7); 
+            backdrop-filter: blur(8px); 
+            z-index: 2000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-        .modal-overlay.show { opacity: 1; visibility: visible; }
+        .modal-overlay.show {
+            opacity: 1; 
+            visibility: visible;
+        }
         .modal-content {
-            background-color: var(--bg-color); border: 1px solid #f0f0f0; 
-            box-shadow: var(--shadow-lg); border-radius: 24px; padding: 40px; 
-            width: 90%; max-width: 650px; text-align: center; 
-            transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background-color: var(--surface-color); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 40px; 
+            width: 90%; 
+            max-width: 650px; 
+            text-align: center; 
+            transform: scale(0.95) translateY(10px); 
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); 
             position: relative;
         }
-        .modal-overlay.show .modal-content { transform: scale(1); }
-        .modal-image-container img { max-width: 100%; height: auto; max-height: 60vh; margin-bottom: 20px; }
-        .modal-content .skin-name { font-size: 2rem; margin: 15px 0 10px; }
-        .modal-content .skin-price { font-size: 1.5rem; color: var(--text-secondary); }
-        .modal-close {
-            position: absolute; top: 15px; right: 20px; font-size: 2.5rem; line-height: 1;
-            color: var(--text-secondary); cursor: pointer; transition: transform 0.3s ease, color 0.3s ease;
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
         }
-        .modal-close:hover { transform: scale(1.1) rotate(90deg); color: var(--accent-orange); }
+        .modal-image-container img {
+            max-width: 100%; 
+            height: auto; 
+            max-height: 65vh; 
+            margin-bottom: 20px;
+        }
+        .modal-content .skin-name {
+            font-size: 2rem; 
+            margin: 15px 0 10px;
+        }
+        .modal-content .skin-price {
+            font-size: 1.5rem; 
+            color: var(--secondary-text-color);
+        }
+        .modal-close {
+            position: absolute; 
+            top: 15px; 
+            right: 20px; 
+            font-size: 2.5rem; 
+            line-height: 1; 
+            color: var(--secondary-text-color); 
+            cursor: pointer; 
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .modal-close:hover {
+            transform: scale(1.1) rotate(90deg); 
+            color: var(--primary-text-color);
+        }
+
+        /* Футер с соцсетями */
+        .site-footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 30px 40px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+        .social-icon {
+            color: var(--secondary-text-color);
+            font-size: 24px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icon:hover {
+            color: var(--primary-text-color);
+            transform: translateY(-3px);
+        }
+        .copyright {
+            color: var(--secondary-text-color);
+            font-size: 0.9rem;
+        }
 
         /* Адаптивность */
+        @media (max-width: 1024px) {
+            .page-content { flex-direction: column; }
+            .filter-sidebar { width: auto; position: static; }
+        }
         @media (max-width: 768px) {
-            .container { padding: 0 20px; }
-            .header-content { flex-direction: column; gap: 20px; }
-            .page-intro { padding: 40px 0; }
-            .page-intro h1 { font-size: 2.5rem; }
-            .skins-grid { grid-template-columns: 1fr; gap: 30px; }
+            .site-header { flex-direction: column; gap: 15px; }
+            .page-content { padding: 20px; }
+            .content-area h1 { font-size: 2rem; }
+            .skins-grid { grid-template-columns: 1fr; }
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
 <header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <a href="#"><img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo"></a>
-            <nav class="social-nav">
-                <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
-                <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
-                <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
-                <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
-            </nav>
-        </div>
-    </div>
+    <a href="#"><img src="https://assets.lis-skins.com/market_images/150567_b.png" alt="Shevsay Skins Logo" class="logo"></a>
+    <nav class="social-nav">
+        <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-link">Twitch</a>
+        <a href="https://t.me/shevsay" target="_blank" class="social-link">Telegram</a>
+        <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-link">Steam</a>
+        <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-link">Поддержать</a>
+    </nav>
 </header>
 
-<main class="container">
-    <div class="page-intro">
-        <h1 id="pageTitle">Магазин скинов</h1>
+<div class="page-content">
+    <aside class="filter-sidebar" id="filterSidebar"></aside>
+
+    <main class="content-area">
+        <h1 id="contentTitle"></h1>
         <p class="prompt" id="contentPrompt"></p>
-        <div class="filter-bar-container" id="filterBar"></div>
+        <div class="skins-grid" id="skinsGrid"></div>
+    </main>
+</div>
+
+<!-- Футер -->
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="social-icons">
+            <a href="https://www.twitch.tv/shevsay" target="_blank" class="social-icon"><i class="fab fa-twitch"></i></a>
+            <a href="https://t.me/shevsay" target="_blank" class="social-icon"><i class="fab fa-telegram"></i></a>
+            <a href="https://steamcommunity.com/id/ShevTv/" target="_blank" class="social-icon"><i class="fab fa-steam"></i></a>
+            <a href="https://www.donationalerts.com/r/shevsay" target="_blank" class="social-icon"><i class="fas fa-heart"></i></a>
+        </div>
+        <div class="copyright">
+            © 2025 ShevSay Skins. Все права защищены.
+        </div>
     </div>
-    
-    <div class="skins-grid" id="skinsGrid"></div>
-</main>
+</footer>
 
 <!-- Модальное окно -->
 <div class="modal-overlay" id="skinModal">
@@ -250,7 +447,6 @@
 </div>
 
 <script>
-    // ПОЛНЫЕ ДАННЫЕ ИЗ ВАШЕГО ПЕРВОНАЧАЛЬНОГО КОДА
     const filterData = {
         'Ножи': ['Bayonet', 'Bowie Knife', 'Butterfly Knife', 'Classic Knife', 'Falchion Knife', 'Flip Knife', 'Gut Knife', 'Huntsman Knife', 'Karambit', 'Kukri Knife', 'M9 Bayonet', 'Navaja Knife', 'Nomad Knife', 'Paracord Knife', 'Shadow Daggers', 'Skeleton Knife', 'Stiletto Knife', 'Survival Knife', 'Talon Knife', 'Ursus Knife'],
         'Перчатки': ['Bloodhound Gloves', 'Broken Fang Gloves', 'Driver Gloves', 'Hand Wraps', 'Hydra Gloves', 'Moto Gloves', 'Specialist Gloves', 'Sport Gloves'],
@@ -262,6 +458,7 @@
         'Пулеметы': ['M249', 'Negev'],
         'Другое': ['Агент', 'Брелок', 'Граффити', 'Кейсы', 'Капсулы', 'Наклейки', 'Прайм статус']
     };
+    const rarityNames = { 'mil-spec': 'Армейское', 'restricted': 'Запрещенное', 'classified': 'Засекреченное', 'prime': 'Прайм' };
     
     const skins = [
         { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec", type: 'SG 553', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469" },
@@ -283,29 +480,31 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('skinsGrid');
-        const filterBar = document.getElementById('filterBar');
-        const pageTitle = document.getElementById('pageTitle');
+        const filterSidebar = document.getElementById('filterSidebar');
+        const contentTitle = document.getElementById('contentTitle');
         const contentPrompt = document.getElementById('contentPrompt');
         
-        // Восстановленные элементы модального окна
         const modal = document.getElementById('skinModal');
         const modalClose = document.getElementById('modalClose');
         const modalImage = document.getElementById('modalImage');
         const modalName = document.getElementById('modalName');
         const modalPrice = document.getElementById('modalPrice');
 
-        // Восстановленная логика
         const featuredSkins = ['Прайм статус в CS2', 'AK-47 | Ледяной Уголь', 'AWP | Экзоскелет'];
         let activeFilters = { types: new Set() };
 
-        // Восстановленные функции модального окна
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
         function openModal(skin) {
             modalImage.src = skin.image;
             modalName.textContent = skin.name;
             modalPrice.textContent = `${skin.price.toLocaleString('ru-RU')} баллов`;
             modal.classList.add('show');
         }
-        function closeModal() { modal.classList.remove('show'); }
+
+        function closeModal() {
+            modal.classList.remove('show');
+        }
 
         function renderSkins() {
             grid.innerHTML = '';
@@ -314,114 +513,115 @@
 
             if (!isFiltered) {
                 skinsToRender = skins.filter(s => featuredSkins.includes(s.name));
-                pageTitle.textContent = "Избранные скины";
-                contentPrompt.textContent = "Добро пожаловать! Ниже представлены лучшие награды. Используйте фильтры, чтобы найти что-то особенное.";
+                contentTitle.textContent = "Избранное";
+                contentPrompt.textContent = "Добро пожаловать! Ниже представлены самые дорогие награды. Чтобы найти больше скинов, воспользуйтесь фильтрами.";
                 contentPrompt.style.display = 'block';
             } else {
                 skinsToRender = skins.filter(skin => activeFilters.types.has(skin.type));
-                pageTitle.textContent = "Результаты поиска";
+                contentTitle.textContent = "Результаты поиска";
                 contentPrompt.style.display = 'none';
             }
 
             if (skinsToRender.length === 0 && isFiltered) {
-                grid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; opacity: 0.7;">В этой категории пока нет скинов.</p>';
+                grid.innerHTML = '<p class="prompt">По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</p>';
             }
 
-            skinsToRender.forEach((skin) => {
+            skinsToRender.forEach((skin, index) => {
                 const card = document.createElement('div');
-                card.className = 'skin-card';
-                card.dataset.skinJson = JSON.stringify(skin); // Сохраняем данные скина для модалки
+                card.className = `skin-card quality-${skin.quality || 'default'}`;
+                card.style.setProperty('--delay', index);
+                const rarityName = rarityNames[skin.quality] || '';
+                card.dataset.skinIndex = skins.indexOf(skin);
 
                 let actionsHTML = '';
                 if (skin.inspectLink) {
-                    actionsHTML = `<a href="${skin.inspectLink}" class="inspect-button">Осмотреть</a>`;
+                    actionsHTML = `
+                        <a href="${skin.inspectLink}" class="inspect-button">Осмотреть</a>
+                        <a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>
+                    `;
+                } else {
+                    actionsHTML = `<a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button" style="flex: auto;">Купить</a>`;
                 }
                 
                 card.innerHTML = `
                     <div class="skin-visuals">
+                        <div class="skin-image-bg"></div>
                         <img src="${skin.image}" alt="${skin.name}" loading="lazy">
+                        ${rarityName ? `<div class="rarity-tag">${rarityName}</div>` : ''}
                     </div>
                     <div class="skin-info">
-                        <div class="skin-price-tag">${skin.price.toLocaleString('ru-RU')}</div>
-                        <h2 class="skin-name">${skin.name}</h2>
+                        <div>
+                            <h2 class="skin-name">${skin.name}</h2>
+                            <div class="skin-details">
+                                <span class="price-label">Цена:</span>
+                                <span class="skin-price">${skin.price.toLocaleString('ru-RU')}</span>
+                            </div>
+                        </div>
                         <div class="card-actions">
                             ${actionsHTML}
-                            <a href="https://www.twitch.tv/shevsay" target="_blank" class="buy-button">Купить</a>
                         </div>
-                        <div class="developer-credit">developer: / @horiifn \\</div>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
         
-        // Восстановленная функция создания фильтров с выпадающими списками
         function createFilters() {
-            filterBar.innerHTML = '';
-            for (const category in filterData) {
-                const group = document.createElement('div');
-                group.className = 'filter-group';
-                
-                const toggle = document.createElement('button');
-                toggle.className = 'filter-toggle';
-                toggle.textContent = category;
-                
-                const dropdown = document.createElement('div');
-                dropdown.className = 'filter-dropdown';
+            filterSidebar.innerHTML = '<h2>Фильтры</h2>';
+            const categoryGroup = document.createElement('div');
+            categoryGroup.className = 'category-filter';
 
-                filterData[category].forEach(type => {
-                    dropdown.innerHTML += `
-                        <label class="checkbox-container"> ${type}
-                            <input type="checkbox" value="${type}">
-                            <span class="checkmark"></span>
-                        </label>
-                    `;
-                });
+            for (const category in filterData) {
+                const details = document.createElement('details');
+                const subTypes = filterData[category];
                 
-                group.appendChild(toggle);
-                if (filterData[category].length > 0) { // Не добавлять пустой дропдаун
-                    group.appendChild(dropdown);
+                let subListHTML = '';
+                if (subTypes.length > 0) {
+                    const subList = document.createElement('div');
+                    subList.className = 'sub-category-list';
+                    subTypes.forEach(type => {
+                        subList.innerHTML += `
+                            <label class="checkbox-container"> ${type}
+                                <input type="checkbox" data-type-for-category="${category}" value="${type}">
+                                <span class="checkmark"></span>
+                            </label>
+                        `;
+                    });
+                    details.innerHTML = `<summary>${category}</summary>`;
+                    details.appendChild(subList);
+                } else {
+                     details.innerHTML = `<summary>${category}</summary>`;
                 }
-                filterBar.appendChild(group);
+                categoryGroup.appendChild(details);
             }
+            filterSidebar.appendChild(categoryGroup);
         }
-        
+
         createFilters();
         renderSkins();
 
-        // Обработчики событий
-        filterBar.addEventListener('change', (e) => {
+        filterSidebar.addEventListener('change', (e) => {
             if (e.target.type === 'checkbox') {
                 const { value, checked } = e.target;
-                if (checked) activeFilters.types.add(value);
-                else activeFilters.types.delete(value);
+                if (checked) {
+                    activeFilters.types.add(value);
+                } else {
+                    activeFilters.types.delete(value);
+                }
                 renderSkins();
             }
         });
 
-        document.addEventListener('click', (e) => {
-            // Логика открытия/закрытия выпадающих списков
-            const activeGroup = document.querySelector('.filter-group.active');
-            if (e.target.matches('.filter-toggle')) {
-                const currentGroup = e.target.parentElement;
-                if (activeGroup && activeGroup !== currentGroup) {
-                    activeGroup.classList.remove('active');
-                }
-                currentGroup.classList.toggle('active');
-            } else if (activeGroup && !activeGroup.contains(e.target)) {
-                activeGroup.classList.remove('active');
-            }
-
-            // Логика открытия модального окна
+        grid.addEventListener('click', (e) => {
             if (e.target.closest('.skin-visuals')) {
                 const card = e.target.closest('.skin-card');
-                if (card && card.dataset.skinJson) {
-                    const skinData = JSON.parse(card.dataset.skinJson);
-                    openModal(skinData);
+                const skinIndex = card.dataset.skinIndex;
+                if (skinIndex !== undefined) {
+                    openModal(skins[skinIndex]);
                 }
             }
         });
-        
+
         modalClose.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => (e.target === modal) && closeModal());
         document.addEventListener('keydown', (e) => (e.key === 'Escape') && closeModal());
