@@ -93,100 +93,12 @@
         /* --- НОВАЯ СТРУКТУРА СТРАНИЦЫ --- */
         .page-content {
             display: flex;
-            gap: 40px;
+            flex-direction: column;
             max-width: 1600px;
             margin: 0 auto;
             padding: 40px;
         }
 
-        /* --- ПАНЕЛЬ ФИЛЬТРОВ --- */
-        .filter-sidebar {
-            width: 300px;
-            flex-shrink: 0;
-            background-color: var(--surface-color);
-            border-radius: 12px;
-            border: 3px dashed var(--border-color);
-            padding: 20px;
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-        .filter-sidebar h2 {
-            font-family: 'Press Start 2P', cursive;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 0 30px 0;
-            font-size: 1rem;
-            color: var(--primary-text-color);
-            padding-bottom: 15px;
-            border-bottom: 2px dotted var(--border-color);
-            text-shadow: 3px 3px 0 var(--surface-secondary-color);
-        }
-        .category-filter details { margin-bottom: 5px; }
-        .category-filter summary {
-            display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; padding: 12px; border-radius: 8px;
-            list-style: none; transition: all 0.2s ease;
-            font-weight: 700;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.7rem;
-            color: var(--primary-text-color);
-            background-color: var(--surface-secondary-color);
-            border: 2px solid var(--border-color);
-        }
-        .category-filter summary:hover { 
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-        }
-        .category-filter summary::-webkit-details-marker { display: none; }
-        .category-filter summary::after {
-            content: ''; width: 16px; height: 16px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFEE00' stroke='%23FFEE00' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-size: contain; transition: transform 0.25s ease-in-out;
-            flex-shrink: 0;
-        }
-        details[open] > summary::after { transform: rotate(180deg); }
-        details[open] > summary { 
-            border-radius: 8px 8px 0 0;
-            border-bottom: none;
-        }
-        .sub-category-list { 
-            padding: 15px;
-            margin-top: 0;
-            background-color: var(--surface-secondary-color);
-            border-radius: 0 0 8px 8px;
-            border: 2px solid var(--border-color);
-            border-top: none;
-        }
-        .checkbox-container {
-            display: block; position: relative; padding-left: 30px;
-            margin: 15px 0; cursor: pointer; font-size: 0.95em;
-            font-weight: 700;
-        }
-        .checkbox-container input { position: absolute; opacity: 0; }
-        .checkmark {
-            position: absolute; top: 1px; left: 0;
-            height: 18px; width: 18px;
-            background-color: var(--bg-color); border: 2px solid var(--border-color);
-            border-radius: 5px; transition: all 0.2s ease;
-        }
-        .checkbox-container:hover input ~ .checkmark { 
-            border-color: var(--accent-color);
-            box-shadow: 0 0 5px var(--accent-color);
-        }
-        .checkbox-container input:checked ~ .checkmark { 
-            background-color: var(--accent-color); 
-            border-color: var(--accent-color);
-            box-shadow: 0 0 8px var(--accent-color);
-        }
-        .checkmark:after {
-            content: ""; position: absolute; display: none;
-            left: 5px; top: 2px; width: 4px; height: 8px;
-            border: solid var(--bg-color); border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-        .checkbox-container input:checked ~ .checkmark:after { display: block; }
-        
         /* --- ОСНОВНОЙ КОНТЕНТ --- */
         .content-area {
             flex-grow: 1;
@@ -194,7 +106,7 @@
         .content-area h1 {
             font-family: 'Press Start 2P', cursive;
             font-size: 2rem;
-            margin: 0 0 10px 0;
+            margin: 0 0 20px 0;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--primary-text-color);
@@ -216,7 +128,7 @@
             color: var(--secondary-text-color);
             font-size: 1.1em;
             max-width: 600px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             line-height: 1.6;
         }
 
@@ -280,23 +192,9 @@
             padding: 20px; box-sizing: border-box;
             position: relative; z-index: 2;
             transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
         .skin-card:hover .skin-visuals img { 
             transform: scale(1.15) rotate(3deg);
-            filter: drop-shadow(0 0 10px var(--rarity-color, var(--accent-color)));
-        }
-        .rarity-tag {
-            position: absolute; top: 15px; right: -1px; z-index: 3;
-            background-color: var(--rarity-color); color: #111;
-            padding: 6px 14px; font-size: 0.8rem; font-weight: 700;
-            border-radius: 6px 0 0 6px; 
-            border: 2px solid var(--border-color);
-            border-right: none;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.6rem;
-            text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
-            box-shadow: -3px 3px 0 var(--surface-secondary-color);
         }
         .skin-info {
             padding: 0 25px 25px 25px; display: flex;
@@ -304,11 +202,17 @@
         }
         .skin-name {
             font-size: 1.2rem; font-weight: 700;
-            margin: 0 0 15px 0; min-height: 3.6rem;
+            margin: 0 0 10px 0; min-height: 3.6rem;
             font-family: 'Press Start 2P', cursive;
             font-size: 0.9rem;
             line-height: 1.4;
             color: var(--primary-text-color);
+        }
+        .developer {
+            font-size: 0.7rem;
+            color: var(--secondary-text-color);
+            margin-bottom: 10px;
+            font-family: 'Press Start 2P', cursive;
         }
         .skin-details {
             display: flex; justify-content: space-between; align-items: center;
@@ -391,7 +295,6 @@
             height: auto; 
             max-height: 65vh; 
             margin-bottom: 20px;
-            filter: drop-shadow(0 0 15px var(--rarity-color, var(--accent-color)));
         }
         .modal-content .skin-name {
             font-size: 1.5rem; 
@@ -435,29 +338,13 @@
             color: var(--primary-text-color);
             font-size: 2rem;
             transition: all 0.3s ease;
-            text-shadow: 0 0 5px rgba(255, 238, 0, 0.5);
         }
         .social-icon:hover {
             color: var(--accent-color);
             transform: translateY(-5px) scale(1.2);
-            text-shadow: 0 0 15px var(--accent-color);
-        }
-
-        /* Анимации */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .pulse {
-            animation: pulse 2s infinite;
         }
 
         /* Адаптивность */
-        @media (max-width: 1024px) {
-            .page-content { flex-direction: column; }
-            .filter-sidebar { width: auto; position: static; }
-        }
         @media (max-width: 768px) {
             .site-header { flex-direction: column; gap: 15px; padding: 15px 20px; }
             .page-content { padding: 20px; }
@@ -481,11 +368,9 @@
 </header>
 
 <div class="page-content">
-    <aside class="filter-sidebar" id="filterSidebar"></aside>
-
     <main class="content-area">
-        <h1 id="contentTitle"></h1>
-        <p class="prompt" id="contentPrompt"></p>
+        <h1 id="contentTitle">Топ скинов</h1>
+        <p class="prompt" id="contentPrompt">Самые дорогие предметы находятся вверху списка</p>
         <div class="skins-grid" id="skinsGrid"></div>
     </main>
 </div>
@@ -514,40 +399,26 @@
 
 
 <script>
-    const filterData = {
-        'Ножи': ['Bayonet', 'Bowie Knife', 'Butterfly Knife', 'Classic Knife', 'Falchion Knife', 'Flip Knife', 'Gut Knife', 'Huntsman Knife', 'Karambit', 'Kukri Knife', 'M9 Bayonet', 'Navaja Knife', 'Nomad Knife', 'Paracord Knife', 'Shadow Daggers', 'Skeleton Knife', 'Stiletto Knife', 'Survival Knife', 'Talon Knife', 'Ursus Knife'],
-        'Перчатки': ['Bloodhound Gloves', 'Broken Fang Gloves', 'Driver Gloves', 'Hand Wraps', 'Hydra Gloves', 'Moto Gloves', 'Specialist Gloves', 'Sport Gloves'],
-        'Пистолеты': ['CZ75-Auto', 'Desert Eagle', 'Dual Berettas', 'Five-SeveN', 'Glock-18', 'P2000', 'P250', 'R8 Revolver', 'Tec-9', 'USP-S'],
-        'ПП': ['MAC-10', 'MP5-SD', 'MP7', 'MP9', 'P90', 'PP-Bizon', 'UMP-45'],
-        'Винтовки': ['AK-47', 'AUG', 'FAMAS', 'G3SG1', 'Galil AR', 'M4A1-S', 'M4A4', 'SCAR-20', 'SG 553'],
-        'Снайперки': ['AWP', 'SSG 08'],
-        'Дробовики': ['MAG-7', 'Nova', 'Sawed-Off', 'XM1014'],
-        'Пулеметы': ['M249', 'Negev'],
-        'Другое': ['Агент', 'Брелок', 'Граффити', 'Кейсы', 'Капсулы', 'Наклейки', 'Прайм статус']
-    };
-    const rarityNames = { 'mil-spec': 'Армейское', 'restricted': 'Запрещенное', 'classified': 'Засекреченное', 'prime': 'Прайм' };
-    
     const skins = [
-        { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec", type: 'SG 553', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469" },
-        { name: "M4A1-S | Северный лес", price: 3000, image: "https://assets.lis-skins.com/market_images/9254_b.png", quality: "mil-spec", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199303684554A44905774809D16296880026125316388" },
-        { name: "USP-S | Билет в ад", price: 5000, image: "https://assets.lis-skins.com/market_images/152529_b.png", quality: "restricted", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199438776871A45024021638D6930585498007975757" },
-        { name: "AWP | Капилляры", price: 6500, image: "https://assets.lis-skins.com/market_images/145952_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572539934A45225672298D7953429965043849259" },
-        { name: "AWP | Ахерон", price: 7000, image: "https://assets.lis-skins.com/market_images/60231_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572896403A45159972133D7083188519541208581" },
-        { name: "M4A1-S | Нитро", price: 8000, image: "https://assets.lis-skins.com/market_images/9352_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572287354A45195408169D11595088990574181802" },
-        { name: "Desert Eagle | Рельсотрон", price: 14000, image: "https://assets.lis-skins.com/market_images/141501_b.png", quality: "restricted", type: 'Desert Eagle', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199440151155A45128185757D6928826125758235369" },
-        { name: "M4A1-S | Ночной ужас", price: 17000, image: "https://assets.lis-skins.com/market_images/152536_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572819281A45080235516D7254221815132699524" },
-        { name: "AK-47 | Затерянная земля", price: 18000, image: "https://assets.lis-skins.com/market_images/141457_b.png", quality: "mil-spec", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572434062A44885517882D875563960137574909" },
-        { name: "M4A4 | Мастер травли", price: 20000, image: "https://assets.lis-skins.com/market_images/169019_b.png", quality: "restricted", type: 'M4A4', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572630510A45151099175D778032169458304708" },
-        { name: "Glock-18 | Ядерный сад", price: 25000, image: "https://assets.lis-skins.com/market_images/60260_b.png", quality: "classified", type: 'Glock-18', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572445118A45094219615D10125937820632625068" },
-        { name: "USP-S | Сайрекс", price: 25000, image: "https://assets.lis-skins.com/market_images/16349_b.png", quality: "classified", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199573451498A45097115098D6937338527307919745" },
-        { name: "AWP | Экзоскелет", price: 79999, image: "https://assets.lis-skins.com/market_images/148247_b.png", quality: "classified", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572102697A45093761532D7559864608688361997" },
+        { name: "Прайм статус в CS2", price: 199999, image: "https://assets.lis-skins.com/market_images/150602_b.png", quality: "prime", type: 'Прайм статус' },
         { name: "AK-47 | Ледяной Уголь", price: 85000, image: "https://assets.lis-skins.com/market_images/156705_b.png", quality: "classified", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572723112A45089616112D5242903052168340793" },
-        { name: "Прайм статус в CS2", price: 199999, image: "https://assets.lis-skins.com/market_images/150602_b.png", quality: "prime", type: 'Прайм статус' }
+        { name: "AWP | Экзоскелет", price: 79999, image: "https://assets.lis-skins.com/market_images/148247_b.png", quality: "classified", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572102697A45093761532D7559864608688361997" },
+        { name: "USP-S | Сайрекс", price: 25000, image: "https://assets.lis-skins.com/market_images/16349_b.png", quality: "classified", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199573451498A45097115098D6937338527307919745" },
+        { name: "Glock-18 | Ядерный сад", price: 25000, image: "https://assets.lis-skins.com/market_images/60260_b.png", quality: "classified", type: 'Glock-18', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572445118A45094219615D10125937820632625068" },
+        { name: "M4A4 | Мастер травли", price: 20000, image: "https://assets.lis-skins.com/market_images/169019_b.png", quality: "restricted", type: 'M4A4', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572630510A45151099175D778032169458304708" },
+        { name: "AK-47 | Затерянная земля", price: 18000, image: "https://assets.lis-skins.com/market_images/141457_b.png", quality: "mil-spec", type: 'AK-47', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572434062A44885517882D875563960137574909" },
+        { name: "M4A1-S | Ночной ужас", price: 17000, image: "https://assets.lis-skins.com/market_images/152536_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572819281A45080235516D7254221815132699524" },
+        { name: "Desert Eagle | Рельсотрон", price: 14000, image: "https://assets.lis-skins.com/market_images/141501_b.png", quality: "restricted", type: 'Desert Eagle', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199440151155A45128185757D6928826125758235369" },
+        { name: "M4A1-S | Нитро", price: 8000, image: "https://assets.lis-skins.com/market_images/9352_b.png", quality: "restricted", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572287354A45195408169D11595088990574181802" },
+        { name: "AWP | Ахерон", price: 7000, image: "https://assets.lis-skins.com/market_images/60231_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572896403A45159972133D7083188519541208581" },
+        { name: "AWP | Капилляры", price: 6500, image: "https://assets.lis-skins.com/market_images/145952_b.png", quality: "mil-spec", type: 'AWP', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572539934A45225672298D7953429965043849259" },
+        { name: "USP-S | Билет в ад", price: 5000, image: "https://assets.lis-skins.com/market_images/152529_b.png", quality: "restricted", type: 'USP-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199438776871A45024021638D6930585498007975757" },
+        { name: "M4A1-S | Северный лес", price: 3000, image: "https://assets.lis-skins.com/market_images/9254_b.png", quality: "mil-spec", type: 'M4A1-S', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199303684554A44905774809D16296880026125316388" },
+        { name: "SG 553 | Старина Ржавчик", price: 2000, image: "https://assets.lis-skins.com/market_images/147018_b.png", quality: "mil-spec", type: 'SG 553', inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469" }
     ];
 
     document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('skinsGrid');
-        const filterSidebar = document.getElementById('filterSidebar');
         const contentTitle = document.getElementById('contentTitle');
         const contentPrompt = document.getElementById('contentPrompt');
         
@@ -556,9 +427,6 @@
         const modalImage = document.getElementById('modalImage');
         const modalName = document.getElementById('modalName');
         const modalPrice = document.getElementById('modalPrice');
-
-        const featuredSkins = ['Прайм статус в CS2', 'AK-47 | Ледяной Уголь', 'AWP | Экзоскелет'];
-        let activeFilters = { types: new Set() };
 
         document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -569,9 +437,6 @@
             modal.classList.add('show');
             document.body.style.overflow = 'hidden';
             document.documentElement.style.overflow = 'hidden';
-            
-            // Устанавливаем цвет рамки в соответствии с редкостью
-            modal.querySelector('.modal-content').style.borderColor = getComputedStyle(document.documentElement).getPropertyValue(`--quality-${skin.quality}`);
         }
 
         function closeModal() {
@@ -582,29 +447,14 @@
 
         function renderSkins() {
             grid.innerHTML = '';
-            const isFiltered = activeFilters.types.size > 0;
-            let skinsToRender;
+            
+            // Сортировка скинов по цене (от высокой к низкой)
+            const sortedSkins = [...skins].sort((a, b) => b.price - a.price);
 
-            if (!isFiltered) {
-                skinsToRender = skins.filter(s => featuredSkins.includes(s.name));
-                contentTitle.textContent = "Избранное";
-                contentPrompt.textContent = "Добро пожаловать! Ниже представлены избранные награды. Чтобы найти больше скинов, воспользуйтесь фильтрами.";
-                contentPrompt.style.display = 'block';
-            } else {
-                skinsToRender = skins.filter(skin => activeFilters.types.has(skin.type));
-                contentTitle.textContent = "Результаты поиска";
-                contentPrompt.style.display = 'none';
-            }
-
-            if (skinsToRender.length === 0 && isFiltered) {
-                grid.innerHTML = '<p class="prompt">По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</p>';
-            }
-
-            skinsToRender.forEach((skin, index) => {
+            sortedSkins.forEach((skin, index) => {
                 const card = document.createElement('div');
                 card.className = `skin-card quality-${skin.quality || 'default'}`;
                 card.style.setProperty('--delay', index);
-                const rarityName = rarityNames[skin.quality] || '';
                 card.dataset.skinIndex = skins.indexOf(skin);
 
                 let actionsHTML = '';
@@ -621,11 +471,11 @@
                     <div class="skin-visuals">
                         <div class="skin-image-bg"></div>
                         <img src="${skin.image}" alt="${skin.name}" loading="lazy">
-                        ${rarityName ? `<div class="rarity-tag">${rarityName}</div>` : ''}
                     </div>
                     <div class="skin-info">
                         <div>
                             <h2 class="skin-name">${skin.name}</h2>
+                            <p class="developer">developer: / @horiifn \\</p>
                             <div class="skin-details">
                                 <span class="price-label">Цена:</span>
                                 <span class="skin-price">${skin.price.toLocaleString('ru-RU')}</span>
@@ -639,52 +489,8 @@
                 grid.appendChild(card);
             });
         }
-        
-        function createFilters() {
-            filterSidebar.innerHTML = '<h2>Фильтры</h2>';
-            const categoryGroup = document.createElement('div');
-            categoryGroup.className = 'category-filter';
 
-            for (const category in filterData) {
-                const details = document.createElement('details');
-                const subTypes = filterData[category];
-                
-                let subListHTML = '';
-                if (subTypes.length > 0) {
-                    const subList = document.createElement('div');
-                    subList.className = 'sub-category-list';
-                    subTypes.forEach(type => {
-                        subList.innerHTML += `
-                            <label class="checkbox-container"> ${type}
-                                <input type="checkbox" data-type-for-category="${category}" value="${type}">
-                                <span class="checkmark"></span>
-                            </label>
-                        `;
-                    });
-                    details.innerHTML = `<summary>${category}</summary>`;
-                    details.appendChild(subList);
-                } else {
-                     details.innerHTML = `<summary>${category}</summary>`;
-                }
-                categoryGroup.appendChild(details);
-            }
-            filterSidebar.appendChild(categoryGroup);
-        }
-
-        createFilters();
         renderSkins();
-
-        filterSidebar.addEventListener('change', (e) => {
-            if (e.target.type === 'checkbox') {
-                const { value, checked } = e.target;
-                if (checked) {
-                    activeFilters.types.add(value);
-                } else {
-                    activeFilters.types.delete(value);
-                }
-                renderSkins();
-            }
-        });
 
         grid.addEventListener('click', (e) => {
             if (e.target.closest('.skin-visuals')) {
