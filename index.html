@@ -7,18 +7,18 @@
     <link rel="icon" type="image/png" href="https://assets.lis-skins.com/market_images/150567_b.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka+One&display=swap');
 
         :root {
-            --bg-color: #111111;
-            --surface-color: #1A1A1A;
-            --surface-secondary-color: #222222;
-            --primary-text-color: #FFEE00;
-            --secondary-text-color: #CCCC00;
-            --border-color: #333300;
+            --bg-color: #000000;
+            --surface-color: #1A3D1A;
+            --surface-secondary-color: #2D5A2D;
+            --primary-text-color: #B2FF59;
+            --secondary-text-color: #8BC34A;
+            --border-color: #4CAF50;
             
-            --accent-color: #FFAA00;
-            --accent-color-hover: #FF8800;
+            --accent-color: #FFEB3B;
+            --accent-color-hover: #FFC107;
 
             --quality-mil-spec: #4A90E2;
             --quality-restricted: #48BCA0;
@@ -29,7 +29,7 @@
         body {
             background-color: var(--bg-color);
             color: var(--primary-text-color);
-            font-family: 'Comic Neue', cursive;
+            font-family: 'Fredoka One', cursive;
             margin: 0;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -47,11 +47,11 @@
         /* --- ШАПКА САЙТА --- */
         .site-header {
             padding: 15px 40px;
-            border-bottom: 3px dashed var(--border-color);
+            border-bottom: 4px dotted var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: var(--bg-color);
+            background-color: var(--surface-color);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -76,12 +76,13 @@
             font-weight: 700;
             font-size: 1rem;
             padding: 8px 16px;
-            border-radius: 8px;
+            border-radius: 20px;
             transition: all 0.3s ease;
-            border: 2px solid var(--border-color);
-            background-color: var(--surface-color);
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.8rem;
+            border: 3px solid var(--primary-text-color);
+            background-color: var(--surface-secondary-color);
+            font-family: 'Bangers', cursive;
+            font-size: 1rem;
+            letter-spacing: 1px;
         }
         .social-link:hover { 
             color: var(--bg-color);
@@ -90,7 +91,7 @@
             box-shadow: 0 5px 0 var(--border-color);
         }
         
-        /* --- НОВАЯ СТРУКТУРА СТРАНИЦЫ --- */
+        /* --- СТРУКТУРА СТРАНИЦЫ --- */
         .page-content {
             display: flex;
             flex-direction: column;
@@ -104,29 +105,28 @@
             flex-grow: 1;
         }
         .content-area h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 2rem;
+            font-family: 'Bangers', cursive;
+            font-size: 3rem;
             margin: 0 0 20px 0;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             color: var(--primary-text-color);
-            text-shadow: 3px 3px 0 var(--surface-secondary-color);
+            text-shadow: 5px 5px 0 var(--surface-secondary-color);
             position: relative;
             display: inline-block;
         }
         .content-area h1::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -10px;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 4px;
             background-color: var(--accent-color);
-            box-shadow: 0 0 10px var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-color);
         }
         .content-area .prompt {
             color: var(--secondary-text-color);
-            font-size: 1.1em;
+            font-size: 1.3em;
             max-width: 600px;
             margin-bottom: 30px;
             line-height: 1.6;
@@ -134,28 +134,28 @@
 
         .skins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        /* --- НОВЫЕ КАРТОЧКИ ДЛЯ СКИНОВ --- */
+        /* --- КАРТОЧКИ ДЛЯ СКИНОВ --- */
         @keyframes cardFadeInUp {
             from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .skin-card {
             background-color: var(--surface-color);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
-            border: 3px solid var(--border-color);
+            border: 4px solid var(--border-color);
             transition: all 0.3s ease;
             opacity: 0;
             animation: cardFadeInUp 0.5s ease-out forwards;
             animation-delay: calc(var(--delay) * 60ms);
             display: flex;
             flex-direction: column;
-            box-shadow: 5px 5px 0 var(--surface-secondary-color);
+            box-shadow: 8px 8px 0 var(--surface-secondary-color);
         }
         .skin-card::before {
             content: '';
@@ -164,28 +164,28 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255,238,0,0.1) 0%, rgba(255,238,0,0) 50%);
+            background: radial-gradient(circle at center, rgba(178, 255, 89, 0.1) 0%, rgba(178, 255, 89, 0) 70%);
             z-index: 1;
             pointer-events: none;
         }
         .skin-card:hover {
             transform: translateY(-10px) rotate(2deg);
             box-shadow: 0 15px 25px -5px rgba(0,0,0,0.5), 
-                        0 0 0 3px var(--rarity-color, var(--accent-color)),
-                        10px 10px 0 var(--surface-secondary-color);
+                        0 0 0 4px var(--accent-color),
+                        12px 12px 0 var(--surface-secondary-color);
         }
         .skin-visuals {
-            height: 200px;
+            height: 220px;
             position: relative;
             cursor: pointer;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
             background: linear-gradient(to bottom, var(--surface-secondary-color), var(--bg-color));
-            border-bottom: 3px dashed var(--border-color);
+            border-bottom: 4px dotted var(--border-color);
         }
         .skin-image-bg {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(31, 31, 36, 0.8) 0%, var(--bg-color) 70%);
+            background: radial-gradient(circle at center, rgba(45, 90, 45, 0.8) 0%, var(--bg-color) 70%);
         }
         .skin-visuals img {
             width: 100%; height: 100%; object-fit: contain;
@@ -201,95 +201,126 @@
             flex-direction: column; flex-grow: 1; justify-content: space-between;
         }
         .skin-name {
-            font-size: 1.2rem; font-weight: 700;
-            margin: 0 0 10px 0; min-height: 3.6rem;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.9rem;
+            font-size: 1.5rem; 
+            font-weight: 700;
+            margin: 0 0 10px 0; 
+            min-height: 3.6rem;
+            font-family: 'Bangers', cursive;
             line-height: 1.4;
             color: var(--primary-text-color);
+            letter-spacing: 1px;
         }
         .developer {
-            font-size: 0.7rem;
-            color: var(--secondary-text-color);
-            margin-bottom: 10px;
-            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-family: 'Fredoka One', cursive;
         }
         .skin-details {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
             background-color: var(--surface-secondary-color);
-            padding: 12px 15px; border-radius: 10px; margin-bottom: 20px;
-            border: 2px solid var(--border-color);
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+            padding: 15px; 
+            border-radius: 15px; 
+            margin-bottom: 20px;
+            border: 3px solid var(--border-color);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
         }
         .skin-details .price-label {
-            font-size: 0.9rem; color: var(--secondary-text-color); font-weight: 500;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.6rem;
+            font-size: 1rem; 
+            color: var(--secondary-text-color); 
+            font-weight: 500;
+            font-family: 'Fredoka One', cursive;
         }
         .skin-details .skin-price {
-            font-size: 1.3rem; font-weight: 700; color: var(--primary-text-color);
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.9rem;
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            color: var(--primary-text-color);
+            font-family: 'Bangers', cursive;
         }
-        .card-actions { display: flex; gap: 12px; }
+        .card-actions { 
+            display: flex; 
+            gap: 15px; 
+        }
         .buy-button, .inspect-button {
-            display: flex; justify-content: center; align-items: center;
-            flex: 1; padding: 13px; border-radius: 8px; text-decoration: none;
-            font-weight: 600; font-size: 1rem;
-            transition: all 0.2s ease; cursor: pointer; border: 2px solid transparent;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.7rem;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            flex: 1; 
+            padding: 15px; 
+            border-radius: 12px; 
+            text-decoration: none;
+            font-weight: 600; 
+            font-size: 1rem;
+            transition: all 0.2s ease; 
+            cursor: pointer; 
+            border: 3px solid transparent;
+            font-family: 'Bangers', cursive;
+            font-size: 1rem;
+            letter-spacing: 1px;
         }
         .buy-button { 
-            background-color: var(--accent-color); color: #111; 
-            border: 2px solid var(--border-color);
-            box-shadow: 3px 3px 0 var(--surface-secondary-color);
+            background-color: var(--accent-color); 
+            color: #111; 
+            border: 3px solid var(--primary-text-color);
+            box-shadow: 5px 5px 0 var(--surface-secondary-color);
         }
         .buy-button:hover {
             background-color: var(--accent-color-hover); 
             transform: translateY(-3px);
-            box-shadow: 5px 5px 0 var(--surface-secondary-color);
+            box-shadow: 7px 7px 0 var(--surface-secondary-color);
         }
         .inspect-button {
-            background-color: transparent; color: var(--primary-text-color);
-            border: 2px solid var(--border-color);
-            box-shadow: 3px 3px 0 var(--surface-secondary-color);
+            background-color: transparent; 
+            color: var(--primary-text-color);
+            border: 3px solid var(--primary-text-color);
+            box-shadow: 5px 5px 0 var(--surface-secondary-color);
         }
         .inspect-button:hover {
             border-color: var(--accent-color); 
             color: var(--accent-color);
-            background-color: rgba(255, 170, 0, 0.1);
+            background-color: rgba(255, 235, 59, 0.1);
             transform: translateY(-3px);
-            box-shadow: 5px 5px 0 var(--surface-secondary-color);
+            box-shadow: 7px 7px 0 var(--surface-secondary-color);
         }
 
-        .quality-mil-spec { --rarity-color: var(--quality-mil-spec); }
-        .quality-restricted { --rarity-color: var(--quality-restricted); }
-        .quality-classified { --rarity-color: var(--quality-classified); }
-        .quality-prime { --rarity-color: var(--quality-prime); }
-        
         /* Модальное окно */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(17, 17, 17, 0.9); 
-            z-index: 2000; display: flex; align-items: center; justify-content: center; 
-            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.9); 
+            z-index: 2000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-        .modal-overlay.show {opacity: 1; visibility: visible;}
+        .modal-overlay.show {
+            opacity: 1; 
+            visibility: visible;
+        }
         .modal-content {
             background-color: var(--surface-color); 
-            border: 3px dashed var(--border-color); 
-            border-radius: 16px; 
+            border: 4px dotted var(--border-color); 
+            border-radius: 20px; 
             padding: 40px; 
             width: 90%; 
-            max-width: 650px; 
+            max-width: 700px; 
             text-align: center; 
             transform: scale(0.95) translateY(10px); 
             transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); 
             position: relative;
-            box-shadow: 10px 10px 0 var(--surface-secondary-color);
+            box-shadow: 12px 12px 0 var(--surface-secondary-color);
         }
-        .modal-overlay.show .modal-content {transform: scale(1) translateY(0);}
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
+        }
         .modal-image-container img {
             max-width: 100%; 
             height: auto; 
@@ -297,15 +328,16 @@
             margin-bottom: 20px;
         }
         .modal-content .skin-name {
-            font-size: 1.5rem; 
+            font-size: 2rem; 
             margin: 15px 0 10px;
-            font-family: 'Press Start 2P', cursive;
+            font-family: 'Bangers', cursive;
             color: var(--primary-text-color);
+            letter-spacing: 2px;
         }
         .modal-content .skin-price {
-            font-size: 1.5rem; 
-            color: var(--secondary-text-color);
-            font-family: 'Press Start 2P', cursive;
+            font-size: 1.8rem; 
+            color: var(--accent-color);
+            font-family: 'Bangers', cursive;
         }
         .modal-close {
             position: absolute; 
@@ -326,32 +358,53 @@
         /* Футер с соцсетями */
         .site-footer {
             background-color: var(--surface-color);
-            border-top: 3px dashed var(--border-color);
+            border-top: 4px dotted var(--border-color);
             padding: 30px 40px;
             margin-top: 50px;
         }
         .social-icons {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
         .social-icon {
             color: var(--primary-text-color);
-            font-size: 2rem;
+            font-size: 2.5rem;
             transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(178, 255, 89, 0.5);
         }
         .social-icon:hover {
             color: var(--accent-color);
             transform: translateY(-5px) scale(1.2);
+            text-shadow: 0 0 20px var(--accent-color);
         }
 
         /* Адаптивность */
         @media (max-width: 768px) {
-            .site-header { flex-direction: column; gap: 15px; padding: 15px 20px; }
-            .page-content { padding: 20px; }
-            .content-area h1 { font-size: 1.5rem; }
-            .skins-grid { grid-template-columns: 1fr; }
-            .social-nav { flex-wrap: wrap; justify-content: center; }
-            .social-link { font-size: 0.7rem; padding: 6px 12px; }
+            .site-header { 
+                flex-direction: column; 
+                gap: 15px; 
+                padding: 15px 20px; 
+            }
+            .page-content { 
+                padding: 20px; 
+            }
+            .content-area h1 { 
+                font-size: 2rem; 
+            }
+            .skins-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .social-nav { 
+                flex-wrap: wrap; 
+                justify-content: center; 
+            }
+            .social-link { 
+                font-size: 0.9rem; 
+                padding: 8px 12px; 
+            }
+            .social-icons {
+                justify-content: center;
+            }
         }
     </style>
 </head>
