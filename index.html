@@ -20,16 +20,21 @@
             --accent-color: #3A86FF;
             --accent-hover: #2667CC;
 
-            --quality-mil-spec: #4B9AE2;
-            --quality-restricted: #3FB894;
-            --quality-classified: #E94C4C;
-            --quality-prime: #FFB03A;
+            --top1-color: #FFD700;
+            --top2-color: #C0C0C0;
+            --top3-color: #CD7F32;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        /* Скрываем полосу прокрутки */
+        ::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
         }
 
         body {
@@ -39,6 +44,7 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            scrollbar-width: none;
         }
 
         /* НОВАЯ ШАПКА */
@@ -77,9 +83,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
             font-weight: 800;
-            background: linear-gradient(90deg, #3A86FF, #FF006E);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary-text-color);
         }
 
         .social-nav {
@@ -109,134 +113,151 @@
         }
 
         /* ОСНОВНОЙ КОНТЕНТ */
-        .page-container {
-            display: flex;
-            min-height: calc(100vh - 80px);
-            max-width: 1600px;
+        .content-area {
+            padding: 2rem;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* БОКОВАЯ ПАНЕЛЬ */
-        .filter-sidebar {
-            width: 300px;
-            padding: 2rem;
-            background-color: var(--surface-color);
-            border-right: 1px solid var(--border-color);
-            position: sticky;
-            top: 80px;
-            height: calc(100vh - 80px);
-            overflow-y: auto;
-        }
-
-        .filter-header {
+        .top-skins {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            justify-content: center;
         }
 
-        .filter-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--primary-text-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .reset-filters {
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .reset-filters:hover {
-            color: var(--accent-hover);
-        }
-
-        .filter-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .filter-group-title {
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: var(--primary-text-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            padding: 0.5rem 0;
-        }
-
-        .filter-group-title::after {
-            content: '+';
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .filter-group.active .filter-group-title::after {
-            content: '-';
-        }
-
-        .filter-options {
-            display: none;
-            padding-left: 0.5rem;
-        }
-
-        .filter-group.active .filter-options {
-            display: block;
-        }
-
-        .filter-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: background-color 0.2s ease;
-            cursor: pointer;
-        }
-
-        .filter-option:hover {
-            background-color: var(--surface-secondary-color);
-        }
-
-        .filter-option input {
-            margin-right: 0.8rem;
-            accent-color: var(--accent-color);
-            width: 16px;
-            height: 16px;
-        }
-
-        .filter-option label {
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        /* ОСНОВНАЯ ОБЛАСТЬ КОНТЕНТА */
-        .content-area {
+        .top-skin-card {
             flex: 1;
-            padding: 2rem;
+            max-width: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .content-header {
-            margin-bottom: 2rem;
+        .top-skin-card:hover {
+            transform: translateY(-5px);
         }
 
-        .page-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
+        .top-skin-card.top1 {
+            border: 2px solid var(--top1-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .top-skin-card.top2 {
+            border: 2px solid var(--top2-color);
+            box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+        }
+
+        .top-skin-card.top3 {
+            border: 2px solid var(--top3-color);
+            box-shadow: 0 0 20px rgba(205, 127, 50, 0.3);
+        }
+
+        .top-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .top1 .top-badge {
+            background-color: var(--top1-color);
+            color: #000;
+        }
+
+        .top2 .top-badge {
+            background-color: var(--top2-color);
+            color: #000;
+        }
+
+        .top3 .top-badge {
+            background-color: var(--top3-color);
+            color: #000;
+        }
+
+        .top-skin-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--surface-secondary-color) 0%, var(--bg-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-skin-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+            z-index: 1;
+        }
+
+        .top-skin-card:hover .top-skin-image img {
+            transform: scale(1.1);
+        }
+
+        .top-skin-info {
+            padding: 1.5rem;
+            background-color: var(--surface-color);
+        }
+
+        .top-skin-name {
+            font-weight: 700;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: var(--primary-text-color);
         }
 
-        .page-description {
+        .top-skin-price {
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .top1 .top-skin-price {
+            color: var(--top1-color);
+        }
+
+        .top2 .top-skin-price {
+            color: var(--top2-color);
+        }
+
+        .top3 .top-skin-price {
+            color: var(--top3-color);
+        }
+
+        .top-skin-developer {
+            font-size: 0.8rem;
             color: var(--secondary-text-color);
-            max-width: 600px;
+            margin-bottom: 1rem;
         }
 
-        /* СЕТКА СКИНОВ - СОВЕРШЕННО НОВЫЙ ДИЗАЙН */
+        .top-skin-button {
+            display: block;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .top-skin-button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ОСНОВНАЯ СЕТКА СКИНОВ */
         .skins-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -260,22 +281,8 @@
             border-color: var(--accent-color);
         }
 
-        .skin-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background-color: var(--rarity-color);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            z-index: 2;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
         .skin-image-container {
-            height: 200px;
+            height: 180px;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -330,6 +337,13 @@
             color: var(--primary-text-color);
         }
 
+        .skin-developer {
+            font-size: 0.7rem;
+            color: var(--secondary-text-color);
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+        }
+
         .skin-actions {
             display: flex;
             gap: 0.8rem;
@@ -380,7 +394,7 @@
         }
 
         .footer-container {
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -514,20 +528,15 @@
             margin-bottom: 0.5rem;
         }
 
-        .modal-rarity {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            background-color: var(--rarity-color);
-            color: white;
-        }
-
         .modal-price {
             font-size: 1.5rem;
             font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-developer {
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
             margin-bottom: 1.5rem;
         }
 
@@ -545,24 +554,16 @@
             transition: all 0.2s ease;
         }
 
-        /* КЛАССЫ КАЧЕСТВА */
-        .quality-mil-spec { --rarity-color: var(--quality-mil-spec); }
-        .quality-restricted { --rarity-color: var(--quality-restricted); }
-        .quality-classified { --rarity-color: var(--quality-classified); }
-        .quality-prime { --rarity-color: var(--quality-prime); }
-
         /* АДАПТИВНОСТЬ */
         @media (max-width: 1200px) {
-            .page-container {
+            .top-skins {
                 flex-direction: column;
+                align-items: center;
             }
             
-            .filter-sidebar {
+            .top-skin-card {
+                max-width: 100%;
                 width: 100%;
-                height: auto;
-                position: static;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
             }
         }
 
@@ -581,10 +582,6 @@
             .social-nav {
                 flex-wrap: wrap;
                 justify-content: center;
-            }
-            
-            .skins-grid {
-                grid-template-columns: 1fr;
             }
             
             .footer-container {
@@ -626,94 +623,12 @@
     </nav>
 </header>
 
-<div class="page-container">
-    <aside class="filter-sidebar">
-        <div class="filter-header">
-            <h2 class="filter-title">Фильтры</h2>
-            <div class="reset-filters">Сбросить</div>
-        </div>
-        
-        <div class="filter-group active">
-            <div class="filter-group-title">Категории</div>
-            <div class="filter-options">
-                <div class="filter-option">
-                    <input type="checkbox" id="knives" checked>
-                    <label for="knives">Ножи</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="gloves" checked>
-                    <label for="gloves">Перчатки</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="pistols" checked>
-                    <label for="pistols">Пистолеты</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="smgs" checked>
-                    <label for="smgs">ПП</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="rifles" checked>
-                    <label for="rifles">Винтовки</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="snipers" checked>
-                    <label for="snipers">Снайперки</label>
-                </div>
-            </div>
-        </div>
-        
-        <div class="filter-group">
-            <div class="filter-group-title">Качество</div>
-            <div class="filter-options">
-                <div class="filter-option">
-                    <input type="checkbox" id="mil-spec" checked>
-                    <label for="mil-spec">Армейское</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="restricted" checked>
-                    <label for="restricted">Запрещенное</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="classified" checked>
-                    <label for="classified">Засекреченное</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="prime" checked>
-                    <label for="prime">Прайм</label>
-                </div>
-            </div>
-        </div>
-        
-        <div class="filter-group">
-            <div class="filter-group-title">Цена</div>
-            <div class="filter-options">
-                <div class="filter-option">
-                    <input type="checkbox" id="price-low" checked>
-                    <label for="price-low">До 10,000</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="price-medium" checked>
-                    <label for="price-medium">10,000 - 50,000</label>
-                </div>
-                <div class="filter-option">
-                    <input type="checkbox" id="price-high" checked>
-                    <label for="price-high">50,000+</label>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-    <main class="content-area">
-        <div class="content-header">
-            <h1 class="page-title">Избранные скины</h1>
-            <p class="page-description">Лучшие предложения этой недели. Используйте фильтры слева для поиска нужных предметов.</p>
-        </div>
-        
-        <div class="skins-grid">
-            <!-- Карточки будут добавляться через JavaScript -->
-        </div>
-    </main>
+<div class="content-area">
+    <!-- ТОП 3 СКИНА -->
+    <div class="top-skins" id="topSkins"></div>
+    
+    <!-- ОСНОВНАЯ СЕТКА СКИНОВ -->
+    <div class="skins-grid" id="skinsGrid"></div>
 </div>
 
 <footer class="site-footer">
@@ -739,7 +654,7 @@
         </div>
         
         <div class="footer-copyright">
-            © 2023 ShevSay Skins. Все права защищены.
+            © 2025 ShevSay Skins. Все права защищены.
         </div>
     </div>
 </footer>
@@ -753,8 +668,8 @@
         </div>
         <div class="modal-info">
             <h2 id="modalName" class="modal-name"></h2>
-            <div id="modalRarity" class="modal-rarity"></div>
             <div id="modalPrice" class="modal-price"></div>
+            <div id="modalDeveloper" class="modal-developer"></div>
             <div class="modal-actions">
                 <a href="https://www.twitch.tv/shevsay" target="_blank" class="modal-button buy-button">Купить</a>
                 <a id="modalInspect" href="#" target="_blank" class="modal-button inspect-button">Осмотреть</a>
@@ -766,121 +681,13 @@
 <script>
     const skinsData = [
         { 
-            name: "SG 553 | Старина Ржавчик", 
-            price: 2000, 
-            image: "https://assets.lis-skins.com/market_images/147018_b.png", 
-            quality: "mil-spec", 
-            type: 'SG 553', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469",
-            category: 'rifles'
-        },
-        { 
-            name: "M4A1-S | Северный лес", 
-            price: 3000, 
-            image: "https://assets.lis-skins.com/market_images/9254_b.png", 
-            quality: "mil-spec", 
-            type: 'M4A1-S', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199303684554A44905774809D16296880026125316388",
-            category: 'rifles'
-        },
-        { 
-            name: "USP-S | Билет в ад", 
-            price: 5000, 
-            image: "https://assets.lis-skins.com/market_images/152529_b.png", 
-            quality: "restricted", 
-            type: 'USP-S', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199438776871A45024021638D6930585498007975757",
-            category: 'pistols'
-        },
-        { 
-            name: "AWP | Капилляры", 
-            price: 6500, 
-            image: "https://assets.lis-skins.com/market_images/145952_b.png", 
-            quality: "mil-spec", 
-            type: 'AWP', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572539934A45225672298D7953429965043849259",
-            category: 'snipers'
-        },
-        { 
-            name: "AWP | Ахерон", 
-            price: 7000, 
-            image: "https://assets.lis-skins.com/market_images/60231_b.png", 
-            quality: "mil-spec", 
-            type: 'AWP', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572896403A45159972133D7083188519541208581",
-            category: 'snipers'
-        },
-        { 
-            name: "M4A1-S | Нитро", 
-            price: 8000, 
-            image: "https://assets.lis-skins.com/market_images/9352_b.png", 
-            quality: "restricted", 
-            type: 'M4A1-S', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572287354A45195408169D11595088990574181802",
-            category: 'rifles'
-        },
-        { 
-            name: "Desert Eagle | Рельсотрон", 
-            price: 14000, 
-            image: "https://assets.lis-skins.com/market_images/141501_b.png", 
-            quality: "restricted", 
-            type: 'Desert Eagle', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199440151155A45128185757D6928826125758235369",
-            category: 'pistols'
-        },
-        { 
-            name: "M4A1-S | Ночной ужас", 
-            price: 17000, 
-            image: "https://assets.lis-skins.com/market_images/152536_b.png", 
-            quality: "restricted", 
-            type: 'M4A1-S', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572819281A45080235516D7254221815132699524",
-            category: 'rifles'
-        },
-        { 
-            name: "AK-47 | Затерянная земля", 
-            price: 18000, 
-            image: "https://assets.lis-skins.com/market_images/141457_b.png", 
-            quality: "mil-spec", 
-            type: 'AK-47', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572434062A44885517882D875563960137574909",
-            category: 'rifles'
-        },
-        { 
-            name: "M4A4 | Мастер травли", 
-            price: 20000, 
-            image: "https://assets.lis-skins.com/market_images/169019_b.png", 
-            quality: "restricted", 
-            type: 'M4A4', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572630510A45151099175D778032169458304708",
-            category: 'rifles'
-        },
-        { 
-            name: "Glock-18 | Ядерный сад", 
-            price: 25000, 
-            image: "https://assets.lis-skins.com/market_images/60260_b.png", 
-            quality: "classified", 
-            type: 'Glock-18', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572445118A45094219615D10125937820632625068",
-            category: 'pistols'
-        },
-        { 
-            name: "USP-S | Сайрекс", 
-            price: 25000, 
-            image: "https://assets.lis-skins.com/market_images/16349_b.png", 
-            quality: "classified", 
-            type: 'USP-S', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199573451498A45097115098D6937338527307919745",
-            category: 'pistols'
-        },
-        { 
-            name: "AWP | Экзоскелет", 
-            price: 79999, 
-            image: "https://assets.lis-skins.com/market_images/148247_b.png", 
-            quality: "classified", 
-            type: 'AWP', 
-            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572102697A45093761532D7559864608688361997",
-            category: 'snipers'
+            name: "Прайм статус в CS2", 
+            price: 199999, 
+            image: "https://assets.lis-skins.com/market_images/150602_b.png", 
+            quality: "prime", 
+            type: 'Прайм статус',
+            inspectLink: "",
+            developer: "developer: / @horiifn \\"
         },
         { 
             name: "AK-47 | Ледяной Уголь", 
@@ -889,67 +696,185 @@
             quality: "classified", 
             type: 'AK-47', 
             inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572723112A45089616112D5242903052168340793",
-            category: 'rifles'
+            developer: "developer: / @horiifn \\"
         },
         { 
-            name: "Прайм статус в CS2", 
-            price: 199999, 
-            image: "https://assets.lis-skins.com/market_images/150602_b.png", 
-            quality: "prime", 
-            type: 'Прайм статус',
-            category: 'other'
+            name: "AWP | Экзоскелет", 
+            price: 79999, 
+            image: "https://assets.lis-skins.com/market_images/148247_b.png", 
+            quality: "classified", 
+            type: 'AWP', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572102697A45093761532D7559864608688361997",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "USP-S | Сайрекс", 
+            price: 25000, 
+            image: "https://assets.lis-skins.com/market_images/16349_b.png", 
+            quality: "classified", 
+            type: 'USP-S', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199573451498A45097115098D6937338527307919745",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "Glock-18 | Ядерный сад", 
+            price: 25000, 
+            image: "https://assets.lis-skins.com/market_images/60260_b.png", 
+            quality: "classified", 
+            type: 'Glock-18', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572445118A45094219615D10125937820632625068",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "M4A4 | Мастер травли", 
+            price: 20000, 
+            image: "https://assets.lis-skins.com/market_images/169019_b.png", 
+            quality: "restricted", 
+            type: 'M4A4', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572630510A45151099175D778032169458304708",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "AK-47 | Затерянная земля", 
+            price: 18000, 
+            image: "https://assets.lis-skins.com/market_images/141457_b.png", 
+            quality: "mil-spec", 
+            type: 'AK-47', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572434062A44885517882D875563960137574909",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "M4A1-S | Ночной ужас", 
+            price: 17000, 
+            image: "https://assets.lis-skins.com/market_images/152536_b.png", 
+            quality: "restricted", 
+            type: 'M4A1-S', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572819281A45080235516D7254221815132699524",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "Desert Eagle | Рельсотрон", 
+            price: 14000, 
+            image: "https://assets.lis-skins.com/market_images/141501_b.png", 
+            quality: "restricted", 
+            type: 'Desert Eagle', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199440151155A45128185757D6928826125758235369",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "M4A1-S | Нитро", 
+            price: 8000, 
+            image: "https://assets.lis-skins.com/market_images/9352_b.png", 
+            quality: "restricted", 
+            type: 'M4A1-S', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572287354A45195408169D11595088990574181802",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "AWP | Ахерон", 
+            price: 7000, 
+            image: "https://assets.lis-skins.com/market_images/60231_b.png", 
+            quality: "mil-spec", 
+            type: 'AWP', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572896403A45159972133D7083188519541208581",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "AWP | Капилляры", 
+            price: 6500, 
+            image: "https://assets.lis-skins.com/market_images/145952_b.png", 
+            quality: "mil-spec", 
+            type: 'AWP', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572539934A45225672298D7953429965043849259",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "USP-S | Билет в ад", 
+            price: 5000, 
+            image: "https://assets.lis-skins.com/market_images/152529_b.png", 
+            quality: "restricted", 
+            type: 'USP-S', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199438776871A45024021638D6930585498007975757",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "M4A1-S | Северный лес", 
+            price: 3000, 
+            image: "https://assets.lis-skins.com/market_images/9254_b.png", 
+            quality: "mil-spec", 
+            type: 'M4A1-S', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199303684554A44905774809D16296880026125316388",
+            developer: "developer: / @horiifn \\"
+        },
+        { 
+            name: "SG 553 | Старина Ржавчик", 
+            price: 2000, 
+            image: "https://assets.lis-skins.com/market_images/147018_b.png", 
+            quality: "mil-spec", 
+            type: 'SG 553', 
+            inspectLink: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199572722737A45030988106D2352757034773417469",
+            developer: "developer: / @horiifn \\"
         }
     ];
 
-    const rarityNames = { 
-        'mil-spec': 'Армейское', 
-        'restricted': 'Запрещенное', 
-        'classified': 'Засекреченное', 
-        'prime': 'Прайм' 
-    };
-
     document.addEventListener('DOMContentLoaded', () => {
-        const skinsGrid = document.querySelector('.skins-grid');
+        const topSkinsContainer = document.getElementById('topSkins');
+        const skinsGrid = document.getElementById('skinsGrid');
         const modal = document.getElementById('skinModal');
         const modalClose = document.getElementById('modalClose');
         const modalImage = document.getElementById('modalImage');
         const modalName = document.getElementById('modalName');
-        const modalRarity = document.getElementById('modalRarity');
         const modalPrice = document.getElementById('modalPrice');
+        const modalDeveloper = document.getElementById('modalDeveloper');
         const modalInspect = document.getElementById('modalInspect');
-        const filterGroups = document.querySelectorAll('.filter-group');
-        const resetFiltersBtn = document.querySelector('.reset-filters');
 
-        // Инициализация фильтров
-        filterGroups.forEach(group => {
-            const title = group.querySelector('.filter-group-title');
-            title.addEventListener('click', () => {
-                group.classList.toggle('active');
+        // Сортируем скины по цене (от высокой к низкой)
+        const sortedSkins = [...skinsData].sort((a, b) => b.price - a.price);
+
+        // Рендер топ 3 скинов
+        function renderTopSkins() {
+            topSkinsContainer.innerHTML = '';
+            
+            sortedSkins.slice(0, 3).forEach((skin, index) => {
+                const topSkinCard = document.createElement('div');
+                topSkinCard.className = `top-skin-card top${index + 1}`;
+                topSkinCard.innerHTML = `
+                    <div class="top-badge">${index + 1}</div>
+                    <div class="top-skin-image">
+                        <img src="${skin.image}" alt="${skin.name}" class="top-skin-image">
+                    </div>
+                    <div class="top-skin-info">
+                        <h3 class="top-skin-name">${skin.name}</h3>
+                        <div class="top-skin-price">${skin.price.toLocaleString('ru-RU')} баллов</div>
+                        <div class="top-skin-developer">${skin.developer}</div>
+                        <a href="https://www.twitch.tv/shevsay" target="_blank" class="top-skin-button">Купить</a>
+                    </div>
+                `;
+                
+                topSkinCard.addEventListener('click', (e) => {
+                    if (e.target.closest('.top-skin-image')) {
+                        openModal(skin);
+                    }
+                });
+                
+                topSkinsContainer.appendChild(topSkinCard);
             });
-        });
+        }
 
-        // Сброс фильтров
-        resetFiltersBtn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-option input').forEach(input => {
-                input.checked = true;
-            });
-            renderSkins();
-        });
-
-        // Рендер скинов
-        function renderSkins() {
+        // Рендер основной сетки скинов (без топ 3)
+        function renderSkinsGrid() {
             skinsGrid.innerHTML = '';
             
-            skinsData.forEach((skin, index) => {
+            sortedSkins.slice(3).forEach(skin => {
                 const skinCard = document.createElement('div');
-                skinCard.className = `skin-card quality-${skin.quality}`;
+                skinCard.className = 'skin-card';
                 skinCard.innerHTML = `
-                    <div class="skin-badge">${rarityNames[skin.quality]}</div>
                     <div class="skin-image-container">
                         <img src="${skin.image}" alt="${skin.name}" class="skin-image">
                     </div>
                     <div class="skin-info">
                         <h3 class="skin-name">${skin.name}</h3>
+                        <div class="skin-developer">${skin.developer}</div>
                         <div class="skin-price-container">
                             <span class="price-label">Цена:</span>
                             <span class="skin-price">${skin.price.toLocaleString('ru-RU')}</span>
@@ -975,9 +900,8 @@
         function openModal(skin) {
             modalImage.src = skin.image;
             modalName.textContent = skin.name;
-            modalRarity.textContent = rarityNames[skin.quality];
-            modalRarity.className = `modal-rarity quality-${skin.quality}`;
             modalPrice.textContent = `${skin.price.toLocaleString('ru-RU')} баллов`;
+            modalDeveloper.textContent = skin.developer;
             
             if (skin.inspectLink) {
                 modalInspect.href = skin.inspectLink;
@@ -1002,7 +926,8 @@
         });
 
         // Инициализация
-        renderSkins();
+        renderTopSkins();
+        renderSkinsGrid();
     });
 </script>
 
